@@ -25,3 +25,7 @@
   - Run django app on Heroku server 
 - [Django secret key generator](https://miniwebtool.com/django-secret-key-generator/)
   - Generate secret key 
+- [Django storages]
+- [Boto3]
+- [whitenoise]
+- 
