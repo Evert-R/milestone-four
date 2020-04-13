@@ -1,0 +1,1 @@
+web: gunicorn lobkevanaar.wsgi:application
