@@ -6,6 +6,69 @@
 ##### Deployed version:
 - [Lobke van Aar](https://lobkevanaar.herokuapp.com/)
 
+## Project structure
+### apps :
+- #### lobkevanaar
+  - Main project
+    - ##### Views:
+      - Main website
+      - Show all works as default
+- #### accounts
+  - register
+  - login
+    - ##### views
+      - login form
+      - register form
+      - reset password form
+- #### Dashboard
+  - Add/edit/delete works
+  - Add/edit/delete collections
+  - view/delete orders
+  - view userlist
+  - Edit contact page
+  - Edit about page
+    - ##### Views
+      - view works list
+      - add/edit work form
+      - view collections list
+      - add/edit collections
+      - view/delete orders
+      - view/edit userlist
+      - Edit content of the about page
+      - Edit content of the contact page
+- #### works
+  - Front page displaying all works
+  - filter works by category/size/material
+    - ##### Views
+- #### workdetails
+  - View details of one work
+    - ##### views:
+      - Work page with horizontal main picture
+      - Work page with vertical main picture
+- #### about
+  - About page
+    - #### views:
+      - About page
+- #### shop
+  - Webshop
+  - orderitems
+    - ##### views
+      - Overview items
+      - work details       
+- #### cart
+  - view/edit shopping cart
+- #### checkout
+  - fill in address details
+  - order and pay
+- #### reviews
+  - Leave review after buying
+    - ##### Views:
+      - review form
+- #### contact
+  - Contact page
+    ##### views:
+      - Contact page
+  
 ## Technologies Used
 - [VSCode](https://code.visualstudio.com)
   - Code Editor
