@@ -1,3 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&display=swap');
 body {
-    background-color: rgb(193, 236, 224);
+    background-color: rgb(255, 255, 255);
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    padding-top: 12.5rem;
+}
+
+#er-logo {
+    position: absolute;
+    top: 4.375rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+}
+
+#er-logo img {
+    height: 3.75rem;
+}
+
+.er-nav-links {
+    padding-top: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.er-nav-links ul {
+    font-family: 'FuturaBT-Heavy', 'Archivo Narrow';
+    letter-spacing: 0.1rem;
+    color: black;
+}
+
+/* --------------------------Bootstrap classes */
+
+.navbar {
+    display: unset;
+    min-height: 12.5rem;
+    background-color: rgba(255, 255, 255);
+}
+
+/* --------------------------992 - LG */
+
+@media(min-width: 992px) {
+    .navbar {
+        display: flex;
+        height: 12.5rem;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+    .er-nav-links {
+        padding-top: 6.5rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

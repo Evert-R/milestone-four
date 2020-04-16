@@ -6,6 +6,10 @@
 ##### Deployed version:
 - [Lobke van Aar](https://lobkevanaar.herokuapp.com/)
 
+## Design
+- The Futura font was provided by the site owner, but as it has a limited count of 10.000 on the license, the 'Archivo Narrow' font by google is implemented as a backup 
+
+
 ## Project structure
 ### apps :
 - #### lobkevanaar
@@ -91,4 +95,4 @@
 - [Django storages]
 - [Boto3]
 - [whitenoise]
-- 
+
