@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+<div class="container">
 
-and the world waves back!
+    <div class="card-columns">
+        {% for work in works %}
+        <div class="card border-0">
+            <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
+            <div class="card-body">
+                <h5>{{ work.title }}</h5>
+                <p class="card-text">{{ work.category }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>
 
 {% endblock %}

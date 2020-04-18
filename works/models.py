@@ -5,6 +5,10 @@ import datetime
 
 
 class categories(models.Model):
+    """
+    Adding a category to the database
+    Selectable in the category field in the work_items model
+    """
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -12,6 +16,10 @@ class categories(models.Model):
 
 
 class work_types(models.Model):
+    """
+    Adding a work type to the database
+    Selectable in the work_type field in the work_items model
+    """
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -19,6 +27,10 @@ class work_types(models.Model):
 
 
 class materials(models.Model):
+    """
+    Adding a material to the database
+    Selectable in the material field in the work_items model
+    """
     name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -26,6 +38,10 @@ class materials(models.Model):
 
 
 class work_sizes(models.Model):
+    """
+    Adding a work size to the database
+    Selectable in the work_size field in the work_items model 
+    """
     name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -33,6 +49,9 @@ class work_sizes(models.Model):
 
 
 class work_items(models.Model):
+    """
+    Adding a work to the database
+    """
     main_image = models.ImageField(upload_to='images')
     HORIZONTAL = 'HZ'
     VERTICAL = 'VT'
