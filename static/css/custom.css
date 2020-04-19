@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@500&display=swap');
-body {
-    background-color: rgb(255, 255, 255);
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Giga&display=swap');
 html {
     font-size: 100%;
 }
 
 body {
     padding-top: 12.5rem;
+    background-color: rgb(255, 255, 255);
 }
 
 a {
@@ -17,6 +15,11 @@ a {
 
 h5 {
     font-family: 'FuturaBT-Heavy', 'Hind';
+}
+
+p {
+    font-size: 0.9rem;
+    font-family: sans-serif;
 }
 
 #er-logo {
@@ -45,25 +48,19 @@ h5 {
     width: 33.33333%;
 }
 
-.er-nav-row i {
+.er-nav-left i {
     padding-left: 0.5rem;
     font-size: 0.8rem;
 }
 
-.er-nav-row a {
-    color: rgba(0, 0, 0, 0.6)
-}
-
-.er-nav-row {
-    width: 100%;
-    z-index: 5000;
-    position: fixed;
-    top: 5.3rem;
-    left: 0;
+.er-nav-left a {
+    color: rgba(0, 0, 0, 0.5)
 }
 
 .er-nav-left {
-    width: 100%;
+    position: fixed;
+    top: 5.3rem;
+    left: 8vw;
     z-index: 5000;
     display: flex;
     align-items: center;
@@ -79,6 +76,48 @@ h5 {
 .fa {
     font-size: 2rem;
     color: black;
+}
+
+/* --------------------------Workdetail page */
+
+.er-detail-container {
+    max-width: 1110px;
+}
+
+.er-detail-container img {
+    width: 100%;
+}
+
+.er-detail-container p {
+    text-align: justify;
+}
+
+.er-detail-container div {
+    width: 100%;
+}
+
+.er-detail-main {
+    width: 100%;
+    margin-bottom: 4.68rem;
+}
+
+.er-detail-left {
+    padding-right: 6.4rem;
+    margin-bottom: 4.68rem;
+}
+
+.er-detail-right {
+    margin-bottom: 4.68rem;
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.er-detail-bottom {
+    height: 600px;
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 /* --------------------------Bootstrap classes */

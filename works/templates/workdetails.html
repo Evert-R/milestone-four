@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block content %}
+
+<div class="container er-detail-container">
+    <div class="row">
+        {% if work.position == 'VT' %}
+        <div class="col-lg-8 er-detail-left">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        <div class="col-lg-4 er-detail-right">
+            <div>
+                <h5>{{ work.title }}</h5>
+                <p>{{ work.free_text }}</p>
+            </div>
+            <div>
+                <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        {% else %}
+        <div class="col-lg-12 er-detail-main">
+            <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
+        </div>
+        <div class="col-lg-8 er-detail-main er-detail-left">
+            <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
+        </div>
+        <div class="col-lg-4 er-detail-right" style="background-image: url('{{ MEDIA_URL }}{{ work.main_image }}');">
+            <div>
+                <h5>{{ work.title }}</h5>
+                <p>{{ work.free_text }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock %}

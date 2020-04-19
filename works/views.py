@@ -19,5 +19,10 @@ def all_works(request):
         return render(request, "works.html", {"works": works, "filter_form": filter_form})
 
 
+def work_details(request, pk):
+    work = work_items.objects.get(pk=pk)
+    return render(request, "workdetails.html", {"work": work})
+
+
 def all_test(request):
     return render(request, "test.html")
