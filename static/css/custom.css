@@ -11,6 +11,10 @@ body {
     padding-top: 12.5rem;
 }
 
+a {
+    color: rgba(0, 0, 0, 0.9)
+}
+
 h5 {
     font-family: 'FuturaBT-Heavy', 'Hind';
 }
@@ -39,6 +43,42 @@ h5 {
 
 .er-outer-nav {
     width: 33.33333%;
+}
+
+.er-nav-row i {
+    padding-left: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.er-nav-row a {
+    color: rgba(0, 0, 0, 0.6)
+}
+
+.er-nav-row {
+    width: 100%;
+    z-index: 5000;
+    position: fixed;
+    top: 5.3rem;
+    left: 0;
+}
+
+.er-nav-left {
+    width: 100%;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --------------------------Works page */
+
+#er-filter-works {
+    width: 12rem;
+}
+
+.fa {
+    font-size: 2rem;
+    color: black;
 }
 
 /* --------------------------Bootstrap classes */

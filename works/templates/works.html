@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap_tags %}
 {% block content %}
+<div class="container">
+    <div class="row er-nav-row">
+        <div class="col-md-4 er-nav-left">
+            <form method="post" id="er-filter-works" action="{% url 'works' %}">
+                {{ filter_form | as_bootstrap }}
+                {% csrf_token %}
+            </form><br>
+            <div><a href="{% url 'works' %}"><i class="fas fa-undo"></i></a></div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+</div>
 <div class="container">
 
     <div class="card-columns">
@@ -8,7 +26,7 @@
         <div class="card border-0">
             <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
             <div class="card-body">
-                <h5>{{ work.title }}</h5>
+                <h5>{{ work.category }}</h5>
                 <p class="card-text">{{ work.category }}</p>
             </div>
         </div>
@@ -17,5 +35,13 @@
 
 
 </div>
+
+<script>
+
+    $('#id_cat').change(function () {
+        $('#er-filter-works').submit();
+    })
+
+</script>
 
 {% endblock %}
