@@ -120,6 +120,16 @@ p {
     background-repeat: no-repeat;
 }
 
+/* --------------------------Dashboard classes */
+
+.er-form-wrap {}
+
+.er-form-wrap form {
+    background-color: rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+}
+
 /* --------------------------Bootstrap classes */
 
 .navbar {
@@ -139,6 +149,39 @@ p {
 .card-body p {
     font-family: 'FuturaBT-Book', 'Hind';
     font-weight: 500;
+}
+
+.form-group input {
+    font-size: 0.8rem;
+}
+
+.form-group label {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 0.9rem;
+}
+
+.form-group select {
+    font-size: 0.8rem;
+}
+
+.form-group button {
+    width: 6rem;
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 0.9rem;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.form-group button:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.form-group {
+    padding: 0;
+    margin-bottom: 0.3rem;
+}
+
+.col-form-label {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 /* --------------------------992 - LG */

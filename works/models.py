@@ -15,39 +15,6 @@ class categories(models.Model):
         return self.name
 
 
-class work_types(models.Model):
-    """
-    Adding a work type to the database
-    Selectable in the work_type field in the work_items model
-    """
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-
-class materials(models.Model):
-    """
-    Adding a material to the database
-    Selectable in the material field in the work_items model
-    """
-    name = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
-
-
-class work_sizes(models.Model):
-    """
-    Adding a work size to the database
-    Selectable in the work_size field in the work_items model 
-    """
-    name = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
-
-
 class work_items(models.Model):
     """
     Adding a work to the database
@@ -69,19 +36,6 @@ class work_items(models.Model):
     free_text = models.CharField(max_length=3000, blank=True)
     work_item = models.BooleanField(default=True, blank=True)
     shop_item = models.BooleanField(default=False, blank=True)
-    price = models.DecimalField(
-        max_digits=5, decimal_places=2, blank=True, null=True)
-    stock = models.SmallIntegerField(blank=True, null=True)
-    edition_count = models.SmallIntegerField(blank=True, null=True)
-    frame = models.BooleanField(default=False, blank=True)
-    signed = models.BooleanField(default=True, blank=True)
-    date_modified = models.DateField(auto_now=True)
-    work_type = models.ForeignKey(
-        work_types, on_delete=models.CASCADE, blank=True, null=True)
-    material = models.ForeignKey(
-        materials, on_delete=models.CASCADE, blank=True, null=True)
-    work_size = models.ForeignKey(
-        work_sizes, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.title
