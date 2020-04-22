@@ -14,7 +14,9 @@
 
         </div>
         <div class="col-lg-6">
-
+            {% if edit_shop %}
+            {% crispy edit_shop edit_shop.helper %}
+            {% endif %}
         </div>
     </div>
 </div>
