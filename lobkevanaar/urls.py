@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views import static
 from dashboard import views
+from accounts import views
 from works import views
 
 
@@ -25,4 +26,5 @@ urlpatterns = [
     path('', views.all_works, name='all_works'),
     path('works/', include('works.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('accounts/', include('accounts.urls')),
 ]

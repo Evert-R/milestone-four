@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'works',
     'shop',
     'dashboard',
+    'accounts',
     'crispy_forms'
 ]
 
@@ -129,6 +130,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend'
+]
 
 AWS_S3_OBJECT_PARAMETERS = {
     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',

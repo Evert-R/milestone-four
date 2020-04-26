@@ -83,7 +83,11 @@
         </nav>
 
     </header>
-
+    {% if messages %}
+    <div class="er-messages">
+        {% for message in messages %} {{ message }} {% endfor %}
+    </div>
+    {% endif %}
     {% block content %} {% endblock %}
 
     <script src="{% static 'js/base-events.js' %}"></script>

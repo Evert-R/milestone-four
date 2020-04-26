@@ -1,0 +1,9 @@
+{% extends 'base_accounts.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block accounts %}
+
+
+{% crispy accounts_form accounts_form.helper %}
+
+{% endblock %}

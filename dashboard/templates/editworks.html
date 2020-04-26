@@ -11,11 +11,8 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="er-form-wrap">
-                <h2>Edit work details</h2>
-            </div>
-            <div class="er-form-wrap">
                 <a data-toggle="collapse" href="#er-work-details">
-                    <h3><i class="fas fa-angle-down"></i> Edit work details</h3>
+                    <h2><i class="fas fa-angle-down"></i> Edit work details</h2>
                 </a>
                 {% if work %}
                 <div class="collapse" id="er-work-details">
@@ -28,7 +25,7 @@
                 {% if add_images %}
                 <div class="er-form-wrap">
                     <a data-toggle="collapse" href="#er-extra-images">
-                        <h3><i class="fas fa-angle-down"></i> Upload extra images</h3>
+                        <h2><i class="fas fa-angle-down"></i> Upload extra images</h2>
                     </a>
                     <div class="collapse" id="er-extra-images">
                         {% crispy add_images add_images.helper %}
@@ -38,7 +35,7 @@
                 {% if edit_shop %}
                 <div class="er-form-wrap">
                     <a data-toggle="collapse" href="#er-shop-details">
-                        <h3><i class="fas fa-angle-down"></i> Edit shop details</h3>
+                        <h2><i class="fas fa-angle-down"></i> Edit shop details</h2>
                     </a>
                     <div class="collapse" id="er-shop-details">
                         {% crispy edit_shop edit_shop.helper %}
@@ -48,7 +45,7 @@
             </div>
             <div class="col-lg-6">
                 {% if work %}
-                <div class="er-form-wrap">
+                <div class="er-wrap">
                     <h2>View work details</h2>
                 </div>
                 <div class="er-form-wrap">
@@ -58,7 +55,7 @@
                 {% endif %}
 
                 {% if images|length > 0 %}
-                <div class="er-form-wrap">
+                <div class="er-wrap">
                     <h4>Extra images</h4>
                     <div class="row">
                         {% for image in images %}

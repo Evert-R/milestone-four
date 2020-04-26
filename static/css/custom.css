@@ -116,6 +116,19 @@ p {
     margin-bottom: 0;
 }
 
+.er-messages {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 5000;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-family: 'FuturaBT-Book', 'Hind';
+    font-size: 0.9rem;
+    background-color: rgba(51, 86, 64, 0.9);
+    color: white;
+}
+
 /* --------------------------Works page */
 
 #er-filter-works {
@@ -185,23 +198,56 @@ p {
     color: black;
 }
 
+/* --------------------------Accounts classes */
+
+.er-accounts-wrap {
+    height: 60vh;
+}
+
 /* --------------------------Form classes */
 
 form {
+    width: 100%;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .er-form-wrap {
-    width: 90%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2.5rem;
 }
 
+.er-form-wrap h2 {
+    text-align: left;
+    padding-left: 1.5rem;
+}
+
+.er-form-wrap i {
+    margin-right: 1.5rem;
+}
+
+.er-wrap {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2.5rem;
+}
+
+.er-wrap h2 {
+    text-align: center;
+}
+
 .er-vertical-third {
     position: relative;
     top: 33%;
+    transform: translateY(-50%);
+}
+
+.er-vertical-half {
+    position: relative;
+    top: 50%;
     transform: translateY(-50%);
 }
 
@@ -223,6 +269,16 @@ form {
 
 .er-green:hover, .er-green:active {
     background-color: rgba(51, 86, 64);
+}
+
+/* --------------------------Django classes */
+
+.alert-danger {
+    background-color: rgba(121, 41, 42, 0.8);
+    color: white;
+    font-family: 'FuturaBT-Book', 'Hind';
+    font-size: 0.9rem;
+    text-align: center;
 }
 
 /* --------------------------Bootstrap classes */
@@ -254,13 +310,20 @@ form {
     background-color: rgba(212, 170, 60, 0.8);
 }
 
+.er-form-wrap .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .form-group label {
-    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-family: 'FuturaBT-Book', 'Hind';
     font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
 }
 
 .form-group input, .form-group select, .form-group textarea {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.8rem;
 }
 
@@ -271,8 +334,9 @@ form {
 }
 
 .btn-primary {
-    font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 0.9rem;
+    font-family: 'FuturaBT-Book', 'Hind';
+    font-size: 0.9rem!important;
+    font-weight: 400!important;
     letter-spacing: 0.2rem;
     border-color: rgba(0, 0, 0, 0.5);
 }
@@ -283,15 +347,17 @@ form {
 }
 
 .col-form-label {
-    margin-bottom: 0.4rem;
     width: 33%;
+    margin-bottom: 0.4rem;
     background-color: rgba(92, 109, 178, 0.8);
     border-radius: 4px;
+    padding-bottom: 0.3rem;
 }
 
 .form-control, .form-control-file {
     margin-bottom: 0.4rem;
     padding: 0.2rem .75rem;
+    border-radius: 4px;
     background-color: rgb(212, 170, 60, 0.8);
 }
 
@@ -312,7 +378,9 @@ form {
         margin-left: auto;
         margin-right: auto;
         padding-bottom: 0;
-        width: 95%;
+    }
+    .er-form-wrap .row {
+        margin-right: -15px;
     }
 }
 

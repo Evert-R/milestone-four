@@ -9,20 +9,27 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 offset-4">
-            <div class="er-form-wrap">
+        <div class="col-12 col-lg-4 offset-lg-2">
+            <div class="er-form-wrap er-vertical-third">
                 <form method="POST">
                     <!-- Security token by Django -->
                     {% csrf_token %}
-                    <img src="{{ MEDIA_URL }}{{ image.work_image }}" alt="Delete this image?">
+
                     <button class="btn btn-primary er-red" type="submit">Yes, delete this image</button><br>
                 </form>
                 <a href="{% url 'dashboard:edit_works' pk=work.id %}">
                     <button class="btn btn-primary er-green">No, let's keep this one</button>
                 </a>
+
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="er-form-wrap">
+                <img src="{{ MEDIA_URL }}{{ image.work_image }}" alt="Delete this image?">
             </div>
         </div>
     </div>
 </div>
+
 
 {% endblock %}
