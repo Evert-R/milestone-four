@@ -58,6 +58,12 @@ class AddExtraImagesForm(ModelForm):
     class Meta:
         model = work_images
         fields = ['work_item', 'work_image']
+        widgets = {
+            'work_item': forms.HiddenInput()
+        }
+        labels = {
+            'work_image': _('Add image'),
+        }
 
     def __init__(self, *args, **kwargs):
         super(AddExtraImagesForm, self).__init__(*args, **kwargs)

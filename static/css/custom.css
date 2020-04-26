@@ -199,6 +199,12 @@ form {
     margin-bottom: 2.5rem;
 }
 
+.er-vertical-third {
+    position: relative;
+    top: 33%;
+    transform: translateY(-50%);
+}
+
 .er-form-wrap img {
     width: 100%;
 }
