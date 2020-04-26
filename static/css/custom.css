@@ -13,6 +13,45 @@ a {
     color: rgba(0, 0, 0, 0.9)
 }
 
+a:hover {
+    color: rgba(0, 0, 0);
+}
+
+h1 {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 1.3rem;
+    letter-spacing: 0.4rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    background-color: rgba(92, 109, 178, 0.8);
+    border-radius: 0.35rem;
+    padding: 0.3rem;
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 1.1rem;
+    letter-spacing: 0.4rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1.3rem;
+}
+
+h4 {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 1.1rem;
+    text-align: right;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1.3rem;
+    margin-right: 1.2rem;
+}
+
 h5 {
     font-family: 'FuturaBT-Heavy', 'Hind';
 }
@@ -65,6 +104,16 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.er-nav-left .form-control, .form-control-file {
+    margin-bottom: unset;
+    padding: unset;
+    background-color: unset;
+}
+
+.er-nav-left form {
+    margin-bottom: 0;
 }
 
 /* --------------------------Works page */
@@ -122,12 +171,52 @@ p {
 
 /* --------------------------Dashboard classes */
 
-.er-form-wrap {}
+.er-nav-shop {
+    position: fixed;
+    top: 0.2rem;
+    z-index: 5000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    letter-spacing: 0.1rem;
+    text-align: center;
+    color: black;
+}
 
-.er-form-wrap form {
-    background-color: rgba(0, 0, 0, 0.1);
-    font-family: sans-serif;
+/* --------------------------Form classes */
+
+form {
     font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.er-form-wrap {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2.5rem;
+}
+
+.er-form-wrap img {
+    width: 100%;
+}
+
+.er-red {
+    background-color: rgba(121, 41, 42, 0.8);
+}
+
+.er-red:hover, .er-red:active {
+    background-color: rgba(121, 41, 42);
+}
+
+.er-green {
+    background-color: rgba(51, 86, 64, 0.8);
+}
+
+.er-green:hover, .er-green:active {
+    background-color: rgba(51, 86, 64);
 }
 
 /* --------------------------Bootstrap classes */
@@ -151,41 +240,35 @@ p {
     font-weight: 500;
 }
 
-form {
-    font-size: 0.8rem;
+.custom-control-label:before {
+    background-color: rgba(212, 170, 60, 0.4);
 }
 
-.form-group input {
-    font-size: 0.8rem;
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: rgba(212, 170, 60, 0.8);
 }
 
 .form-group label {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 0.9rem;
-}
-
-.form-group select {
     font-size: 0.8rem;
 }
 
-.form-group textarea {
+.form-group input, .form-group select, .form-group textarea {
+    font-weight: 600;
     font-size: 0.8rem;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.8rem;
 }
 
 .btn-primary {
     font-family: 'FuturaBT-Heavy', 'Hind';
     font-size: 0.9rem;
     letter-spacing: 0.2rem;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-color: rgba(0, 0, 0, 0.9);
-}
-
-.form-group button {
-    width: 6rem;
-}
-
-.form-group button:hover {
-    background-color: rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 0, 0, 0.5);
 }
 
 .form-group {
@@ -194,7 +277,16 @@ form {
 }
 
 .col-form-label {
-    background-color: rgba(0, 0, 0, 0.2);
+    margin-bottom: 0.4rem;
+    width: 33%;
+    background-color: rgba(92, 109, 178, 0.8);
+    border-radius: 4px;
+}
+
+.form-control, .form-control-file {
+    margin-bottom: 0.4rem;
+    padding: 0.2rem .75rem;
+    background-color: rgb(212, 170, 60, 0.8);
 }
 
 /* --------------------------992 - LG */
@@ -209,6 +301,12 @@ form {
         padding-top: 6.5rem;
         margin-left: auto;
         margin-right: auto;
+    }
+    .col-form-label {
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 0;
+        width: 95%;
     }
 }
 

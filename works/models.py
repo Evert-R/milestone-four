@@ -15,11 +15,15 @@ class categories(models.Model):
         return self.name
 
 
+def work_upload_dir(instance, filename):
+    return "images/works/{}/{}".format(instance.work_item.id, filename)
+
+
 class work_items(models.Model):
     """
     Adding a work to the database
     """
-    main_image = models.ImageField(upload_to='images')
+    main_image = models.ImageField(upload_to=work_upload_dir)
     HORIZONTAL = 'HZ'
     VERTICAL = 'VT'
     POSITION_CHOICES = [
@@ -39,3 +43,12 @@ class work_items(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class work_images(models.Model):
+    """
+    Extra work images
+    """
+    work_item = models.ForeignKey(
+        'works.work_items', on_delete=models.CASCADE, null=True)
+    work_image = models.ImageField(upload_to=work_upload_dir)

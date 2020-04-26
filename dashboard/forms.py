@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm, Textarea
 from django.utils.translation import gettext_lazy as _
-from works.models import work_items
+from works.models import work_items, work_images
 from shop.models import shop_items, work_types, work_sizes, materials
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Field, LayoutObject
@@ -25,23 +25,47 @@ class EditWorksForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EditWorksForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
+        self.helper.help_text_inline = True
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-3'
         self.helper.field_class = 'col-lg-9'
-        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.add_input(
+            Submit('submit', 'Submit work details', css_class='er-green'))
 
 
 class EditShopWorksForm(ModelForm):
     class Meta:
         model = shop_items
-        fields = ['work_item', 'price', 'stock', 'edition_count', 'frame',
-                  'signed', 'work_type', 'material', 'work_size']
+        fields = ['work_item', 'price', 'stock', 'edition_count', 'work_type', 'material', 'work_size', 'frame',
+                  'signed']
+        widgets = {
+            'work_item': forms.HiddenInput()
+        }
 
     def __init__(self, *args, **kwargs):
         super(EditShopWorksForm, self).__init__(*args, **kwargs)
         self.fields['work_item'].widget.attrs['readonly'] = True
         self.helper = FormHelper(self)
+        self.helper.help_text_inline = True
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-3'
         self.helper.field_class = 'col-lg-9'
-        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.add_input(
+            Submit('submit', 'Submit shop details', css_class='er-green'))
+
+
+class AddExtraImagesForm(ModelForm):
+    class Meta:
+        model = work_images
+        fields = ['work_item', 'work_image']
+
+    def __init__(self, *args, **kwargs):
+        super(AddExtraImagesForm, self).__init__(*args, **kwargs)
+        self.fields['work_item'].widget.attrs['readonly'] = True
+        self.helper = FormHelper(self)
+        self.helper.help_text_inline = True
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-lg-3'
+        self.helper.field_class = 'col-lg-9'
+        self.helper.add_input(
+            Submit('submit', 'Submit extra image', css_class='er-green'))

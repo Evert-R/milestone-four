@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from works.models import work_items, categories
+from works.models import work_items, work_images, categories
 from works.forms import FilterForm
 # Create your views here.
 
@@ -21,7 +21,8 @@ def all_works(request):
 
 def work_details(request, pk):
     work = work_items.objects.get(pk=pk)
-    return render(request, "workdetails.html", {"work": work})
+    images = work_images.objects.filter(work_item_id=pk)
+    return render(request, "workdetails.html", {"work": work, "images": images})
 
 
 def all_test(request):
