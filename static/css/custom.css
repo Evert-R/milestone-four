@@ -10,11 +10,13 @@ body {
 }
 
 a {
-    color: rgba(0, 0, 0, 0.9)
+    color: rgba(0, 0, 0, 0.9);
+    text-decoration: none;
 }
 
 a:hover {
     color: rgba(0, 0, 0);
+    text-decoration: none;
 }
 
 h1 {
@@ -201,7 +203,7 @@ p {
 /* --------------------------Accounts classes */
 
 .er-accounts-wrap {
-    height: 60vh;
+    padding-top: 3rem;
 }
 
 /* --------------------------Form classes */
