@@ -2,6 +2,10 @@
 {% load static %}
 {% load bootstrap_tags %}
 {% block content %}
+
+{% if not request.user.is_staff %}
+{# Only show filter options to regular users #}
+<!-- Category filter selector -->
 <div class="container">
     <div class="er-nav-left">
         <form method="post" id="er-filter-works" action="{% url 'all_works' %}">
@@ -11,28 +15,31 @@
         <div><a href="{% url 'all_works' %}"><i class="fas fa-undo"></i></a></div>
     </div>
 </div>
+{% endif %}
 
+<!-- Show all works -->
 <div class="container">
-
-    <div class="card-columns">
-        {% for work in works %}
-        <div class="card border-0">
-            <a href="{% url 'works:work_details' pk=work.id %}">
-                <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
-            </a>
-            <div class="card-body">
-                <h5>{{ work.category }}</h5>
-                <p class="card-text">{{ work.category }}</p>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-columns">
+                {% for work in works %}
+                <div class="card border-0">
+                    <a href="{% url 'works:work_details' pk=work.id %}">
+                        <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <h5>{{ work.category }}</h5>
+                        <p class="card-text">{{ work.category }}</p>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
     </div>
-
-
 </div>
 
+<!-- Submit filter on select -->
 <script>
-
     $('#id_cat').change(function () {
         $('#er-filter-works').submit();
     })

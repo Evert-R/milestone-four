@@ -28,7 +28,7 @@ h1 {
 }
 
 h2 {
-    background-color: rgba(92, 109, 178, 0.8);
+    background-color: rgba(92, 109, 178, 0.7);
     border-radius: 0.35rem;
     padding: 0.3rem;
     font-family: 'FuturaBT-Heavy', 'Hind';
@@ -76,17 +76,83 @@ p {
 }
 
 .er-nav-links {
-    padding-top: 1.5rem;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
     font-family: 'FuturaBT-Heavy', 'Hind';
     letter-spacing: 0.1rem;
-    text-align: center;
     color: black;
 }
 
-.er-outer-nav {
-    width: 33.33333%;
+.er-nav-links div {
+    display: inline-block;
+}
+
+.er-links-left {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.er-links-left .er-nav-button {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+.er-links-center {
+    justify-content: center;
+}
+
+.er-links-right {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.er-links-right .er-nav-button {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+.er-nav-button {
+    font-family: 'FuturaBT-Book', 'Hind';
+    font-size: 0.7rem;
+    font-weight: 600;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.er-nav-button .nav-link {
+    padding: 0.2rem 0.3rem;
+    color: rgba(0, 0, 0, 0.9)!important;
+}
+
+.er-nav-button i {
+    font-size: 0.8rem;
+}
+
+.er-nav-button:hover {
+    color: rgba(0, 0, 0);
+    background-color: rgba(51, 86, 64, 0.4);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.er-nav-button:active {
+    color: white!important;
+    background-color: rgba(51, 86, 64, 0.8);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* -----------Filter selectors */
+
+.er-nav-left {
+    position: fixed;
+    top: 8.7rem;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .er-nav-left i {
@@ -98,44 +164,28 @@ p {
     color: rgba(0, 0, 0, 0.5)
 }
 
-.er-nav-left {
-    position: fixed;
-    top: 5.3rem;
-    left: 8vw;
-    z-index: 5000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .er-nav-left .form-control, .form-control-file {
-    margin-bottom: unset;
-    padding: unset;
-    background-color: unset;
-}
-
-.er-nav-left form {
-    margin-bottom: 0;
+    height: unset;
+    color: rgba(0, 0, 0);
+    padding-left: 0.3rem;
+    margin: 0;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .er-messages {
     position: fixed;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 1.5rem;
+    right: 1.5rem;
     z-index: 5000;
     padding: 0.5rem;
-    border-radius: 4px;
-    font-family: 'FuturaBT-Book', 'Hind';
-    font-size: 0.9rem;
-    background-color: rgba(51, 86, 64, 0.9);
-    color: white;
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 1.1rem;
+    color: rgba(121, 41, 42);
 }
 
 /* --------------------------Works page */
-
-#er-filter-works {
-    width: 12rem;
-}
 
 .fa {
     font-size: 2rem;
@@ -186,20 +236,6 @@ p {
 
 /* --------------------------Dashboard classes */
 
-.er-nav-shop {
-    position: fixed;
-    top: 0.2rem;
-    z-index: 5000;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'FuturaBT-Heavy', 'Hind';
-    letter-spacing: 0.1rem;
-    text-align: center;
-    color: black;
-}
-
 /* --------------------------Accounts classes */
 
 .er-accounts-wrap {
@@ -210,6 +246,7 @@ p {
 
 form {
     width: 100%;
+    color: rgba(0, 0, 0);
     font-size: 0.8rem;
     font-weight: 500;
 }
@@ -265,12 +302,22 @@ form {
     background-color: rgba(121, 41, 42);
 }
 
+.er-red:active {
+    border: unset;
+    box-shadow: 0px 0px 8px rgba(121, 41, 42)!important;
+}
+
 .er-green {
     background-color: rgba(51, 86, 64, 0.8);
 }
 
 .er-green:hover, .er-green:active {
-    background-color: rgba(51, 86, 64);
+    background-color: rgba(51, 86, 64)!important;
+}
+
+.er-green:active {
+    border: unset;
+    box-shadow: 0px 0px 8px rgba(51, 86, 64)!important;
 }
 
 /* --------------------------Django classes */
@@ -287,6 +334,8 @@ form {
 
 .navbar {
     display: unset;
+    margin-left: auto;
+    margin-right: auto;
     min-height: 12.5rem;
     background-color: rgba(255, 255, 255);
 }
@@ -305,7 +354,7 @@ form {
 }
 
 .custom-control-label:before {
-    background-color: rgba(212, 170, 60, 0.4);
+    background-color: rgba(212, 170, 60, 0.8);
 }
 
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
@@ -320,6 +369,7 @@ form {
 .form-group label {
     font-family: 'FuturaBT-Book', 'Hind';
     font-size: 0.8rem;
+    color: rgba(0, 0, 0);
     letter-spacing: 0.1rem;
     font-weight: 600;
 }
@@ -336,7 +386,7 @@ form {
 }
 
 .btn-primary {
-    font-family: 'FuturaBT-Book', 'Hind';
+    font-family: 'FuturaBT-Heavy', 'Hind';
     font-size: 0.9rem!important;
     font-weight: 400!important;
     letter-spacing: 0.2rem;
@@ -351,16 +401,17 @@ form {
 .col-form-label {
     width: 33%;
     margin-bottom: 0.4rem;
-    background-color: rgba(92, 109, 178, 0.8);
+    background-color: rgba(92, 109, 178, 0.7);
     border-radius: 4px;
     padding-bottom: 0.3rem;
 }
 
 .form-control, .form-control-file {
+    color: rgba(0, 0, 0);
     margin-bottom: 0.4rem;
     padding: 0.2rem .75rem;
     border-radius: 4px;
-    background-color: rgb(212, 170, 60, 0.8);
+    background-color: rgb(212, 170, 60, 0.7);
 }
 
 /* --------------------------992 - LG */
@@ -387,7 +438,7 @@ form {
 }
 
 @media(min-width: 1200px) {
-    .container {
+    .container, .navbar {
         max-width: 1300px;
     }
 }
