@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from accounts.models import user_details
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Field, LayoutObject
 
@@ -40,3 +41,23 @@ class RegisterForm(UserCreationForm):
         self.helper.field_class = 'col-lg-8'
         self.helper.add_input(
             Submit('submit', 'Register', css_class='er-green'))
+
+
+class UserDetailsForm(ModelForm):
+    class Meta:
+        model = user_details
+        fields = ['user', 'address1', 'address2', 'postcode',
+                  'city', 'country', 'telephone']
+        widgets = {
+            'user': forms.HiddenInput()
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(UserDetailsForm, self).__init__(*args, **kwargs)
+        self.fields['user'].widget.attrs['readonly'] = True
+        self.helper = FormHelper(self)
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-lg-4'
+        self.helper.field_class = 'col-lg-8'
+        self.helper.add_input(
+            Submit('submit', 'Submit', css_class='er-green'))
