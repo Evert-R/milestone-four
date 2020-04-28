@@ -3,18 +3,8 @@
 {% load bootstrap_tags %}
 {% block content %}
 <div class="container">
-
     <div class="row">
-        <div class="col-12 col-lg-6 offset-lg-3">
-            <div class="er-accounts-wrap">
-                <div class="er-wrap">
-                    <h2>{{ form_title }}</h2>
-                </div>
-                <div class="er-form-wrap">
-                    {% block accounts %} {% endblock %}
-                </div>
-            </div>
-        </div>
+        {% block accounts %} {% endblock %}
     </div>
 </div>
 {% endblock %}

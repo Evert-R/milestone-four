@@ -1,12 +1,20 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import DeleteView
+from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
+
 from works.models import work_items, categories, work_images
 from shop.models import shop_items, work_sizes, work_types, materials
+
 from dashboard.forms import EditWorksForm, EditShopWorksForm, AddExtraImagesForm
+from accounts.decorators import admin_only
 
 # Create your views here.
 
 
+@login_required(login_url='accounts:log_in')
+@admin_only
 def edit_works(request, pk=None):
     """
     Add a new work-item to the database
@@ -66,6 +74,8 @@ def edit_works(request, pk=None):
         return render(request, "editworks.html", {'edit_works': form, 'edit_shop': shop_form, 'work': work, 'images': images, 'add_images': image_form})
 
 
+@login_required(login_url='accounts:log_in')
+@admin_only
 def delete_image(request, pk):
     """
     Delete an extra image from the database
