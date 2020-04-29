@@ -40,8 +40,7 @@ class shop_items(models.Model):
     """
     Adding a work to the database
     """
-    work_item = models.OneToOneField(
-        'works.work_items', on_delete=models.CASCADE, null=True)
+
     price = models.DecimalField(
         max_digits=5, decimal_places=2, default=0)
     stock = models.SmallIntegerField(default=0)

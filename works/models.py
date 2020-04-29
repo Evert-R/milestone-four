@@ -23,7 +23,7 @@ class work_items(models.Model):
     """
     Adding a work to the database
     """
-    main_image = models.ImageField(upload_to=work_upload_dir)
+    main_image = models.ImageField(upload_to="images/works/")
     HORIZONTAL = 'HZ'
     VERTICAL = 'VT'
     POSITION_CHOICES = [
@@ -40,6 +40,8 @@ class work_items(models.Model):
     free_text = models.CharField(max_length=3000, blank=True)
     work_item = models.BooleanField(default=True, blank=True)
     shop_item = models.BooleanField(default=False, blank=True)
+    shop_settings = models.OneToOneField(
+        'shop.shop_items', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.title

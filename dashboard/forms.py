@@ -36,15 +36,11 @@ class EditWorksForm(ModelForm):
 class EditShopWorksForm(ModelForm):
     class Meta:
         model = shop_items
-        fields = ['work_item', 'price', 'stock', 'edition_count', 'work_type', 'material', 'work_size', 'frame',
+        fields = ['price', 'stock', 'edition_count', 'work_type', 'material', 'work_size', 'frame',
                   'signed']
-        widgets = {
-            'work_item': forms.HiddenInput()
-        }
 
     def __init__(self, *args, **kwargs):
         super(EditShopWorksForm, self).__init__(*args, **kwargs)
-        self.fields['work_item'].widget.attrs['readonly'] = True
         self.helper = FormHelper(self)
         self.helper.help_text_inline = True
         self.helper.form_class = 'form-horizontal'

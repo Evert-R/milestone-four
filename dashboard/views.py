@@ -35,14 +35,14 @@ def edit_works(request, pk=None):
         # Check if this is also a shop item
         if work.shop_item == True:
             # Check if the shop item is already created
-            if shop_items.objects.filter(work_item=work.id).count() == 0:
+            try:
+                shop_work = work.shop_settings
+            except:
                 # If not create a form with a new shop item
-                shop_form = EditShopWorksForm({'work_item': work.id})
+                shop_form = EditShopWorksForm()
                 shop_work = None
-            else:
-                # Create a form with existing shop item
-                shop_work = get_object_or_404(shop_items, work_item=work.id)
-                shop_form = EditShopWorksForm(instance=shop_work)
+            # Create a form with existing shop item
+            shop_form = EditShopWorksForm(instance=shop_work)
         else:
             # Set no shop items
             shop_form = None
@@ -66,6 +66,13 @@ def edit_works(request, pk=None):
             work = form.save()
         if shop_form.is_valid():
             shop_work = shop_form.save()
+            # Check if this is the initial shop_settings
+            try:
+                existing_shop = work.shop_settings
+            # if so connect to work
+            except:
+                work.shop_settings = shop_work
+                work.save()
         if image_form.is_valid():
             new_work_images = image_form.save()
         return redirect('dashboard:edit_works', work.pk)
