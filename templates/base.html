@@ -91,7 +91,7 @@
 
                             <a class="nav-item nav-link" href="#">About</a>
 
-                            <a class="nav-item nav-link" href="#">Shop</a>
+                            <a class="nav-item nav-link" href="{% url 'shop:all_shop_works' %}">Shop</a>
 
                         </div>
                     </div>
@@ -125,7 +125,10 @@
                                     Log-out</a>
                             </div>
                             {% endif %}
-
+                            <div class="er-nav-button">
+                                <a class="nav-item nav-link" href="{% url 'cart:view_cart' %}"><i
+                                        class="fas fa-shopping-cart"></i> View cart</a>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -63,6 +63,10 @@ p {
     font-family: sans-serif;
 }
 
+.er-image img {
+    width: 100%;
+}
+
 #er-logo {
     position: absolute;
     top: 4.375rem;
@@ -223,8 +227,14 @@ p {
 .er-detail-right {
     margin-bottom: 4.68rem;
     background-position: bottom;
-    background-size: contain;
+    background-size: 93%;
     background-repeat: no-repeat;
+}
+
+.er-detail-bottom {}
+
+.er-detail-bottom img {
+    width: 100%;
 }
 
 .er-detail-bottom {
@@ -232,6 +242,12 @@ p {
     background-position: bottom;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+/* --------------------------Shop classes */
+
+.er-shop h5 {
+    font-size: 0.9rem;
 }
 
 /* --------------------------Dashboard classes */

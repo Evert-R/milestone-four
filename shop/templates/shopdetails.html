@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>{{ work.title }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-4 offset-lg-2">
+            <div class="er-image">
+                <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <h5>{{ work.title }}</h5>
+            <table>
+                <tr>
+                    <td>
+                        Price:
+                    </td>
+                    <td>
+                        {{ work.shop_settings.price }}
+                    </td>
+                </tr>
+
+            </table>
+            <p>
+                {{ work.shop_settings.work_type }} {{ work.shop_settings.material }} with a size of
+                {{ work.shop_settings.work_size }}.</p>
+            <p>{% if not work.shop_settings.edition_count == 0 %}Limited edition of
+                {{ work.shop_settings.edition_count }}
+                {% endif %} Printed in the Netherlands. Signed and
+                numbered by yours truly.</p>
+            <p>
+                {% if work.shop_settings.frame == 'NF' %} The frame is not included.{% endif %}
+                {% if work.shop_settings.frame == 'FR' %} The frame is included.{% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

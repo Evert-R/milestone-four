@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/columns.css' %}">
+<!-- Show all shop_works -->
+<div class="container er-shop">
+    <div class="row">
+        <div class="col-12">
+            <div class="card-columns">
+                {% for work in works %}
+                <div class="card border-0">
+                    <a href="{% url 'works:work_details' pk=work.id %}">
+                        <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <h5>{{ work.title }}</h5>
+                        <ul>
+                            <li>
+                                {{ work.category }}
+                            </li>
+                            <li>
+                                {{ work.shop_settings.price }}
+                            </li>
+                            <li>
+                                {{ work.shop_settings.work_type }}
+                            </li>
+                            <li>
+                                {{ work.shop_settings.material }}
+                            </li>
+                            <li>
+                                {{ work.shop_settings.work_size }}
+                            </li>
+                            <li>
+                                <a href="{% url 'cart:add_cart' id=work.pk %}"> <button
+                                        class="btn btn-primary er-green">Add to cart</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
