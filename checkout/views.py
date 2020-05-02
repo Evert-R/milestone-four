@@ -17,9 +17,13 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET
 
 
+@login_required()
 def check_out(request):
     # Get logged in user
     active_user = request.user
+    # Get cart contents
+    cart = request.session.get('cart', {})
+    total = 0
     try:
         current_user_details = user_details.objects.get(user=active_user)
     except:
@@ -44,9 +48,6 @@ def check_out(request):
                            date=timezone.now(),
                            )
             order.save()
-            # Get cart contents
-            cart = request.session.get('cart', {})
-            total = 0
             # Create order items for order
             for id, quantity in cart.items():
                 work_item = get_object_or_404(work_items, pk=id)
@@ -82,5 +83,12 @@ def check_out(request):
             messages.error(
                 request, "We were unable to take a payment with that card!")
     else:
+        for id, quantity in cart.items():
+            work_item = get_object_or_404(work_items, pk=id)
+            total += quantity * work_item.shop_settings.price
         payment_form = PaymentForm()
-    return render(request, "checkout.html", {'accounts_form': accounts_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+    return render(request, "checkout.html",
+                  {'total': total,
+                   'accounts_form': accounts_form,
+                   'payment_form': payment_form,
+                   'publishable': settings.STRIPE_PUBLISHABLE})

@@ -18,6 +18,7 @@ class LogInForm(forms.Form):
         super(LogInForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.help_text_inline = True
+        self.helper.form_tag = False
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-4'
         self.helper.field_class = 'col-lg-8'
@@ -37,6 +38,7 @@ class RegisterForm(UserCreationForm):
         super(RegisterForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.help_text_inline = True
+        self.helper.form_tag = False
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-4'
         self.helper.field_class = 'col-lg-8'
@@ -57,6 +59,8 @@ class UserDetailsForm(ModelForm):
         super(UserDetailsForm, self).__init__(*args, **kwargs)
         self.fields['user'].widget.attrs['readonly'] = True
         self.helper = FormHelper(self)
+        self.helper.help_text_inline = True
+        self.helper.form_tag = False
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-4'
         self.helper.field_class = 'col-lg-8'

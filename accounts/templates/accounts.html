@@ -9,7 +9,10 @@
             <h2>{{ form_title }}</h2>
         </div>
         <div class="er-form-wrap">
-            {% crispy accounts_form accounts_form.helper %}
+            <form class="form-horizontal" method="post">
+                {% crispy accounts_form accounts_form.helper %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            </form>
         </div>
     </div>
 </div>

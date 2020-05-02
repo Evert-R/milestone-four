@@ -56,7 +56,6 @@ def add_user_details(request, next_page):
 
 def log_in(request):
     """Show login page"""
-
     accounts_form = LogInForm()
     if request.user.is_authenticated:
         messages.error(request, 'You are already logged in !')
@@ -76,7 +75,8 @@ def log_in(request):
                 # Display success message
                 messages.success(request, "You are now logged in!")
                 # redirect user to the shop page
-                return redirect(reverse('all_works'))
+                next = request.POST.get('next', '/')
+                return redirect(next)
             else:
                 # When user was not matched return the form with errors
                 accounts_form.add_error(
