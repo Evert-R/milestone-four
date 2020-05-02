@@ -32,24 +32,26 @@ def register_user(request):
     return render(request, 'accounts.html', {'accounts_form': accounts_form, 'form_title': 'Please register here'})
 
 
-def add_user_details(request):
+def add_user_details(request, next_page):
     """Add or edit user details"""
 
     active_user = request.user
     if user_details.objects.filter(user=active_user.id).count() == 0:
         accounts_form = UserDetailsForm({'user': active_user.id})
+        current_user_details = None
     else:
         current_user_details = get_object_or_404(user_details,
                                                  user=active_user.id)
         accounts_form = UserDetailsForm(instance=current_user_details)
 
     if request.method == 'POST':
-        accounts_form = UserDetailsForm(request.POST)
+        accounts_form = UserDetailsForm(
+            request.POST, instance=current_user_details)
         if accounts_form.is_valid():
-            updated_user_details = accounts_form.save()
+            current_user_details = accounts_form.save()
             messages.success(request, 'Your details have been saved')
-            return redirect('works:all_works')
-    return render(request, 'accounts.html', {'accounts_form': accounts_form, 'form_title': 'Please fill out your details'})
+            return redirect(next_page)
+    return render(request, 'accounts.html', {'accounts_form': accounts_form, 'form_title': 'Shipping details'})
 
 
 def log_in(request):

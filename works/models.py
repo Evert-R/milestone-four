@@ -42,6 +42,7 @@ class work_items(models.Model):
     shop_item = models.BooleanField(default=False, blank=True)
     shop_settings = models.OneToOneField(
         'shop.shop_items', on_delete=models.CASCADE, blank=True, null=True)
+    sort_order = models.SmallIntegerField(default=0)
 
     def __str__(self):
         return self.title

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
+
+<div class="container">
+    <div class="row">
+        {% for item in cart_items %}
+        <div class="col-12 col-lg-2 offset-lg-4">
+            <div class="er-image">
+                <img src="{{ MEDIA_URL }}{{ item.work.main_image }}" alt="{{ item.work.title }}">
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <h5>{{ item.work.title }}</h5>
+            <p>
+                Price: {{ item.work.shop_settings.price }}<br>
+                Quantity: {{ item.quantity }}
+            </p>
+            <p>
+                <a href="{% url 'cart:remove_cart' id=item.work.pk %}"> <button class="btn btn-primary er-green">Remove
+                        from
+                        cart</button>
+                </a>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-5 offset-1">
+            <div class="er-wrap">
+                <h2>Check your address details</h2>
+            </div>
+            <div class="er-form-wrap">
+                {% crispy accounts_form accounts_form.helper %}
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-5">
+            <div class="er-wrap">
+                <h2>Check your address details</h2>
+            </div>
+            <div class="er-form-wrap">
+                <form method="post" id="payment-form" action="{% url 'checkout:check_out' %}">
+                    <div id="credit-card-errors" style="display: none;">
+                        <div id="alert-message block-message error" id="stripe-error-message"></div>
+                    </div>
+                    {% crispy payment_form payment_form.helper %}
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
