@@ -67,6 +67,8 @@ p {
     width: 100%;
 }
 
+/* -----------Navigation bar classes */
+
 #er-logo {
     position: absolute;
     top: 4.375rem;
@@ -84,6 +86,7 @@ p {
     font-family: 'FuturaBT-Heavy', 'Hind';
     letter-spacing: 0.1rem;
     color: black;
+    transition: padding-top 2s;
 }
 
 .er-nav-links div {
@@ -191,26 +194,21 @@ p {
 
 /* --------------------------Works page */
 
-.fa {
-    font-size: 2rem;
-    color: black;
-}
-
 /* --------------------------Workdetail page */
 
-.er-detail-container {
+.er-detail {
     max-width: 1110px;
 }
 
-.er-detail-container img {
+.er-detail img {
     width: 100%;
 }
 
-.er-detail-container p {
+.er-detail p {
     text-align: justify;
 }
 
-.er-detail-container div {
+.er-detail div {
     width: 100%;
 }
 
@@ -254,8 +252,34 @@ p {
 
 /* --------------------------Accounts classes */
 
+/* --------------------------Checkout classes */
+
 .er-accounts-wrap {
     padding-top: 3rem;
+}
+
+.er-checkout {
+    padding-top: 1.5rem;
+}
+
+.er-checkout h5 {
+    font-size: 1rem;
+}
+
+.er-checkout table {
+    width: 100%;
+}
+
+.er-checkout td {
+    width: 50%;
+}
+
+.er-cell-right {
+    padding-left: 1rem;
+}
+
+.er-cell-right {
+    padding-right: 1rem;
 }
 
 /* --------------------------Form classes */
@@ -354,6 +378,7 @@ form {
     margin-right: auto;
     min-height: 12.5rem;
     background-color: rgba(255, 255, 255);
+    transition: height 2s;
 }
 
 .card-columns {

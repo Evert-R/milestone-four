@@ -102,7 +102,8 @@
                             {% if not request.user.is_authenticated %}
                             {# Show only when not logged in #}
                             <div class="er-nav-button">
-                                <a class="nav-item nav-link" href="{% url 'accounts:log_in' %}">
+                                <a class="nav-item nav-link"
+                                    href="{% url 'accounts:log_in' %}?next={{ request.path|urlencode }}">
                                     <i class="fas fa-sign-in-alt"></i> Log-in<span class="sr-only">(current)</span></a>
                             </div>
 
