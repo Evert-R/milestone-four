@@ -1,0 +1,18 @@
+body {
+    padding-top: 3rem;
+}
+
+.navbar {
+    min-height: unset;
+    height: 3rem;
+    transition: height 0s;
+}
+
+.er-nav-links {
+    transition: padding-top 0s;
+    padding-top: 0;
+}
+
+#er-logo {
+    display: none;
+}

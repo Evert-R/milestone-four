@@ -4,17 +4,17 @@
 {% block accounts %}
 
 <div class="col-12 col-lg-6 offset-lg-3">
-    <div class="er-accounts-wrap">
-        <div class="er-wrap">
-            <h2>{{ form_title }}</h2>
-        </div>
-        <div class="er-form-wrap">
-            <form class="form-horizontal" method="post">
-                {% crispy accounts_form accounts_form.helper %}
-                <input type="hidden" name="next" value="{{ request.GET.next }}">
-            </form>
-        </div>
+
+    <div class="er-wrap">
+        <h1>{{ form_title }}</h1>
     </div>
+    <div class="er-form-wrap">
+        <form class="form-horizontal" method="post">
+            {% crispy accounts_form accounts_form.helper %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        </form>
+    </div>
+
 </div>
 
 {% endblock %}

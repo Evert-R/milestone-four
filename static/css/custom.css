@@ -22,18 +22,17 @@ a:hover {
 h1 {
     font-family: 'FuturaBT-Heavy', 'Hind';
     font-size: 1.3rem;
-    letter-spacing: 0.4rem;
+    letter-spacing: 0.3rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 h2 {
-    background-color: rgba(92, 109, 178, 0.7);
     border-radius: 0.35rem;
     padding: 0.3rem;
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 1.1rem;
-    letter-spacing: 0.4rem;
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
     text-align: center;
     margin-bottom: 2rem;
 }
@@ -60,7 +59,12 @@ h5 {
 
 p {
     font-size: 0.9rem;
-    font-family: sans-serif;
+    font-family: 'FuturaBT-Book', 'Hind';
+    font-weight: 500;
+}
+
+table {
+    width: 100%;
 }
 
 .er-image img {
@@ -124,9 +128,9 @@ p {
     background-color: white;
     border-style: solid;
     border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
 }
 
 .er-nav-button .nav-link {
@@ -140,14 +144,13 @@ p {
 
 .er-nav-button:hover {
     color: rgba(0, 0, 0);
-    background-color: rgba(51, 86, 64, 0.4);
-    border-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
 
 .er-nav-button:active {
     color: white!important;
-    background-color: rgba(51, 86, 64, 0.8);
+    background-color: rgba(0, 0, 0, 0.1);
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -244,29 +247,105 @@ p {
 
 /* --------------------------Shop classes */
 
+.er-shop {
+    padding-top: 3rem;
+}
+
 .er-shop h5 {
     font-size: 0.9rem;
 }
 
-/* --------------------------Dashboard classes */
+.er-shop td {
+    vertical-align: middle;
+}
 
-/* --------------------------Accounts classes */
+.er-shop .card-body p {
+    text-align: right;
+}
 
-/* --------------------------Checkout classes */
+#er-slide {
+    z-index: 5005;
+}
 
-.er-accounts-wrap {
+.er-price-cell {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 1rem;
+}
+
+.er-cart-cell {
+    text-align: right;
+}
+
+.er-shop-button {
+    float: right;
+    padding: 0.4rem 0;
+    margin-left: 1rem;
+    width: 3rem;
+    text-align: center;
+}
+
+.er-shop-button i {
+    font-size: 0.7rem;
+}
+
+.er-shop-details h1 {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+}
+
+.er-shop-details h5 {
+    margin-bottom: 1.5rem;
+}
+
+.er-bottom-div {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+/* --------------------------Cart classes */
+
+.er-cart {
     padding-top: 3rem;
 }
 
+.er-cart h5 {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.er-cart td {
+    width: 50%;
+}
+
+.er-quantity-cell {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    text-align: center;
+}
+
+/* --------------------------Dashboard classes */
+
+.er-dashboard {
+    padding-top: 3rem;
+}
+
+/* --------------------------Accounts classes */
+
+.er-accounts {
+    padding-top: 3rem;
+}
+
+/* --------------------------Checkout classes */
+
 .er-checkout {
-    padding-top: 1.5rem;
+    padding-top: 3rem;
 }
 
 .er-checkout h5 {
     font-size: 1rem;
 }
 
-.er-checkout table {
+table {
     width: 100%;
 }
 
@@ -280,6 +359,10 @@ p {
 
 .er-cell-right {
     padding-right: 1rem;
+}
+
+.er-checkout-total {
+    height: 3rem;
 }
 
 /* --------------------------Form classes */
@@ -299,6 +382,7 @@ form {
 }
 
 .er-form-wrap h2 {
+    background-color: rgba(92, 109, 178, 0.7);
     text-align: left;
     padding-left: 1.5rem;
 }

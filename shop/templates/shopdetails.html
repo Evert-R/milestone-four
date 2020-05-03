@@ -2,7 +2,7 @@
 {% load static %}
 {% load bootstrap_tags %}
 {% block content %}
-<div class="container">
+<div class="container er-shop-details">
     <div class="row">
         <div class="col-12">
             <h1>{{ work.title }}</h1>
@@ -16,17 +16,6 @@
         </div>
         <div class="col-12 col-lg-4">
             <h5>{{ work.title }}</h5>
-            <table>
-                <tr>
-                    <td>
-                        Price:
-                    </td>
-                    <td>
-                        {{ work.shop_settings.price }}
-                    </td>
-                </tr>
-
-            </table>
             <p>
                 {{ work.shop_settings.work_type }} {{ work.shop_settings.material }} with a size of
                 {{ work.shop_settings.work_size }}.</p>
@@ -38,6 +27,25 @@
                 {% if work.shop_settings.frame == 'NF' %} The frame is not included.{% endif %}
                 {% if work.shop_settings.frame == 'FR' %} The frame is included.{% endif %}
             </p>
+            <div class="er-bottom-div">
+                <table>
+                    <tr>
+                        <td class="er-price-cell">
+                            {{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i>
+                        </td>
+                        <td class="er-cart-cell">
+                            <div class="er-nav-button er-shop-button">
+                                <a class=""
+                                    href="{% url 'cart:add_cart' id=work.pk %}?next={{ request.path|urlencode }}">
+                                    <i class="fas fa-plus"></i>
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

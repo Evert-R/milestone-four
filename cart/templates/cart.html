@@ -2,33 +2,83 @@
 {% load static %}
 {% load bootstrap_tags %}
 {% block content %}
-<div class="container">
+<div class="container er-cart">
+
     <div class="row">
-        {% for item in cart_items %}
-        <div class="col-12 col-lg-2 offset-lg-4">
+        <div class="col-lg-12">
+            <h1>Your shopping cart</h1>
+        </div>
+    </div>
+    {% for item in cart_items %}
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-3 offset-lg-3">
             <div class="er-image">
                 <img src="{{ MEDIA_URL }}{{ item.work.main_image }}" alt="{{ item.work.title }}">
             </div>
         </div>
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-md-6 col-lg-3">
             <h5>{{ item.work.title }}</h5>
             <p>
-                Price: {{ item.work.shop_settings.price }}<br>
                 Quantity: {{ item.quantity }}
             </p>
-            <p>
-                <a href="{% url 'cart:remove_cart' id=item.work.pk %}"> <button class="btn btn-primary er-green">Remove
-                        from
-                        cart</button>
-                </a>
-            </p>
+            <div class="er-bottom-div">
+                <table>
+                    <tr>
+                        <td class="er-price-cell">
+                            {{ item.work.shop_settings.price }} <i class="fas fa-euro-sign"></i>
+                        </td>
+                        <td class="er-cart-cell">
+                            <div class="er-nav-button er-shop-button">
+                                <a href="{% url 'cart:add_cart' id=item.work.pk %}?next={{ request.path|urlencode }}">
+                                    <i class="fas fa-plus"></i>
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            </div>
+                            <div class="er-nav-button er-shop-button">
+                                <a href="{% url 'cart:add_cart' id=item.work.pk %}?next={{ request.path|urlencode }}">
+                                    <i class="fas fa-plus"></i>
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        {% endfor %}
     </div>
-    <div class="row">
-        <div class="col-12 col-lg-3 offset-lg-6">
-            <p>Total: {{ total }}</p>
+</div>
+{% endfor %}
+
+<div class="row">
+    <div class="col-12  col-md-6 col-lg-3 offset-lg-3 er-checkout-total">
+    </div>
+    <div class="col-12  col-md-6 col-lg-3">
+        <div class="er-bottom-div">
+            <table>
+                <tr>
+                    <td class="er-price-cell">
+                        {{ total }} <i class="fas fa-euro-sign"></i> Total
+                    </td>
+                    <td class="er-cart-cell">
+                        <div class="er-nav-button er-shop-button">
+
+                        </div>
+                        <div class="er-nav-button er-shop-button">
+
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
+</div>
+
+
+
+
+
+
 </div>
 {% endblock %}

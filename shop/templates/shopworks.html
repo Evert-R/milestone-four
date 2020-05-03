@@ -7,36 +7,42 @@
 <div class="container er-shop">
     <div class="row">
         <div class="col-12">
+            <h1>Webshop</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
             <div class="card-columns">
                 {% for work in works %}
-                <div class="card border-0">
-                    <a href="{% url 'works:work_details' pk=work.id %}">
+                <div class="card border-0" id="er-hover-slide">
+                    <a href="{% url 'shop:shop_details' pk=work.id %}">
                         <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
                     </a>
                     <div class="card-body">
                         <h5>{{ work.title }}</h5>
-                        <ul>
-                            <li>
-                                {{ work.category }}
-                            </li>
-                            <li>
-                                {{ work.shop_settings.price }}
-                            </li>
-                            <li>
-                                {{ work.shop_settings.work_type }}
-                            </li>
-                            <li>
-                                {{ work.shop_settings.material }}
-                            </li>
-                            <li>
+                        <div id="er-slide">
+                            <p>
+                                {{ work.shop_settings.work_type }}</br>
                                 {{ work.shop_settings.work_size }}
-                            </li>
-                            <li>
-                                <a href="{% url 'cart:add_cart' id=work.pk %}"> <button
-                                        class="btn btn-primary er-green">Add to cart</button>
-                                </a>
-                            </li>
-                        </ul>
+                            </p>
+                            <table>
+                                <tr>
+                                    <td class="er-price-cell">
+                                        {{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i>
+                                    </td>
+                                    <td class="er-cart-cell">
+                                        <div class="er-nav-button er-shop-button">
+                                            <a class=""
+                                                href="{% url 'cart:add_cart' id=work.pk %}?next={{ request.path|urlencode }}">
+                                                <i class="fas fa-plus"></i>
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
@@ -44,5 +50,8 @@
         </div>
     </div>
 </div>
+
+<!-- Load special screen events -->
+<script src="{% static 'js/shop-events.js' %}"></script>
 
 {% endblock %}

@@ -8,6 +8,7 @@ def view_cart(request):
 
 
 def add_cart(request, id):
+    next = request.GET.get('next', '/')
     cart = request.session.get('cart', {})
 
     if id in cart:
@@ -17,7 +18,7 @@ def add_cart(request, id):
 
     request.session['cart'] = cart
 
-    return redirect('shop:all_shop_works')
+    return redirect(next)
 
 
 def remove_cart(request, id):
