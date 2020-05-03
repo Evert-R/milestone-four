@@ -24,7 +24,12 @@ def edit_works(request, pk=None):
     # Check if this is an extisting work
     if pk:
         # if so create asociated forms
-        work = get_object_or_404(work_items, pk=pk)
+        try:
+            work = work_items.objects.get(pk=pk)
+        except:
+            # if not create a new one
+            return redirect('dashboard:add_works')
+        # if so create asociated forms
         form = EditWorksForm(instance=work)
         image_form = AddExtraImagesForm({'work_item': work.id})
         # check if there are already extra images for this work
@@ -36,13 +41,13 @@ def edit_works(request, pk=None):
         if work.shop_item == True:
             # Check if the shop item is already created
             try:
-                shop_work = work.shop_settings
+                shop_work = shop_items.objects.get(id=work.shop_settings.id)
+                # create form with ixisting settings
+                shop_form = EditShopWorksForm(instance=shop_work)
             except:
                 # If not create a form with a new shop item
                 shop_form = EditShopWorksForm()
                 shop_work = None
-            # Create a form with existing shop item
-            shop_form = EditShopWorksForm(instance=shop_work)
         else:
             # Set no shop items
             shop_form = None
@@ -68,13 +73,16 @@ def edit_works(request, pk=None):
             shop_work = shop_form.save()
             # Check if this is the initial shop_settings
             try:
-                existing_shop = work.shop_settings
+                existing_shop = shop_items.objects.get(
+                    id=work.shop_settings.id)
             # if so connect to work
             except:
+                work = get_object_or_404(work_items, pk=pk)
                 work.shop_settings = shop_work
                 work.save()
         if image_form.is_valid():
             new_work_images = image_form.save()
+        # Return to edit page for specific work
         return redirect('dashboard:edit_works', work.pk)
     else:
         # Show the edit-work page
