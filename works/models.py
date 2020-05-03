@@ -34,14 +34,14 @@ class work_items(models.Model):
                                 choices=POSITION_CHOICES,
                                 default=VERTICAL)
     category = models.ForeignKey(
-        categories, on_delete=models.CASCADE, null=True)
+        categories, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=50)
     under_title = models.CharField(max_length=50, blank=True)
     free_text = models.CharField(max_length=3000, blank=True)
     work_item = models.BooleanField(default=True, blank=True)
     shop_item = models.BooleanField(default=False, blank=True)
     shop_settings = models.OneToOneField(
-        'shop.shop_items', on_delete=models.CASCADE, blank=True, null=True)
+        'shop.shop_items', on_delete=models.SET_NULL, blank=True, null=True)
     sort_order = models.SmallIntegerField(default=0)
 
     def __str__(self):
