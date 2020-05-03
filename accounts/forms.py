@@ -50,7 +50,7 @@ class UserDetailsForm(ModelForm):
     class Meta:
         model = user_details
         fields = ['user', 'address1', 'address2', 'postcode',
-                  'city', 'country', 'telephone']
+                  'city', 'country', 'telephone', 'shipping']
         widgets = {
             'user': forms.HiddenInput()
         }

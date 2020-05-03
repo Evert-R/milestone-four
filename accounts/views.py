@@ -11,7 +11,7 @@ from accounts import decorators
 
 def register_user(request):
     """Register new users"""
-
+    next = request.GET.get('next', '/')
     accounts_form = RegisterForm()
     # check if a form was submitted
     if request.method == 'POST':
@@ -27,22 +27,22 @@ def register_user(request):
             # Display success message
             messages.success(request, 'You are now registered as ' + username)
             # Redirect to the shop page
-            return redirect('works:all_works')
+            return redirect(next)
     # Show the register page
     return render(request, 'accounts.html', {'accounts_form': accounts_form, 'form_title': 'Please register here'})
 
 
 def add_user_details(request, next_page):
     """Add or edit user details"""
-
+    next = request.GET.get('next', '/')
     active_user = request.user
-    if user_details.objects.filter(user=active_user.id).count() == 0:
+
+    try:
+        current_user_details = user_details.objects.get(user=active_user)
+        accounts_form = UserDetailsForm(instance=current_user_details)
+    except:
         accounts_form = UserDetailsForm({'user': active_user.id})
         current_user_details = None
-    else:
-        current_user_details = get_object_or_404(user_details,
-                                                 user=active_user.id)
-        accounts_form = UserDetailsForm(instance=current_user_details)
 
     if request.method == 'POST':
         accounts_form = UserDetailsForm(
@@ -50,12 +50,13 @@ def add_user_details(request, next_page):
         if accounts_form.is_valid():
             current_user_details = accounts_form.save()
             messages.success(request, 'Your details have been saved')
-            return redirect(next_page)
+            return redirect(next)
     return render(request, 'accounts.html', {'accounts_form': accounts_form, 'form_title': 'Shipping details'})
 
 
 def log_in(request):
     """Show login page"""
+    next = request.POST.get('next', '/')
     accounts_form = LogInForm()
     if request.user.is_authenticated:
         messages.error(request, 'You are already logged in !')
@@ -74,8 +75,7 @@ def log_in(request):
                 auth.login(user=user, request=request)
                 # Display success message
                 messages.success(request, "You are now logged in!")
-                # redirect user to the shop page
-                next = request.POST.get('next', '/')
+                # redirect user back
                 return redirect(next)
             else:
                 # When user was not matched return the form with errors
