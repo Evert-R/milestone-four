@@ -22,13 +22,14 @@ def add_cart(request, id):
 
 
 def remove_cart(request, id):
+    next = request.GET.get('next', '/')
     cart = request.session.get('cart', {})
 
     cart[id] = int(cart[id]) - 1
 
     request.session['cart'] = cart
 
-    return redirect('cart:view_cart')
+    return redirect(next)
 
 
 def adjust_cart(request):
