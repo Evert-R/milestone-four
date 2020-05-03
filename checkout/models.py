@@ -11,6 +11,8 @@ class orders(models.Model):
     date = models.DateField()
     paid = models.BooleanField(default=False)
     sent = models.BooleanField(default=False)
+    shipping = models.DecimalField(
+        max_digits=5, decimal_places=2, default=0)
 
     def __str__(self):
         return "{0}-{1}-{2}".format(self.id, self.date, self.user.last_name)
