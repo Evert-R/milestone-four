@@ -11,7 +11,7 @@ class EditWorksForm(ModelForm):
     class Meta:
         model = work_items
         fields = ['main_image', 'position', 'category', 'title',
-                  'under_title', 'free_text', 'work_item', 'shop_item']
+                  'under_title', 'free_text', 'work_item', 'shop_item', 'sort_order']
         widgets = {
             'free_text': Textarea(attrs={'cols': 10, 'rows': 10}),
         }
@@ -37,7 +37,10 @@ class EditShopWorksForm(ModelForm):
     class Meta:
         model = shop_items
         fields = ['price', 'stock', 'edition_count', 'work_type', 'material', 'work_size', 'frame',
-                  'signed']
+                  'signed', 'personal_message', 'standard_text', 'personal_text', 'sort_order']
+        widgets = {
+            'personal_message': Textarea(attrs={'cols': 10, 'rows': 10}),
+        }
 
     def __init__(self, *args, **kwargs):
         super(EditShopWorksForm, self).__init__(*args, **kwargs)
