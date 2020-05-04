@@ -186,14 +186,16 @@ table {
 }
 
 .er-messages {
+    width: 100%;
     position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
+    top: 0;
     z-index: 5000;
-    padding: 0.5rem;
+    padding: 0.3rem;
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 1.1rem;
-    color: rgba(121, 41, 42);
+    font-size: 1rem;
+    text-align: center;
+    color: rgba(255, 255, 255);
+    background-color: rgb(212, 170, 60, 0.7);
 }
 
 /* --------------------------Works page */
@@ -202,6 +204,10 @@ table {
 
 .er-detail {
     max-width: 1110px;
+}
+
+.er-details-wrap {
+    min-height: 16rem;
 }
 
 .er-detail img {
@@ -332,7 +338,7 @@ table {
     width: 100%;
     position: absolute;
     bottom: 0;
-    right: 0.2rem;
+    padding-right: 1.8rem;
 }
 
 /* --------------------------Cart classes */

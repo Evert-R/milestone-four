@@ -15,38 +15,44 @@
             </div>
         </div>
         <div class="col-12 col-lg-4">
-            <h5>{{ work.title }}</h5>
-            <p>
-                {{ work.shop_settings.work_type }} {{ work.shop_settings.material }} with a size of
-                {{ work.shop_settings.work_size }}.</p>
-            <p>{% if not work.shop_settings.edition_count == 0 %}Limited edition of
-                {{ work.shop_settings.edition_count }}
-                {% endif %} Printed in the Netherlands. Signed and
-                numbered by yours truly.</p>
-            <p>
-                {% if work.shop_settings.frame == 'NF' %} The frame is not included.{% endif %}
-                {% if work.shop_settings.frame == 'FR' %} The frame is included.{% endif %}
-            </p>
-            <div class="er-bottom-div">
-                <table>
-                    <tr>
-                        <td class="er-price-cell">
-                            {{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i>
-                        </td>
-                        <td class="er-cart-cell">
-                            <div class="er-nav-button er-shop-button">
-                                <a class=""
-                                    href="{% url 'cart:add_cart' id=work.pk %}?next={{ request.path|urlencode }}">
-                                    <i class="fas fa-plus"></i>
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-                            </div>
+            <div class="er-details-wrap">
+                <h5>{{ work.title }}</h5>
+                <p>
+                    {{ work.shop_settings.work_type }} {{ work.shop_settings.material }} with a size of
+                    {{ work.shop_settings.work_size }}.</p>
+                <p>{% if not work.shop_settings.edition_count == 0 %}Limited edition of
+                    {{ work.shop_settings.edition_count }}
+                    {% endif %} Printed in the Netherlands. Signed and
+                    numbered by yours truly.</p>
+                <p>
+                    {% if work.shop_settings.frame == 'NF' %} The frame is not included.{% endif %}
+                    {% if work.shop_settings.frame == 'FR' %} The frame is included.{% endif %}
+                </p>
+                <div class="er-bottom-div">
+                    <table>
+                        <tr>
+                            <td class="er-price-cell">
+                                {{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i>
+                            </td>
+                            <td class="er-cart-cell">
+                                <div class="er-nav-button er-shop-button">
+                                    <a class=""
+                                        href="{% url 'cart:add_cart' id=work.pk %}?next={{ request.path|urlencode }}">
+                                        <i class="fas fa-plus"></i>
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                </div>
 
-                        </td>
-                    </tr>
-                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $('#er-shop-active').addClass('active');
+</script>
 {% endblock %}

@@ -12,19 +12,14 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="card-columns">
+            <div class="card-columns er-relative">
                 {% for work in works %}
-                <div class="card border-0" id="er-hover-slide">
+                <div class="card border-0" id="er-hover-{{ work.id }}">
                     <a href="{% url 'shop:shop_details' pk=work.id %}">
                         <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
                     </a>
                     <div class="card-body">
-                        <h5>{{ work.title }}</h5>
-                        <div id="er-slide">
-                            <p>
-                                {{ work.shop_settings.work_type }}</br>
-                                {{ work.shop_settings.work_size }}
-                            </p>
+                        <div class="er-slide" id="er-slide-{{ work.id }}">
                             <table>
                                 <tr>
                                     <td class="er-price-cell">
@@ -43,8 +38,23 @@
                                 </tr>
                             </table>
                         </div>
+                        <p>{{ work.shop_settings.work_type }}</p>
+                        <hr>
+                        <h5>{{ work.title }}</h5>
+                        <hr>
                     </div>
                 </div>
+                <!-- 
+                <script>
+                    $('#er-slide-{{ work.id }}').slideUp();
+                    $('#er-hover-{{ work.id }}').hover(function () {
+                        $('#er-slide-{{ work.id }}').slideDown(500)
+                    });
+                    $('#er-hover-{{ work.id }}').mouseleave(function () {
+                        $('#er-slide-{{ work.id }}').slideUp(500)
+                    });
+                </script>
+                -->
                 {% endfor %}
             </div>
         </div>
@@ -54,4 +64,8 @@
 <!-- Load special screen events -->
 <script src="{% static 'js/shop-events.js' %}"></script>
 
+<!-- Make menu item active -->
+<script>
+    $('#er-shop-active').addClass('active');
+</script>
 {% endblock %}

@@ -4,6 +4,6 @@ window.onload = function () {
         $(this).addClass('active');
     })
     setTimeout(function () {
-        $('.er-messages').slideUp(2000);
-    }, 5000);
+        $('.er-messages').slideUp(1000);
+    }, 2000);
 }
