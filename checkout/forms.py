@@ -28,4 +28,4 @@ class PaymentForm(forms.Form):
         self.helper.label_class = 'col-lg-4'
         self.helper.field_class = 'col-lg-8'
         self.helper.add_input(
-            Submit('commit', 'Submit', css_id='submit_payment_btn', css_class='er-green'))
+            Submit('commit', 'Place order', css_id='submit_payment_btn', css_class='er-green'))

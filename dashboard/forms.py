@@ -27,8 +27,8 @@ class EditWorksForm(ModelForm):
         self.helper = FormHelper(self)
         self.helper.help_text_inline = True
         self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg-4'
-        self.helper.field_class = 'col-lg-8'
+        self.helper.label_class = 'col-sm-4 er-form-padding'
+        self.helper.field_class = 'col-sm-8 er-form-padding'
         self.helper.add_input(
             Submit('submit', 'Submit work details', css_class='er-green'))
 
@@ -47,8 +47,8 @@ class EditShopWorksForm(ModelForm):
         self.helper = FormHelper(self)
         self.helper.help_text_inline = True
         self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg-3'
-        self.helper.field_class = 'col-lg-9'
+        self.helper.label_class = 'col-sm-4 er-form-padding'
+        self.helper.field_class = 'col-sm-8 er-form-padding'
         self.helper.add_input(
             Submit('submit', 'Submit shop details', css_class='er-green'))
 
@@ -70,7 +70,7 @@ class AddExtraImagesForm(ModelForm):
         self.helper = FormHelper(self)
         self.helper.help_text_inline = True
         self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg-3'
-        self.helper.field_class = 'col-lg-9'
+        self.helper.label_class = 'col-sm-4 er-form-padding'
+        self.helper.field_class = 'col-sm-8 er-form-padding'
         self.helper.add_input(
             Submit('submit', 'Submit extra image', css_class='er-green'))

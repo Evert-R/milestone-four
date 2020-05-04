@@ -6,6 +6,7 @@ html {
 
 body {
     padding-top: 12.5rem;
+    padding-bottom: 6rem;
     background-color: rgb(255, 255, 255);
 }
 
@@ -252,6 +253,7 @@ table {
 }
 
 .er-shop h5 {
+    text-align: left;
     font-size: 0.9rem;
 }
 
@@ -260,14 +262,27 @@ table {
 }
 
 .er-shop .card-body p {
+    margin-top: 0.6rem;
     text-align: right;
 }
 
-#er-slide {
-    z-index: 5005;
+.er-shop .er-price-cell {
+    font-family: 'FuturaBT-Book', 'Hind';
+    font-weight: 400;
+    font-size: 0.9rem;
 }
 
-.er-price-cell {
+.er-shop-details .er-price-cell {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 0.9rem;
+}
+
+.er-cart .er-price-cell {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 1rem;
+}
+
+.er-checkout .er-price-cell {
     font-family: 'FuturaBT-Heavy', 'Hind';
     font-size: 1rem;
 }
@@ -279,12 +294,28 @@ table {
 .er-shop-button {
     float: right;
     padding: 0.4rem 0;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     width: 3rem;
     text-align: center;
 }
 
-.er-shop-button i {
+.er-shop .er-shop-button {
+    padding: 0.2rem 0;
+}
+
+.er-cart .er-shop-button i {
+    font-size: 0.7rem;
+}
+
+.er-checkout .er-shop-button i {
+    font-size: 0.7rem;
+}
+
+.er-shop .er-shop-button i {
+    font-size: 0.6rem;
+}
+
+.er-shop-details .er-shop-button i {
     font-size: 0.7rem;
 }
 
@@ -301,6 +332,7 @@ table {
     width: 100%;
     position: absolute;
     bottom: 0;
+    right: 0.2rem;
 }
 
 /* --------------------------Cart classes */
@@ -314,14 +346,16 @@ table {
     margin-bottom: 1.5rem;
 }
 
-.er-cart td {
+.er-bottom-div td {
     width: 50%;
 }
 
-.er-quantity-cell {
+.er-quantity {
     font-family: 'FuturaBT-Heavy', 'Hind';
     text-align: center;
 }
+
+.er-cart-cell {}
 
 /* --------------------------Dashboard classes */
 
@@ -336,6 +370,45 @@ table {
 }
 
 /* --------------------------Checkout classes */
+
+.er-list-wrap {
+    width: 100%;
+    min-height: 8rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.7rem;
+}
+
+.er-info-wrap {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+    padding: 2rem;
+    background-color: rgba(123, 123, 123, 0.12);
+    border-radius: 0.8rem;
+}
+
+.er-info-wrap p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.er-info-wrap a {
+    font-weight: 700;
+}
+
+.er-info-wrap h2 {
+    letter-spacing: 0rem;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.er-list-divider {
+    margin-bottom: 0.7rem;
+}
 
 .er-checkout {
     padding-top: 3rem;
@@ -361,8 +434,19 @@ table {
     padding-right: 1rem;
 }
 
+.er-checkout-left p {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 1rem;
+    text-align: right;
+}
+
+.er-checkout-right p {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 1rem;
+}
+
 .er-checkout-total {
-    height: 3rem;
+    height: 3.5rem;
 }
 
 /* --------------------------Form classes */
@@ -374,11 +458,31 @@ form {
     font-weight: 500;
 }
 
+form span {
+    margin-left: 0.5rem;
+}
+
+form .row {
+    margin-bottom: 1.2rem;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.er-form-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .er-form-wrap {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2.5rem;
+}
+
+.er-form-wrap div {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .er-form-wrap h2 {
@@ -478,17 +582,16 @@ form {
     font-weight: 500;
 }
 
+.custom-checkbox {
+    margin-left: 33%;
+}
+
 .custom-control-label:before {
     background-color: rgba(212, 170, 60, 0.8);
 }
 
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background-color: rgba(212, 170, 60, 0.8);
-}
-
-.er-form-wrap .row {
-    margin-left: 0;
-    margin-right: 0;
 }
 
 .form-group label {
@@ -524,7 +627,9 @@ form {
 }
 
 .col-form-label {
-    width: 33%;
+    width: 100%;
+    text-align: right;
+    padding-right: 50%;
     margin-bottom: 0.4rem;
     background-color: rgba(92, 109, 178, 0.7);
     border-radius: 4px;
@@ -537,6 +642,24 @@ form {
     padding: 0.2rem .75rem;
     border-radius: 4px;
     background-color: rgb(212, 170, 60, 0.7);
+}
+
+.form-control-file {
+    padding: 0.7rem 1.5rem;
+}
+
+/* --------------------------992 - LG */
+
+@media(min-width: 576px) {
+    form .row {
+        margin-bottom: 0.9rem;
+    }
+    .col-form-label {
+        text-align: right;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: rgba(92, 109, 178, 0.7);
+    }
 }
 
 /* --------------------------992 - LG */
@@ -553,12 +676,8 @@ form {
         margin-right: auto;
     }
     .col-form-label {
-        margin-left: auto;
-        margin-right: auto;
+        width: 100%;
         padding-bottom: 0;
-    }
-    .er-form-wrap .row {
-        margin-right: -15px;
     }
 }
 
