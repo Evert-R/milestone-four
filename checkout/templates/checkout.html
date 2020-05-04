@@ -13,15 +13,18 @@
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
 
-<div class="container er-checkout">
+<div class="container-fluid er-checkout">
 
     <div class="row">
-        <div class="col-12 col-lg-10 offset-1">
+        <div class="col-12">
             <div class="er-wrap">
                 <h1>Please check out here</h1>
             </div>
         </div>
-        <div class="col-12 col-lg-5 offset-1">
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-5 offset-lg-1">
+
             <div class="er-form-wrap">
                 <a data-toggle="collapse" href="#er-shipping-details">
                     <h2><i class="fas fa-angle-down"></i> Check your shipping details</h2>
@@ -32,7 +35,20 @@
                     </form>
                 </div>
             </div>
-            <div class="er-wrap">
+            <div class="row er-list-wrap">
+                <div class="col-6 er-checkout-left">
+                    <p>Ship to :</p>
+                    <p>Shipping cost :</p>
+                    <p>Total :</p>
+                </div>
+                <div class="col-6 er-checkout-right">
+                    <p>{{ shipping_region }}</p>
+                    <p>{{ shipping_price }} <i class="fas fa-euro-sign"></i></p>
+                    <p>{{ total }} <i class="fas fa-euro-sign"></i></p>
+                </div>
+            </div>
+
+            <div class="er-form-wrap">
                 <h2>Place your order:</h2>
             </div>
             <div class="er-form-wrap">
@@ -46,36 +62,108 @@
             </div>
         </div>
 
-        <div class="col-12 col-lg-5">
+        <div class="col-12  col-md-6 col-lg-5">
+            <div class="er-info-wrap">
 
-            <table>
-                {% for item in cart_items %}
-                <tr>
-                    <td class="er-cell-left">
-                        <div class="er-image">
-                            <img src="{{ MEDIA_URL }}{{ item.work.main_image }}" alt="{{ item.work.title }}">
-                        </div>
-                    </td>
-                    <td class="er-cell-right">
+                <h2>Thank you so much for purchasing one of my works!</h2>
+                <p>After I have received your payment I will prepare the package with the greatest care and will sent
+                    you
+                    an e-mail with the tracking code.</p>
+                <p> If there's anything you would want to change or inform me about,
+                    please do not hesitate to send me an email.</p>
+                <p><a href="mailto:info@lobkevanaar">info@lobkevanaar.nl</a></p>
+
+            </div>
+            <div class="row er-list-divider">
+                <div class="col-12">
+                    <h2>Order details:</h2>
+                    <p>
+                        <hr>
+                    </p>
+
+                </div>
+            </div>
+
+            {% for item in cart_items %}
+            <div class="row er-list-wrap">
+                <div class="col-6">
+                    <div class="er-image">
+                        <img src="{{ MEDIA_URL }}{{ item.work.main_image }}" alt="{{ item.work.title }}">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="er-list-wrap">
                         <h5>{{ item.work.title }}</h5>
                         <p>
-                            Price: {{ item.work.shop_settings.price }}<br>
+                            {{ item.work.shop_settings.work_type }}<br>
+                            {{ item.work.shop_settings.work_size }}
+                        </p>
+                        <p class="er-quantity">
                             Quantity: {{ item.quantity }}
                         </p>
-                        <p>
-                            <a href="{% url 'cart:remove_cart' id=item.work.pk %}"> <button
-                                    class="btn btn-primary er-green">Remove
-                                    from
-                                    cart</button>
-                            </a>
-                        </p>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
-            <p>
-                Total: {{ total }}
-            </p>
+                    </div>
+                </div>
+                <div class="col-6">
+                </div>
+                <div class="col-6">
+                    <div>
+                        <table>
+                            <tr>
+                                <td class="er-price-cell">
+                                    {{ item.work.shop_settings.price }} <i class="fas fa-euro-sign"></i>
+                                </td>
+                                <td class="er-cart-cell">
+                                    <a
+                                        href="{% url 'cart:add_cart' id=item.work.pk %}?next={{ request.path|urlencode }}">
+                                        <div class="er-nav-button er-shop-button">
+                                            <i class="fas fa-plus"></i>
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td class="er-cart-cell">
+                                    <a
+                                        href="{% url 'cart:remove_cart' id=item.work.pk %}?next={{ request.path|urlencode }}">
+                                        <div class="er-nav-button er-shop-button">
+                                            <i class="fas fa-minus"></i>
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row er-list-divider">
+                <div class="col-12">
+                    <p>
+                        <hr>
+                    </p>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            <div class="row">
+                <div class="col-6 er-checkout-left">
+                    <p>Ship to :</p>
+                    <p>Shipping cost :</p>
+                </div>
+                <div class="col-6 er-checkout-right">
+                    <p>{{ shipping_region }}</p>
+                    <p>{{ shipping_price }} <i class="fas fa-euro-sign"></i></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 er-checkout-left">
+                    <p>Total :</p>
+                </div>
+                <div class="col-6 er-checkout-right">
+                    <p>{{ total }} <i class="fas fa-euro-sign"></i></p>
+                </div>
+            </div>
 
 
 
