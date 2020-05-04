@@ -26,6 +26,9 @@ def remove_cart(request, id):
     cart = request.session.get('cart', {})
 
     cart[id] = int(cart[id]) - 1
+    if cart[id] == 0:
+        del request.session['cart'][id]
+        request.session.modified = True
 
     request.session['cart'] = cart
 
