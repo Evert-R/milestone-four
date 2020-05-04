@@ -46,6 +46,7 @@ def check_out(request):
         if payment_form.is_valid():
             order = orders(user=active_user,
                            date=timezone.now(),
+                           shipping=current_user_details.shipping.price
                            )
             order.save()
             # Create order items for order
@@ -89,6 +90,8 @@ def check_out(request):
         payment_form = PaymentForm()
     return render(request, "checkout.html",
                   {'total': total,
+                   'shipping_region': current_user_details.shipping.region,
+                   'shipping_price': current_user_details.shipping.price,
                    'accounts_form': accounts_form,
                    'payment_form': payment_form,
                    'publishable': settings.STRIPE_PUBLISHABLE})
