@@ -49,6 +49,8 @@ def check_out(request):
                            shipping=current_user_details.shipping.price
                            )
             order.save()
+            # Add shipping cost to total
+            total = current_user_details.shipping.price
             # Create order items for order
             for id, quantity in cart.items():
                 work_item = get_object_or_404(work_items, pk=id)
@@ -90,8 +92,8 @@ def check_out(request):
         payment_form = PaymentForm()
     return render(request, "checkout.html",
                   {'total': total,
-                   'shipping_region': current_user_details.shipping.region,
-                   'shipping_price': current_user_details.shipping.price,
+                   'user': active_user,
+                   'user_details': current_user_details,
                    'accounts_form': accounts_form,
                    'payment_form': payment_form,
                    'publishable': settings.STRIPE_PUBLISHABLE})

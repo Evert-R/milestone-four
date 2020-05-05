@@ -36,15 +36,24 @@
                 </div>
             </div>
             <div class="row er-list-wrap">
-                <div class="col-6 er-checkout-left">
+                <div class="col-5 er-checkout-address">
+                    <p>{{ user.first_name }} {{ user.last_name }}<br>
+                        {{ user_details.address1 }}<br>
+                        {{ user_details.address2 }}<br>
+                        {{ user_details.postcode }}<br>
+                        {{ user_details.city }}<br>
+                        {{ user_details.country }}<br>
+                    </p>
+                </div>
+                <div class="col-3 er-checkout-left">
                     <p>Ship to :</p>
                     <p>Shipping cost :</p>
                     <p>Total :</p>
                 </div>
-                <div class="col-6 er-checkout-right">
-                    <p>{{ shipping_region }}</p>
-                    <p>{{ shipping_price }} <i class="fas fa-euro-sign"></i></p>
-                    <p>{{ total }} <i class="fas fa-euro-sign"></i></p>
+                <div class="col-4 er-checkout-right">
+                    <p>{{ user_details.shipping.region }}</p>
+                    <p>{{ user_details.shipping.price }} <i class="fas fa-euro-sign"></i></p>
+                    <p>{{ total|add:user_details.shipping.price }} <i class="fas fa-euro-sign"></i></p>
                 </div>
             </div>
 
@@ -151,17 +160,23 @@
                     <p>Shipping cost :</p>
                 </div>
                 <div class="col-6 er-checkout-right">
-                    <p>{{ shipping_region }}</p>
-                    <p>{{ shipping_price }} <i class="fas fa-euro-sign"></i></p>
+                    <p>{{ user_details.shipping.region }}</p>
+                    <p>{{ user_details.shipping.price }} <i class="fas fa-euro-sign"></i></p>
                 </div>
             </div>
-
+            <div class="row er-list-divider">
+                <div class="col-12">
+                    <p>
+                        <hr>
+                    </p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-6 er-checkout-left">
                     <p>Total :</p>
                 </div>
                 <div class="col-6 er-checkout-right">
-                    <p>{{ total }} <i class="fas fa-euro-sign"></i></p>
+                    <p>{{ total|add:user_details.shipping.price }} <i class="fas fa-euro-sign"></i></p>
                 </div>
             </div>
 
