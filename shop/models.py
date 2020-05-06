@@ -92,4 +92,4 @@ class shop_items(models.Model):
     personal_message = models.CharField(max_length=200, blank=True)
     personal_text = models.BooleanField(default=False)
     standard_text = models.BooleanField(default=True)
-    sort_order = models.SmallIntegerField(default=0)
+    sort_order = models.SmallIntegerField(default=999)

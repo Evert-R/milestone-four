@@ -6,11 +6,92 @@ from django.contrib.auth.models import Group
 
 from works.models import work_items, categories, work_images
 from shop.models import shop_items, work_sizes, work_types, materials
-
+from checkout.models import orders, order_items
 from dashboard.forms import EditWorksForm, EditShopWorksForm, AddExtraImagesForm
 from accounts.decorators import admin_only
 
 # Create your views here.
+
+
+@login_required(login_url='accounts:log_in')
+@admin_only
+def list_orders(request, filter=None):
+    """
+    Display a list of all works
+    With links to their edit pages
+    Change display order of works
+    """
+    orders = orders.objects.all()
+    title = 'Viewing all orders'
+    return render(request, "listorders.html", {'title': title,
+                                               'orders': orders})
+
+
+@login_required(login_url='accounts:log_in')
+@admin_only
+def list_works(request, filter=None):
+    """
+    Display a list of all works
+    With links to their edit pages
+    Change display order of works
+    """
+
+    if filter == 'work':
+        works = work_items.objects.filter(
+            work_item=True).order_by('sort_order', 'id')
+        title = 'Edit work items only'
+    elif filter == 'shop':
+        works = work_items.objects.filter(
+            shop_item=True).order_by('sort_order', 'id')
+        title = 'Edit Shop items only'
+    else:
+        works = work_items.objects.all().order_by('sort_order', 'id')
+        title = 'Edit all works'
+    return render(request, "listworks.html", {'title': title,
+                                              'works': works})
+
+
+@login_required(login_url='accounts:log_in')
+@admin_only
+def set_works_order(request, pk):
+    """
+    Delete a work item from the database
+    """
+    # Check if this work exists
+    try:
+        work = work_items.objects.get(pk=pk)
+    except:
+        # if not return to the works list
+        return redirect('dashboard:list_works')
+    if request.method == 'POST':
+        order = request.POST.get("sort_order")
+        work.sort_order = order
+        work.save()
+    return redirect('dashboard:list_works')
+
+
+@login_required(login_url='accounts:log_in')
+@admin_only
+def delete_work(request, pk):
+    """
+    Delete a work item from the database
+    """
+    # Check if this work exists
+    try:
+        work = work_items.objects.get(pk=pk)
+    except:
+        # if not return to the works list
+        return redirect('dashboard:list_works')
+    # when confirmed delete the image
+    if request.method == 'POST':
+        work.delete()
+        messages.success(request, work.title + 'was successfully deleted')
+        return redirect('dashboard:list_works')
+    # render confirmation page
+    return render(request, "delete_work.html",
+                  {'title': 'Permanently delete this work?',
+                   'work': work,
+                   })
 
 
 @login_required(login_url='accounts:log_in')
@@ -23,13 +104,13 @@ def edit_works(request, pk=None):
     """
     # Check if this is an extisting work
     if pk:
-        # if so create asociated forms
         try:
             work = work_items.objects.get(pk=pk)
         except:
             # if not create a new one
             return redirect('dashboard:add_works')
         # if so create asociated forms
+        title = 'Edit work details'
         form = EditWorksForm(instance=work)
         image_form = AddExtraImagesForm({'work_item': work.id})
         # check if there are already extra images for this work
@@ -44,6 +125,7 @@ def edit_works(request, pk=None):
                 shop_work = shop_items.objects.get(id=work.shop_settings.id)
                 # create form with ixisting settings
                 shop_form = EditShopWorksForm(instance=shop_work)
+                title = 'Edit work & shop details'
             except:
                 # If not create a form with a new shop item
                 shop_form = EditShopWorksForm()
@@ -54,6 +136,7 @@ def edit_works(request, pk=None):
             shop_work = None
     else:
         # Only create a new work items form
+        title = 'Add a new work'
         work = None
         form = EditWorksForm()
         shop_work = None
@@ -86,7 +169,12 @@ def edit_works(request, pk=None):
         return redirect('dashboard:edit_works', work.pk)
     else:
         # Show the edit-work page
-        return render(request, "editworks.html", {'edit_works': form, 'edit_shop': shop_form, 'work': work, 'images': images, 'add_images': image_form})
+        return render(request, "editworks.html", {'title': title,
+                                                  'edit_works': form,
+                                                  'edit_shop': shop_form,
+                                                  'work': work,
+                                                  'images': images,
+                                                  'add_images': image_form})
 
 
 @login_required(login_url='accounts:log_in')
@@ -102,4 +190,7 @@ def delete_image(request, pk):
         image.delete()
         return redirect('dashboard:edit_works', work.pk)
     # render confirmation page
-    return render(request, "delete_image.html", {'work': work, 'image': image})
+    return render(request, "delete_image.html",
+                  {'title': 'Permanently delete this image?',
+                   'work': work,
+                   'image': image})

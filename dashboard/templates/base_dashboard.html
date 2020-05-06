@@ -2,9 +2,18 @@
 {% load static %}
 {% load bootstrap_tags %}
 {% block content %}
+<main class="container-fluid er-dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>{{ title }}</h1>
+        </div>
+    </div>
 
-{% block dashboard %} {% endblock %}
+    {% block dashboard %} {% endblock %}
+
+</main>
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 <!-- Load special screen events -->
-<script src="{% static 'js/details-events.js' %}"></script>
+
+
 {% endblock %}

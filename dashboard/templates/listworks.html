@@ -1,0 +1,83 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block dashboard %}
+
+
+<div class="row">
+    <div class="col-12 col-lg-8 offset-lg-2">
+        <table class="er-dashboard-list table table-hover">
+            <tr>
+                <th>
+                    Order items
+                </th>
+                <th>
+                    <i class="fas fa-eye"></i>
+                </th>
+                <th>
+
+                </th>
+                <th class="d-none d-sm-table-cell er-list-filter">
+                    Filter items:
+                </th>
+                <th class="er-list-select">
+                    <a href="{% url 'dashboard:list_filtered_works' filter='work' %}" title="Only view work items">
+                        <i class="fas fa-palette"></i>
+                    </a>
+                    <a href="{% url 'dashboard:list_filtered_works' filter='shop' %}" title="Only view shop items">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </th>
+            </tr>
+            {% for work in works %}
+            <tr>
+                <td class="er-list-button">
+                    <form method="post" id="{{work.id}}" action="{% url 'dashboard:set_works_order' pk=work.id %}">
+                        {% csrf_token %}
+                        <input type="number" name="sort_order" value="{{work.sort_order}}"
+                            class="numberinput form-control" required="" id="id_sort_order">
+
+                        <input type="submit" name="submit" value="Set" class="btn btn-primary er-green"
+                            id="submit-id-submit">
+                    </form>
+                </td>
+                <td class="er-list-icons">
+                    {% if work.work_item %}
+                    <a href="{% url 'works:work_details' pk=work.id %}" title="View this works details">
+                        <i class="fas fa-palette"></i>
+                    </a><br>
+                    {% endif %}
+                    {% if work.shop_item %}
+                    <a href="{% url 'shop:shop_details' pk=work.id %}" title="View this shop item">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                    {% endif %}
+
+                </td>
+                <td class="er-list-image">
+                    <a href="{% url 'dashboard:edit_works' pk=work.id %}" title="Edit this work">
+                        <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Delete this work?">
+                    </a>
+
+                </td>
+                <td class="er-list-title d-none d-sm-table-cell">
+                    <a href="{% url 'dashboard:edit_works' pk=work.id %}" title="Edit this work">
+                        <h2>{{ work.title}}</h2>
+                    </a>
+                </td>
+
+                <td class="er-list-button">
+                    <a href="{% url 'dashboard:edit_works' pk=work.id %}" title="Edit this work">
+                        <button class="btn btn-primary er-green">Edit</button>
+                    </a>
+                    <a href="{% url 'dashboard:delete_work' pk=work.id %}" title="Delete this work">
+                        <button class="btn btn-primary er-red">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

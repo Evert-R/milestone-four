@@ -24,7 +24,7 @@
             <div class="card-columns">
                 {% for work in works %}
                 <div class="card border-0">
-                    <a href="{% url 'works:work_details' pk=work.id %}">
+                    <a href="{% url 'works:work_details' pk=work.id %}" title="View this works details">
                         <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
                     </a>
                     <div class="card-body">
