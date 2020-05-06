@@ -15,7 +15,7 @@
             <div class="card-columns er-relative">
                 {% for work in works %}
                 <div class="card border-0" id="er-hover-{{ work.id }}">
-                    <a href="{% url 'shop:shop_details' pk=work.id %}">
+                    <a href="{% url 'shop:shop_details' pk=work.id %}" title="View this shop item">
                         <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
                     </a>
                     <div class="card-body">

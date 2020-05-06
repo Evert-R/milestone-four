@@ -47,7 +47,7 @@
 </head>
 
 <body>
-    <header class="container">
+    <header class="container-fluid">
         <!-- Navigation bar -->
         <div class="row">
             <nav class="navbar fixed-top navbar-expand-lg navbar-light">
@@ -72,22 +72,22 @@
                             <div>
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'dashboard:add_works' %}"
-                                        title="Add new work"><i class="fas fa-plus"></i>Work</a>
+                                        title="Add new work"><i class="fas fa-plus"></i> Work</a>
                                 </div>
 
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'dashboard:list_works' %}"
-                                        title="Edit works"><i class="fas fa-edit"></i>Works</a>
+                                        title="Edit works"><i class="fas fa-edit"></i> Works</a>
+                                </div>
+
+                                <div class="er-nav-button">
+                                    <a class="nav-item nav-link" href="{% url 'dashboard:list_orders' %}"
+                                        title="View orders"><i class="fas fa-shopping-cart"></i> Orders</a>
                                 </div>
 
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'dashboard:list_works' %}"
-                                        title="Edit works"><i class="fas fa-edit"></i>Details</a>
-                                </div>
-
-                                <div class="er-nav-button">
-                                    <a class="nav-item nav-link" href="{% url 'dashboard:list_works' %}"
-                                        title="Edit works"><i class="fas fa-edit"></i>Orders</a>
+                                        title="Edit works"><i class="fas fa-edit"></i> Orders</a>
                                 </div>
                             </div>
                         </div>
@@ -131,23 +131,23 @@
                                 {# Show only when logged in #}
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'accounts:add_user_details' %}"
-                                        title="See your profile"><i class="fas fa-user"></i>Profile</a>
+                                        title="See your profile"><i class="fas fa-user"></i> Profile</a>
                                 </div>
 
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link"
                                         href="{% url 'accounts:log_out' %}?next={{ request.path|urlencode }}"
-                                        title="Log out"><i class="fas fa-sign-out-alt"></i>Log-out</a>
+                                        title="Log out"><i class="fas fa-sign-out-alt"></i> Log-out</a>
                                 </div>
                                 {% endif %}
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'cart:view_cart' %}"
-                                        title="View shopping cart"><i class="fas fa-shopping-cart"></i>Cart</a>
+                                        title="View shopping cart"><i class="fas fa-shopping-cart"></i> Cart</a>
                                 </div>
 
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'checkout:check_out' %}"
-                                        title="Order and pay"><i class="fas fa-cash-register"></i>Order</a>
+                                        title="Order and pay"><i class="fas fa-cash-register"></i> Order</a>
                                 </div>
 
                             </div>
