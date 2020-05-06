@@ -1,0 +1,160 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block dashboard %}
+
+<div class="row">
+    <div class="col-12 col-lg-8 offset-lg-2">
+        <table class="er-dashboard-list table table-responsive-md table-bordered table-striped table-hover">
+            <tr>
+                <th>
+                    Order date:
+                </th>
+                <th>
+                    Total:
+                </th>
+                <th>
+                    Paid:
+                </th>
+                <th>
+                    Sent:
+                </th>
+                <th>
+                    Address:
+                </th>
+                <th>
+                    E-mail:
+                </th>
+
+                <th>
+                    Ship to:
+                </th>
+
+
+            </tr>
+            <tr>
+                <td class="er-list-accent">
+                    {{ order.date }}
+                </td>
+                <td class="er-list-accent">
+                    {{ order.total }}
+                </td>
+                <td>
+                    {% if order.paid %}
+                    <i class="fas fa-check"></i>
+                    {% else %}
+                    <i class="fas fa-times"></i>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if order.sent %}
+                    <i class="fas fa-check"></i>
+                    {% else %}
+                    <i class="fas fa-times"></i>
+                    {% endif %}
+
+                </td>
+                <td>
+                    <p>
+                        {{ order.user.first_name }} {{ order.user.last_name }}<br>
+                        {{ order.address1 }}, {{ order.address2 }}<br>
+                        {{ order.postcode }}, {{ order.city }}<br>
+                        {{ order.country }}<br>
+                    </p>
+                </td>
+                <td>
+
+                    {{ order.user.email }}
+
+                </td>
+
+                <td>
+                    {{order.user.user_details.shipping.region}}<br>
+                    {{order.user.user_details.shipping.price }}
+                </td>
+
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+        <h2>Ordered items:</h2>
+        <table class="er-dashboard-list table table-bordered table-hover">
+
+            <tr>
+                <th>
+                    Quantity:
+                </th>
+                <th>
+
+                </th>
+                <th>
+                    Title:
+                </th>
+                <th>
+                    Price:
+                </th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td class="er-list-accent">
+                    {{ item.quantity }}
+                </td>
+                <td class="er-list-image">
+                    <a href="{% url 'shop:shop_details' pk=item.work_item.id %}" title="Edit this work">
+                        <img src="{{ MEDIA_URL }}{{ item.work_item.main_image }}" alt="{{ item.work_item.title }}">
+                    </a>
+
+                </td>
+                <td>
+                    {{ item.work_item.title }}
+                </td>
+                <td class="er-list-accent">
+                    {{ item.price }}
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="er-wrap">
+            <h2>Order actions :</h2>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <a href="{% url 'dashboard:update_order' pk=order.id action='sent' %}?next={{ request.path|urlencode }}"
+                    title="Mark order as sent">
+                    <button class="btn btn-primary er-green">Mark as sent</button>
+                </a>
+                <a href="{% url 'dashboard:update_order' pk=order.id action='notsent' %}?next={{ request.path|urlencode }}"
+                    title="Mark order as not sent">
+                    <button class="btn btn-primary er-red">Mark as not sent</button>
+                </a>
+            </div>
+            <div class="col-12 col-md-6">
+                <a href="{% url 'dashboard:update_order' pk=order.id action='paid' %}?next={{ request.path|urlencode }}"
+                    title="Mark order as paid">
+                    <button class="btn btn-primary er-green">Mark as paid</button>
+                </a>
+                <a href="{% url 'dashboard:update_order' pk=order.id action='notpaid' %}?next={{ request.path|urlencode }}"
+                    title="Mark order as not paid">
+                    <button class="btn btn-primary er-red">Mark as not Paid</button>
+                </a>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'dashboard:update_order' pk=order.id action='delete' %}?next={{ request.path|urlencode }}"
+                    title="Delete this order">
+                    <button class="btn btn-primary er-red">Delete order</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

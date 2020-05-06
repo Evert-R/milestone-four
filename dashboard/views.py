@@ -21,10 +21,76 @@ def list_orders(request, filter=None):
     With links to their edit pages
     Change display order of works
     """
-    orders = orders.objects.all()
+    all_orders = orders.objects.all()
     title = 'Viewing all orders'
     return render(request, "listorders.html", {'title': title,
-                                               'orders': orders})
+                                               'orders': all_orders})
+
+
+@login_required(login_url='accounts:log_in')
+@admin_only
+def view_order(request, pk):
+    """
+    Display a list of all works
+    With links to their edit pages
+    Change display order of works
+    """
+    try:
+        order = orders.objects.get(pk=pk)
+    except:
+        messages.error(request, 'This order does not exist')
+        return redirect('dashboard:list_orders')
+    try:
+        items = order_items.objects.filter(order=order)
+    except:
+        messages.error(request, 'This order does not have any items')
+        return redirect('dashboard:list_orders')
+    title = 'Viewing order'
+    return render(request, "vieworder.html", {'title': title,
+                                              'order': order,
+                                              'items': items})
+
+
+@login_required(login_url='accounts:log_in')
+@admin_only
+def update_order(request, pk, action=None):
+    """
+    Display a list of all works
+    With links to their edit pages
+    Change display order of works
+    """
+    next = request.GET.get('next', '/')
+    try:
+        order = orders.objects.get(pk=pk)
+    except:
+        messages.error(request, 'This order does not exist')
+        return redirect('dashboard:list_orders')
+    if action == 'paid':
+        order.paid = True
+        order.save()
+        return redirect(next)
+    elif action == 'notpaid':
+        order.paid = False
+        order.save()
+        return redirect(next)
+    elif action == 'sent':
+        order.sent = True
+        order.save()
+        return redirect(next)
+    elif action == 'notsent':
+        order.sent = False
+        order.save()
+        return redirect(next)
+    elif action == 'notsent':
+        order.sent = False
+        order.save()
+        return redirect(next)
+    elif action == 'delete':
+        order.delete()
+        messages.success(request, 'The order was successfully deleted')
+        return redirect(next)
+    else:
+        return redirect('dashboard:list_orders')
 
 
 @login_required(login_url='accounts:log_in')
