@@ -43,6 +43,7 @@ h3 {
     font-size: 1.1rem;
     letter-spacing: 0.2rem;
     margin-bottom: 1.3rem;
+    margin-left: 1.2rem;
 }
 
 h4 {
@@ -70,6 +71,10 @@ table {
 
 .er-image img {
     width: 100%;
+}
+
+.er-middle-screen {
+    padding-top: 5rem;
 }
 
 /* -----------Navigation bar classes */
@@ -105,7 +110,7 @@ table {
 
 .er-links-left .er-nav-button {
     margin-left: 0;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 }
 
 .er-links-center {
@@ -118,13 +123,13 @@ table {
 }
 
 .er-links-right .er-nav-button {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     margin-right: 0;
 }
 
 .er-nav-button {
     font-family: 'FuturaBT-Book', 'Hind';
-    font-size: 0.7rem;
+    font-size: 0.5rem;
     font-weight: 600;
     background-color: white;
     border-style: solid;
@@ -361,12 +366,71 @@ table {
     text-align: center;
 }
 
-.er-cart-cell {}
-
 /* --------------------------Dashboard classes */
 
 .er-dashboard {
     padding-top: 3rem;
+}
+
+.er-dashboard-list td {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.er-dashboard-list td p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.er-list-accent {
+    font-weight: 600;
+}
+
+.er-dashboard-list th {
+    font-size: 0.8rem;
+}
+
+.er-list-image img {
+    height: 5rem;
+}
+
+.er-dashboard-list h2 {
+    margin-bottom: 0.5rem;
+}
+
+.er-list-title p {
+    text-align: left;
+}
+
+.er-list-filter {
+    text-align: right;
+    font-weight: 500;
+}
+
+.er-list-select {
+    text-align: center;
+}
+
+.er-list-select i {
+    margin: 0 0.4rem;
+}
+
+.er-list-icons i {
+    margin: 0.7rem 0;
+}
+
+.er-list-button {
+    padding-left: 0.5rem;
+    width: 6rem;
+}
+
+.er-dashboard-list .form-control, .form-control-file {
+    margin-bottom: 0;
 }
 
 /* --------------------------Accounts classes */
@@ -651,6 +715,7 @@ form .row {
 }
 
 .form-control, .form-control-file {
+    font-size: 0.9rem;
     color: rgba(0, 0, 0);
     margin-bottom: 0.4rem;
     padding: 0.2rem .75rem;
