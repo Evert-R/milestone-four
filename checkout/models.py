@@ -11,6 +11,14 @@ class orders(models.Model):
     date = models.DateField()
     paid = models.BooleanField(default=False)
     sent = models.BooleanField(default=False)
+    total = models.DecimalField(
+        max_digits=5, decimal_places=2, default=0)
+    address1 = models.CharField(blank=True, max_length=50)
+    address2 = models.CharField(blank=True, max_length=50)
+    postcode = models.CharField(blank=True, max_length=50)
+    city = models.CharField(blank=True, max_length=50)
+    country = models.CharField(blank=True, max_length=50)
+    telephone = models.CharField(blank=True, max_length=25)
     shipping = models.DecimalField(
         max_digits=5, decimal_places=2, default=0)
 

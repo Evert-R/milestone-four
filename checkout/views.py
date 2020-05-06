@@ -46,7 +46,13 @@ def check_out(request):
         if payment_form.is_valid():
             order = orders(user=active_user,
                            date=timezone.now(),
-                           shipping=current_user_details.shipping.price
+                           shipping=current_user_details.shipping.price,
+                           address1=current_user_details.address1,
+                           address2=current_user_details.address2,
+                           postcode=current_user_details.postcode,
+                           city=current_user_details.city,
+                           country=current_user_details.country,
+                           telephone=current_user_details.telephone,
                            )
             order.save()
             # Add shipping cost to total
@@ -76,6 +82,7 @@ def check_out(request):
             if customer.paid:
                 messages.error(request, "You have successfully paid")
                 order.paid = True
+                order.total = total
                 order.save()
                 request.session['cart'] = {}
                 return redirect(reverse('shop:all_shop_works'))
