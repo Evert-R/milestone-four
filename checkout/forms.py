@@ -25,7 +25,7 @@ class PaymentForm(forms.Form):
         self.helper = FormHelper(self)
         self.helper.help_text_inline = True
         self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg-4'
-        self.helper.field_class = 'col-lg-8'
+        self.helper.label_class = 'col-sm-4 er-form-padding'
+        self.helper.field_class = 'col-sm-8 er-form-padding'
         self.helper.add_input(
             Submit('commit', 'Place order', css_id='submit_payment_btn', css_class='er-green'))

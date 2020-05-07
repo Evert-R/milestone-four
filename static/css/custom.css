@@ -291,23 +291,27 @@ table {
 
 .er-cart .er-price-cell {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 1rem;
+    font-size: 0.7rem;
 }
 
 .er-checkout .er-price-cell {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 1rem;
+    font-size: 0.7rem;
 }
 
 .er-cart-cell {
     text-align: right;
 }
 
+.er-cart-cell i {
+    font-size: 0.8rem;
+}
+
 .er-shop-button {
     float: right;
-    padding: 0.4rem 0;
+    padding: 0.2rem 0;
     margin-left: 0.5rem;
-    width: 3rem;
+    width: 2rem;
     text-align: center;
 }
 
@@ -316,11 +320,11 @@ table {
 }
 
 .er-cart .er-shop-button i {
-    font-size: 0.7rem;
+    font-size: 0.5rem;
 }
 
 .er-checkout .er-shop-button i {
-    font-size: 0.7rem;
+    font-size: 0.5rem;
 }
 
 .er-shop .er-shop-button i {
@@ -522,13 +526,13 @@ table {
 
 .er-checkout-left p {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-align: right;
 }
 
 .er-checkout-address p {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 0.9;
+    font-size: 0.8rem;
     font-weight: 300;
     text-align: left;
     line-height: 1.2rem;
@@ -536,7 +540,7 @@ table {
 
 .er-checkout-right p {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .er-checkout-total {
@@ -744,7 +748,7 @@ form .row {
     padding: 0.7rem 1.5rem;
 }
 
-/* --------------------------992 - LG */
+/* --------------------------576 - MD */
 
 @media(min-width: 576px) {
     form .row {
@@ -755,6 +759,25 @@ form .row {
         padding-left: 1rem;
         padding-right: 1rem;
         background-color: rgba(92, 109, 178, 0.7);
+    }
+    .er-shop-button {
+        padding: 0.4rem 0;
+        width: 3rem;
+    }
+    .er-cart .er-price-cell {
+        font-size: 1rem;
+    }
+    .er-checkout .er-price-cell {
+        font-size: 1rem;
+    }
+    .er-cart .er-shop-button i {
+        font-size: 0.7rem;
+    }
+    .er-checkout .er-shop-button i {
+        font-size: 0.7rem;
+    }
+    .er-cart-cell i {
+        font-size: 0.9rem;
     }
 }
 

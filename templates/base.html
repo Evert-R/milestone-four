@@ -10,6 +10,7 @@
         integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
         integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
     <link rel="stylesheet" href="{% static 'MyFonts/MyFontsWebfontsKit.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
@@ -121,7 +122,8 @@
                                 </div>
 
                                 <div class="er-nav-button">
-                                    <a class="nav-item nav-link" href="{% url 'accounts:register_user' %}"
+                                    <a class="nav-item nav-link"
+                                        href="{% url 'accounts:register_user' %}?next={{ request.path|urlencode }}"
                                         title="Register as a new customer">
                                         <i class="fas fa-user-plus"></i> Register</a>
                                 </div>
@@ -130,7 +132,8 @@
                                 {% if request.user.is_authenticated %}
                                 {# Show only when logged in #}
                                 <div class="er-nav-button">
-                                    <a class="nav-item nav-link" href="{% url 'accounts:add_user_details' %}"
+                                    <a class="nav-item nav-link"
+                                        href="{% url 'accounts:add_user_details' %}?next={{ request.path|urlencode }}"
                                         title="See your profile"><i class="fas fa-user"></i> Profile</a>
                                 </div>
 
