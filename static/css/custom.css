@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Giga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Muli:wght@300&display=swap');
 html {
     font-size: 100%;
 }
 
 body {
+    font-family: 'FuturaBT-Book', 'Muli';
     padding-top: 12.5rem;
     padding-bottom: 6rem;
     background-color: rgb(255, 255, 255);
@@ -61,7 +62,7 @@ h5 {
 
 p {
     font-size: 0.9rem;
-    font-family: 'FuturaBT-Book', 'Hind';
+    font-family: 'FuturaBT-Book', 'Muli';
     font-weight: 500;
 }
 
@@ -128,7 +129,7 @@ table {
 }
 
 .er-nav-button {
-    font-family: 'FuturaBT-Book', 'Hind';
+    font-family: 'FuturaBT-Book', 'Muli';
     font-size: 0.5rem;
     font-weight: 600;
     background-color: white;
@@ -205,6 +206,10 @@ table {
 
 /* --------------------------Works page */
 
+.er-works {
+    padding-top: 1rem;
+}
+
 /* --------------------------Workdetail page */
 
 .er-detail {
@@ -221,10 +226,6 @@ table {
 
 .er-detail p {
     text-align: justify;
-}
-
-.er-detail div {
-    width: 100%;
 }
 
 .er-detail-main {
@@ -278,7 +279,7 @@ table {
 }
 
 .er-shop .er-price-cell {
-    font-family: 'FuturaBT-Book', 'Hind';
+    font-family: 'FuturaBT-Book', 'Muli';
     font-weight: 400;
     font-size: 0.9rem;
 }
@@ -413,11 +414,21 @@ table {
 }
 
 .er-list-select {
-    text-align: center;
+    position: absolute;
+    right: 0.5rem;
+    bottom: -2rem;
+}
+
+.er-list-select p {
+    padding: 0.1rem;
+    margin: 0.1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: right;
 }
 
 .er-list-select i {
-    margin: 0 0.4rem;
+    margin: 0.2rem 0.4rem;
 }
 
 .er-list-icons i {
@@ -437,6 +448,11 @@ table {
 
 .er-accounts {
     padding-top: 3rem;
+}
+
+.er-accounts .er-form-wrap p {
+    font-size: 0.8rem;
+    text-align: right;
 }
 
 /* --------------------------Checkout classes */
@@ -631,7 +647,7 @@ form .row {
 .alert-danger {
     background-color: rgba(121, 41, 42, 0.8);
     color: white;
-    font-family: 'FuturaBT-Book', 'Hind';
+    font-family: 'FuturaBT-Book', 'Muli';
     font-size: 0.9rem;
     text-align: center;
 }
@@ -656,7 +672,7 @@ form .row {
 }
 
 .card-body p {
-    font-family: 'FuturaBT-Book', 'Hind';
+    font-family: 'FuturaBT-Book', 'Muli';
     font-weight: 500;
 }
 
@@ -673,7 +689,7 @@ form .row {
 }
 
 .form-group label {
-    font-family: 'FuturaBT-Book', 'Hind';
+    font-family: 'FuturaBT-Book', 'Muli';
     font-size: 0.8rem;
     color: rgba(0, 0, 0);
     letter-spacing: 0.1rem;
@@ -688,7 +704,8 @@ form .row {
 .btn {
     width: 100%;
     padding: 0.2rem 0.5rem;
-    margin-top: 0.8rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
 }
 
 .btn-primary {
@@ -761,7 +778,7 @@ form .row {
 }
 
 @media(min-width: 1200px) {
-    .container, .navbar {
+    .container, .container-fluid, .navbar {
         max-width: 1300px;
     }
 }

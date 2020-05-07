@@ -17,8 +17,11 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET
 
 
-@login_required()
+@login_required(login_url='accounts:register_user')
 def check_out(request):
+    if not request.user.is_authenticated:
+        messages.error(request, "Please register before checking out")
+        return redirect('accounts:register_user')
     # Get logged in user
     active_user = request.user
     # Get cart contents
@@ -28,6 +31,7 @@ def check_out(request):
         current_user_details = user_details.objects.get(user=active_user)
     except:
         # If not show shipping details form
+        messages.error(request, "Please provide your shipping details")
         return redirect('accounts:shipping_details')
     # Attach user details to form
     accounts_form = UserDetailsForm(instance=current_user_details)

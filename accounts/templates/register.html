@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-md er-accounts">
+    <div class="row">
+        <div class="col-12">
+            <div class="er-wrap">
+                <h1>{{ title }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="er-form-wrap">
+
+                <form class="form-horizontal" method="post">
+                    <p>
+                        <a class="" href="{% url 'accounts:log_in' %}?next={{ next }}" title="Goto login page">
+                            Already have an account? Please log-in here <i class="fas fa-sign-in-alt"></i></a>
+                    </p>
+                    <input type="hidden" name="next" value="{{ next }}">
+                    {% crispy accounts_form accounts_form.helper %}
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

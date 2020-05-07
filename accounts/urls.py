@@ -8,7 +8,7 @@ urlpatterns = [
     path('logout/', views.log_out, name='log_out'),
     path('register/', views.register_user, name='register_user'),
     path('userdetails/', views.add_user_details,
-         {'next_page': 'shop:all_shop_works'}, name='add_user_details'),
+         {'next': None}, name='add_user_details'),
     path('shippingdetails/', views.add_user_details,
-         {'next_page': 'checkout:check_out'}, name='shipping_details'),
+         {'next': 'checkout:check_out'}, name='shipping_details'),
 ]
