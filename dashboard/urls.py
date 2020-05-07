@@ -16,6 +16,8 @@ urlpatterns = [
          name='update_order'),
     path('worksorder/<int:pk>',
          views.set_works_order, name='set_works_order'),
+    path('shoporder/<int:pk>',
+         views.set_shop_order, name='set_shop_order'),
     path('editworks/<int:pk>', views.edit_works, name='edit_works'),
     path('deletework/<int:pk>',
          views.delete_work, name='delete_work'),

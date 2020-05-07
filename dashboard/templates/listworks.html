@@ -5,7 +5,7 @@
 
 
 <div class="row">
-    <div class="col-12 col-lg-8 offset-lg-2">
+    <div class="col-md-12 col-lg-10 offset-lg-1">
         <div class="row">
             <div class="col-4">
 
@@ -18,7 +18,7 @@
                     {% if filter == 'shop' or filter == 'all' %}
                     <p>
                         <a href="{% url 'dashboard:list_filtered_works' filter='work' %}" title="Only view work items">
-                            View work items only <i class="fas fa-palette"></i>
+                            Edit work items only <i class="fas fa-palette"></i>
                         </a>
                     </p>
 
@@ -27,7 +27,7 @@
                     {% if filter == 'work' or filter == 'all' %}
                     <p>
                         <a href="{% url 'dashboard:list_filtered_works' filter='shop' %}" title="Only view shop items">
-                            View shop items only <i class="fas fa-shopping-cart"></i>
+                            Edit shop items only <i class="fas fa-shopping-cart"></i>
                         </a>
                     </p>
                     {% endif %}
@@ -35,7 +35,7 @@
                     {% if filter == 'work' or filter == 'shop' %}
                     <p>
                         <a href="{% url 'dashboard:list_works' %}" title="View all items">
-                            View all items <i class="fas fa-star"></i>
+                            Edit all items <i class="fas fa-star"></i>
                         </a>
                     </p>
                     {% endif %}
@@ -44,23 +44,43 @@
         </div>
         <table class="er-dashboard-list table table-hover">
             <tr>
+                {% if filter == 'work' or filter == 'all' %}
                 <th>
-                    View order
+                    Work order
                 </th>
-
+                {% endif %}
             </tr>
             {% for work in works %}
+            {% if filter == 'shop' %}
+            <th>
+                Shop order
+            </th>
+            {% endif %}
             <tr>
+                {% if filter == 'work' or filter == 'all' %}
                 <td class="er-list-button">
                     <form method="post" id="{{work.id}}" action="{% url 'dashboard:set_works_order' pk=work.id %}">
                         {% csrf_token %}
                         <input type="number" name="sort_order" value="{{work.sort_order}}"
                             class="numberinput form-control" required="" id="id_sort_order">
-
+                        <input type="hidden" name="next" value="{{ request.path }}">
                         <input type="submit" name="submit" value="Set" class="btn btn-primary er-green"
                             id="submit-id-submit">
                     </form>
                 </td>
+                {% endif %}
+                {% if filter == 'shop' %}
+                <td class="er-list-button">
+                    <form method="post" id="{{work.id}}" action="{% url 'dashboard:set_shop_order' pk=work.id %}">
+                        {% csrf_token %}
+                        <input type="number" name="sort_order" value="{{work.shop_settings.sort_order}}"
+                            class="numberinput form-control" required="" id="id_sort_order">
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <input type="submit" name="submit" value="Set" class="btn btn-primary er-green"
+                            id="submit-id-submit">
+                    </form>
+                </td>
+                {% endif %}
                 <td class="er-list-icons">
                     {% if work.work_item %}
                     <a href="{% url 'works:work_details' pk=work.id %}" title="View this works details">

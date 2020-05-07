@@ -113,8 +113,10 @@ def list_works(request, filter=None):
     else:
         works = work_items.objects.all().order_by('sort_order', 'id')
         title = 'Edit all works'
+        filter = 'all'
     return render(request, "listworks.html", {'title': title,
-                                              'works': works})
+                                              'works': works,
+                                              'filter': filter})
 
 
 @login_required(login_url='accounts:log_in')
@@ -123,6 +125,7 @@ def set_works_order(request, pk):
     """
     Delete a work item from the database
     """
+
     # Check if this work exists
     try:
         work = work_items.objects.get(pk=pk)
@@ -130,10 +133,32 @@ def set_works_order(request, pk):
         # if not return to the works list
         return redirect('dashboard:list_works')
     if request.method == 'POST':
+        next = request.POST.get('next', '/')
         order = request.POST.get("sort_order")
         work.sort_order = order
         work.save()
-    return redirect('dashboard:list_works')
+    return redirect(next)
+
+
+@login_required(login_url='accounts:log_in')
+@admin_only
+def set_shop_order(request, pk):
+    """
+    Delete a work item from the database
+    """
+
+    # Check if this work exists
+    try:
+        work = work_items.objects.get(pk=pk)
+    except:
+        # if not return to the works list
+        return redirect('dashboard:list_works')
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+        order = request.POST.get("sort_order")
+        work.shop_settings.sort_order = order
+        work.shop_settings.save()
+    return redirect(next)
 
 
 @login_required(login_url='accounts:log_in')
