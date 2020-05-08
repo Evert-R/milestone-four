@@ -143,11 +143,20 @@
                                         title="Log out"><i class="fas fa-sign-out-alt"></i> Log-out</a>
                                 </div>
                                 {% endif %}
+
+                                {% if request.session.cart %}
+
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'cart:view_cart' %}"
-                                        title="View shopping cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+                                        title="View shopping cart"><i class="fas fa-shopping-cart"></i> <span
+                                            class="er-cart-count">{{ request.session.cart|length }}</span></a>
+
+
                                 </div>
 
+
+
+                                {% endif %}
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'checkout:check_out' %}"
                                         title="Order and pay"><i class="fas fa-cash-register"></i> Order</a>

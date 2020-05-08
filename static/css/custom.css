@@ -129,6 +129,7 @@ table {
 }
 
 .er-nav-button {
+    display: block;
     font-family: 'FuturaBT-Book', 'Muli';
     font-size: 0.5rem;
     font-weight: 600;
@@ -355,6 +356,10 @@ table {
 
 .er-cart {
     padding-top: 3rem;
+}
+
+.er-cart-count {
+    font-size: 0.5rem;
 }
 
 .er-cart h5 {
