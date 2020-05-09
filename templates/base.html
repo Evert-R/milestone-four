@@ -48,25 +48,37 @@
 </head>
 
 <body>
-    <header class="container-fluid">
+    <header class="container">
+
+        <div class="er-logo" id="er-logo">
+            <a href="{% url 'all_works' %}">
+                <img src="{% static 'images/logo_Lobke-van-Aar.png' %}" alt="Lobke van Aar Logo" />
+            </a>
+        </div>
         <!-- Navigation bar -->
         <div class="row">
-            <nav class="navbar fixed-top navbar-expand-lg navbar-light">
-
-                <div id="er-logo">
-                    <a href="{% url 'all_works' %}">
-                        <img src="{% static 'images/logo_Lobke-van-Aar.png' %}" alt="Lobke van Aar Logo" />
-                    </a>
-                </div>
-
+            <nav class="navbar fixed-top navbar-expand-md navbar-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <!-- Center menu -->
+                    <div class="col-md-4 order-2">
+                        <div class="navbar-nav er-nav-links er-links-center">
+
+                            <a class="nav-item nav-link" id="er-works-active" href="{% url 'all_works' %}">Work</a>
+
+                            <a class="nav-item nav-link" id="er-about-active" href="#">About</a>
+
+                            <a class="nav-item nav-link" id="er-shop-active"
+                                href="{% url 'shop:all_shop_works' %}">Shop</a>
+
+                        </div>
+                    </div>
                     <!-- Leftside menu -->
-                    <div class="col-lg-4 er-links-left">
+                    <div class="col-md-4 order-1 er-links-left">
                         {% if request.user.is_staff %}
                         {# Only show admin links to staff #}
                         <div class="d-flex navbar-nav er-nav-links" id="er-admin-links">
@@ -94,25 +106,49 @@
                         </div>
                         {% endif %}
                     </div>
-                    <!-- Center menu -->
-                    <div class="col-lg-4">
-                        <div class="navbar-nav er-nav-links er-links-center">
 
-                            <a class="nav-item nav-link" id="er-works-active" href="{% url 'all_works' %}">Work</a>
 
-                            <a class="nav-item nav-link" id="er-about-active" href="#">About</a>
-
-                            <a class="nav-item nav-link" id="er-shop-active"
-                                href="{% url 'shop:all_shop_works' %}">Shop</a>
-
-                        </div>
-                    </div>
-                    <!-- Rightside menu -->
-                    <div class="col-lg-4 er-links-right">
+                    <!-- Rightside menu (shop) -->
+                    <div class="col-md-4 order-3 er-links-right d-none d-md-block">
                         <div class="d-flex flex-row-reverse navbar-nav er-nav-links">
-                            <div id="er-shop-nav">
+                            <div class="" id="er-shop-nav">
+                                <!-- Cart button -->
+                                {% if request.session.cart %}
+                                {# Show only when something is in the cart #}
+                                <div class="er-nav-button">
+                                    <a class="nav-item nav-link" href="{% url 'cart:view_cart' %}"
+                                        title="View shopping cart"><i class="fas fa-shopping-cart"></i> <span
+                                            class="er-cart-count">{{ request.session.cart|length }}</span></a>
+                                </div>
+                                {% endif %}
+
+                                {% if request.user.is_authenticated %}
+                                {# Show only when logged in #}
+                                <!-- Profile button -->
+                                <div class="er-nav-button">
+                                    <a class="nav-item nav-link"
+                                        href="{% url 'accounts:add_user_details' %}?next={{ request.path|urlencode }}"
+                                        title="See your profile"><i class="fas fa-user"></i> Profile</a>
+                                </div>
+                                <!-- Log-out button -->
+                                <div class="er-nav-button">
+                                    <a class="nav-item nav-link"
+                                        href="{% url 'accounts:log_out' %}?next={{ request.path|urlencode }}"
+                                        title="Log out"><i class="fas fa-sign-out-alt"></i> Log-out</a>
+                                </div>
+                                {% endif %}
                                 {% if not request.user.is_authenticated %}
                                 {# Show only when not logged in #}
+
+                                <!-- Register button -->
+                                <div class="er-nav-button">
+                                    <a class="nav-item nav-link"
+                                        href="{% url 'accounts:register_user' %}?next={{ request.path|urlencode }}"
+                                        title="Register as a new customer">
+                                        <i class="fas fa-user-plus"></i> Register</a>
+                                </div>
+
+                                <!-- Log-in button -->
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link"
                                         href="{% url 'accounts:log_in' %}?next={{ request.path|urlencode }}"
@@ -120,53 +156,64 @@
                                         <i class="fas fa-sign-in-alt"></i> Log-in<span
                                             class="sr-only">(current)</span></a>
                                 </div>
-
-                                <div class="er-nav-button">
-                                    <a class="nav-item nav-link"
-                                        href="{% url 'accounts:register_user' %}?next={{ request.path|urlencode }}"
-                                        title="Register as a new customer">
-                                        <i class="fas fa-user-plus"></i> Register</a>
-                                </div>
                                 {% endif %}
-
-                                {% if request.user.is_authenticated %}
-                                {# Show only when logged in #}
-                                <div class="er-nav-button">
-                                    <a class="nav-item nav-link"
-                                        href="{% url 'accounts:add_user_details' %}?next={{ request.path|urlencode }}"
-                                        title="See your profile"><i class="fas fa-user"></i> Profile</a>
-                                </div>
-
-                                <div class="er-nav-button">
-                                    <a class="nav-item nav-link"
-                                        href="{% url 'accounts:log_out' %}?next={{ request.path|urlencode }}"
-                                        title="Log out"><i class="fas fa-sign-out-alt"></i> Log-out</a>
-                                </div>
-                                {% endif %}
-
-                                {% if request.session.cart %}
-
-                                <div class="er-nav-button">
-                                    <a class="nav-item nav-link" href="{% url 'cart:view_cart' %}"
-                                        title="View shopping cart"><i class="fas fa-shopping-cart"></i> <span
-                                            class="er-cart-count">{{ request.session.cart|length }}</span></a>
-
-
-                                </div>
-
-
-
-                                {% endif %}
-                                <div class="er-nav-button">
-                                    <a class="nav-item nav-link" href="{% url 'checkout:check_out' %}"
-                                        title="Order and pay"><i class="fas fa-cash-register"></i> Order</a>
-                                </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </nav>
+            <!-- Shop menu (up to 768px) -->
+            <div class="navbar-nav er-nav-links d-block d-md-none">
+                <div id="er-shop-nav">
+
+
+                    {% if request.session.cart %}
+                    {# Show only when something is in the cart #}
+                    <!-- Profile button -->
+                    <div class="er-nav-button er-cart-button">
+                        <a class="nav-item nav-link" href="{% url 'cart:view_cart' %}" title="View shopping cart"><i
+                                class="fas fa-shopping-cart"></i> <span
+                                class="er-cart-count">{{ request.session.cart|length }}</span></a>
+                    </div>
+                    {% endif %}
+
+                    {% if not request.user.is_authenticated %}
+                    {# Show only when not logged in #}
+                    <!-- Log-in button -->
+                    <div class="er-nav-button er-log-button">
+                        <a class="nav-item nav-link"
+                            href="{% url 'accounts:log_in' %}?next={{ request.path|urlencode }}"
+                            title="Log in to use the shop">
+                            <i class="fas fa-sign-in-alt"></i> Log-in<span class="sr-only">(current)</span></a>
+                    </div>
+
+                    <!-- Register button -->
+                    <div class="er-nav-button er-profile-button">
+                        <a class="nav-item nav-link"
+                            href="{% url 'accounts:register_user' %}?next={{ request.path|urlencode }}"
+                            title="Register as a new customer">
+                            <i class="fas fa-user-plus"></i> Register</a>
+                    </div>
+                    {% endif %}
+
+                    {% if request.user.is_authenticated %}
+                    {# Show only when logged in #}
+                    <!-- Profile button -->
+                    <div class="er-nav-button er-profile-button">
+                        <a class="nav-item nav-link"
+                            href="{% url 'accounts:add_user_details' %}?next={{ request.path|urlencode }}"
+                            title="See your profile"><i class="fas fa-user"></i> Profile</a>
+                    </div>
+
+                    <!-- Log-out button -->
+                    <div class="er-nav-button er-log-button">
+                        <a class="nav-item nav-link"
+                            href="{% url 'accounts:log_out' %}?next={{ request.path|urlencode }}" title="Log out"><i
+                                class="fas fa-sign-out-alt"></i> Log-out</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </header>
 

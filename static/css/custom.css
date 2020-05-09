@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@300&display=swap');
 html {
-    font-size: 100%;
+    font-size: 12.5px;
 }
 
 body {
@@ -23,7 +23,7 @@ a:hover {
 
 h1 {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     letter-spacing: 0.3rem;
     text-align: center;
     margin-bottom: 2.5rem;
@@ -80,15 +80,16 @@ table {
 
 /* -----------Navigation bar classes */
 
-#er-logo {
-    position: absolute;
-    top: 4.375rem;
+.er-logo {
+    z-index: 1000;
+    position: fixed;
+    top: 3.7rem;
     left: 50%;
     transform: translateX(-50%);
     display: inline-block;
 }
 
-#er-logo img {
+.er-logo img {
     height: 3.75rem;
 }
 
@@ -129,9 +130,14 @@ table {
 }
 
 .er-nav-button {
+    width: 5rem;
     display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
     font-family: 'FuturaBT-Book', 'Muli';
+    text-align: center;
     font-size: 0.5rem;
+    letter-spacing: 0.1rem;
     font-weight: 600;
     background-color: white;
     border-style: solid;
@@ -147,7 +153,7 @@ table {
 }
 
 .er-nav-button i {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 .er-nav-button:hover {
@@ -162,11 +168,42 @@ table {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
+.er-nav-button span {
+    line-height: 0.7rem;
+}
+
+.er-cart-button {
+    z-index: 2000;
+    position: fixed;
+    left: 25vw;
+    top: 0.3rem;
+}
+
+.er-cart-count {
+    font-size: 0.5rem;
+}
+
+.er-log-button {
+    z-index: 2000;
+    position: fixed;
+    left: 75vw;
+    top: 0.3rem;
+}
+
+.er-profile-button {
+    z-index: 2000;
+    position: fixed;
+    left: 50vw;
+    top: 0.3rem;
+}
+
 /* -----------Filter selectors */
 
 .er-nav-left {
     position: fixed;
     top: 8.7rem;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 5000;
     display: flex;
     align-items: center;
@@ -195,14 +232,15 @@ table {
 .er-messages {
     width: 100%;
     position: fixed;
-    top: 0;
+    bottom: 0;
+    top: unset;
     z-index: 5000;
     padding: 0.3rem;
     font-family: 'FuturaBT-Heavy', 'Hind';
     font-size: 1rem;
     text-align: center;
     color: rgba(255, 255, 255);
-    background-color: rgb(212, 170, 60, 0.7);
+    background-color: rgb(212, 170, 60, 0.9);
 }
 
 /* --------------------------Works page */
@@ -262,7 +300,7 @@ table {
 /* --------------------------Shop classes */
 
 .er-shop {
-    padding-top: 3rem;
+    padding-top: 2rem;
 }
 
 .er-shop h5 {
@@ -355,11 +393,7 @@ table {
 /* --------------------------Cart classes */
 
 .er-cart {
-    padding-top: 3rem;
-}
-
-.er-cart-count {
-    font-size: 0.5rem;
+    padding-top: 2rem;
 }
 
 .er-cart h5 {
@@ -379,7 +413,7 @@ table {
 /* --------------------------Dashboard classes */
 
 .er-dashboard {
-    padding-top: 3rem;
+    padding-top: 2rem;
 }
 
 .er-dashboard-list td {
@@ -431,7 +465,7 @@ table {
 .er-list-select p {
     padding: 0.1rem;
     margin: 0.1rem;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 500;
     text-align: right;
 }
@@ -450,13 +484,15 @@ table {
 }
 
 .er-dashboard-list .form-control, .form-control-file {
+    font-size: 0.7rem;
+    text-align: center;
     margin-bottom: 0;
 }
 
 /* --------------------------Accounts classes */
 
 .er-accounts {
-    padding-top: 3rem;
+    padding-top: 2rem;
 }
 
 .er-accounts .er-form-wrap p {
@@ -465,6 +501,18 @@ table {
 }
 
 /* --------------------------Checkout classes */
+
+.er-checkout {
+    padding-top: 2rem;
+}
+
+.er-checkout h5 {
+    font-size: 1rem;
+}
+
+table {
+    width: 100%;
+}
 
 .er-list-wrap {
     width: 100%;
@@ -503,18 +551,6 @@ table {
 
 .er-list-divider {
     margin-bottom: 0.7rem;
-}
-
-.er-checkout {
-    padding-top: 3rem;
-}
-
-.er-checkout h5 {
-    font-size: 1rem;
-}
-
-table {
-    width: 100%;
 }
 
 .er-checkout td {
@@ -664,11 +700,9 @@ form .row {
 /* --------------------------Bootstrap classes */
 
 .navbar {
+    width: 100%;
     display: unset;
-    margin-left: auto;
-    margin-right: auto;
-    min-height: 12.5rem;
-    background-color: rgba(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.9);
     transition: height 2s;
 }
 
@@ -756,6 +790,9 @@ form .row {
 /* --------------------------576 - MD */
 
 @media(min-width: 576px) {
+    html {
+        font-size: 12.5px;
+    }
     form .row {
         margin-bottom: 0.9rem;
     }
@@ -764,6 +801,65 @@ form .row {
         padding-left: 1rem;
         padding-right: 1rem;
         background-color: rgba(92, 109, 178, 0.7);
+    }
+}
+
+/* --------------------------768 - MD */
+
+@media(min-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+    .navbar {
+        width: 100%;
+        min-height: 12.5rem;
+    }
+    .er-logo {
+        top: 4.375rem;
+        z-index: 2000;
+    }
+    .er-nav-button {
+        margin-top: 0.7rem;
+        margin-bottom: 0;
+    }
+    .er-cart-button {
+        z-index: 1000;
+        position: unset;
+        right: 1rem;
+        top: 1rem;
+    }
+    .er-log-button {
+        z-index: 1000;
+        position: unset;
+        right: unset;
+        top: unset;
+    }
+    .er-profile-button {
+        z-index: 1000;
+        position: unset;
+        right: unset;
+        top: unset;
+    }
+    .navbar {
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        height: 12.5rem;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+    .er-messages {
+        top: 0;
+        bottom: unset;
+    }
+    .er-nav-left {
+        top: 8.7rem;
+        left: 1rem;
+        transform: unset;
+    }
+    .er-nav-links {
+        padding-top: 6.5rem;
+        margin-left: auto;
+        margin-right: auto;
     }
     .er-shop-button {
         padding: 0.4rem 0;
@@ -789,16 +885,6 @@ form .row {
 /* --------------------------992 - LG */
 
 @media(min-width: 992px) {
-    .navbar {
-        display: flex;
-        height: 12.5rem;
-        background-color: rgba(255, 255, 255, 0.8);
-    }
-    .er-nav-links {
-        padding-top: 6.5rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
     .col-form-label {
         width: 100%;
         padding-bottom: 0;
