@@ -19,7 +19,11 @@ class EditWorksForm(ModelForm):
             'free_text': _('Description'),
         }
         help_texts = {
-            'position': _('Choose work view lay-out'),
+            'position': _('Choose layout of the work details view'),
+            'free_text': _('This text is displayed on the work details page'),
+            'sort_order': _('Choose the view order on the work page'),
+            'work_item': _('<br>Show on the work page?'),
+            'shop_item': _('<br>Show in the shop and create a shop settings form?'),
         }
 
     def __init__(self, *args, **kwargs):
@@ -40,6 +44,17 @@ class EditShopWorksForm(ModelForm):
                   'signed', 'personal_message', 'standard_text', 'personal_text', 'sort_order']
         widgets = {
             'personal_message': Textarea(attrs={'cols': 10, 'rows': 10}),
+        }
+        labels = {
+            'edition_count': _('Edition total'),
+            'personal_message': _('Personal desription'),
+        }
+        help_texts = {
+            'edition_count': _('How many were made?'),
+            'signed': _('Is this item signed?'),
+            'standard_text': _('Generate a description for the shop'),
+            'personal_text': _('Show the personal desription in the shop'),
+            'personal_message': _('Add a personal description for the shop'),
         }
 
     def __init__(self, *args, **kwargs):
