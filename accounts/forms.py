@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, SetPasswordForm
 from django.core.exceptions import ValidationError
 from accounts.models import user_details
 from crispy_forms.helper import FormHelper
@@ -44,6 +44,44 @@ class RegisterForm(UserCreationForm):
         self.helper.field_class = 'col-sm-8 er-form-padding'
         self.helper.add_input(
             Submit('submit', 'Register', css_class='er-green'))
+
+
+class ResetPasswordForm(PasswordResetForm):
+    """Let users reset their password"""
+
+    class Meta:
+        model = User
+        fields = ['email']
+
+    def __init__(self, *args, **kwargs):
+        super(ResetPasswordForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.help_text_inline = True
+        self.helper.form_tag = False
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-4 er-form-padding'
+        self.helper.field_class = 'col-sm-8 er-form-padding'
+        self.helper.add_input(
+            Submit('submit', 'Reset my password', css_class='er-red'))
+
+
+class PasswordSetForm(SetPasswordForm):
+    """Let users reset their password"""
+
+    class Meta:
+        model = User
+        fields = ['password1', 'password2']
+
+    def __init__(self, *args, **kwargs):
+        super(PasswordSetForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.help_text_inline = True
+        self.helper.form_tag = False
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-4 er-form-padding'
+        self.helper.field_class = 'col-sm-8 er-form-padding'
+        self.helper.add_input(
+            Submit('submit', 'Reset my password', css_class='er-green'))
 
 
 class UserDetailsForm(ModelForm):
