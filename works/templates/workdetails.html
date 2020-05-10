@@ -6,39 +6,239 @@
 <div class="container-md er-detail">
     <div class="row">
         {% if work.position == 'VT' %}
-        <div class="col-lg-7 offset-1 er-detail-left">
+        {# Show if vertical layout is selected #}
+
+        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
             <div>
                 <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
             </div>
         </div>
-        <div class="col-lg-7 er-detail-right">
-            <div>
-                <h5>{{ work.title }}</h5>
-                <p>{{ work.free_text }}</p>
+
+        <!-- Show from 768px -->
+        <div class="col-12 d-none d-md-block col-md-3 er-detail-right">
+            <h5>{{ work.title }}</h5>
+            <p>{{ work.free_text }}</p>
+            {% if images.0 %}
+            <div class=" er-detail-bottom">
+                <img src="{{ MEDIA_URL }}{{ images.0.work_image }}" alt="{{ work.title }}">
             </div>
+            {% endif %}
+        </div>
+
+        <!-- Show on small devices -->
+        <div class="col-12 d-md-none er-detail-right">
+            <h5>{{ work.title }}</h5>
+            <p>{{ work.free_text }}</p>
+        </div>
+
+        <!-- Show on small devices -->
+        {% if images.0 %}
+        <div class="col-12 d-md-none er-detail-right">
             <div>
                 <img src="{{ MEDIA_URL }}{{ images.0.work_image }}" alt="{{ work.title }}">
             </div>
         </div>
+        {% endif %}
+
+        {% if images.1 %}
+        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.1.work_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if images.2 %}
+        <div class="col-12 col-md-3 er-detail-right">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.2.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% if images.3 %}
+            <div class="er-detail-bottom">
+                <img src="{{ MEDIA_URL }}{{ images.3.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if images.4 %}
+        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.4.work_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if images.5 %}
+        <div class="col-12 col-md-3 er-detail-right">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.5.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% if images.6 %}
+            <div class=" er-detail-bottom">
+                <img src="{{ MEDIA_URL }}{{ images.6.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if images.7 %}
+        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.7.work_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if images.8 %}
+        <div class="col-12 col-md-3 er-detail-right">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.8.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% if images.9 %}
+            <div class=" er-detail-bottom">
+                <img src="{{ MEDIA_URL }}{{ images.9.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if images.10 %}
+        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.10.work_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        {% endif %}
+
+
         {% else %}
-        <div class="col-12 col-lg-10 offset-lg-1 er-detail-main">
-            <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
+        {# Show if Horizontal layout is selected #}
+        <div class="col-12 col-md-10 offset-md-1 er-detail-main">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
+            </div>
         </div>
-        <div class="col-lg-7 offset-lg-1 er-detail-main er-detail-left">
-            <img src="{{ MEDIA_URL }}{{ images.0.work_image }}" alt="{{ work.title }}">
-        </div>
-        <div class="col-lg-3 er-detail-right"
-            style="background-image: url('{{ MEDIA_URL }}{{ images.1.work_image }}');">
+        <!-- Show from on small devices -->
+        <div class="col-12 d-md-none er-detail-right">
             <h5>{{ work.title }}</h5>
             <p>{{ work.free_text }}</p>
+        </div>
 
+        <!-- Show from on small devices -->
+        {% if images.1 %}
+        <div class="col-12 d-md-none er-detail-right">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.1.work_image }}" alt="{{ work.title }}">
+            </div>
         </div>
-        <div class="col-lg-8 er-detail-main er-detail-left">
-            <img src="{{ MEDIA_URL }}{{ images.2.work_image }}" alt="{{ work.title }}">
+        {% endif %}
+
+        {% if images.0 %}
+        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.0.work_image }}" alt="{{ work.title }}">
+            </div>
         </div>
-        <div class="col-lg-4 er-detail-right">
-            <img src="{{ MEDIA_URL }}{{ images.2.work_image }}" alt="{{ work.title }}">
+        {% endif %}
+
+        <!-- Show from 768px -->
+        <div class="col-12 d-none d-md-block col-md-3 er-detail-right">
+            <h5>{{ work.title }}</h5>
+            <p>{{ work.free_text }}</p>
+            {% if images.1 %}
+            <div class=" er-detail-bottom">
+                <img src="{{ MEDIA_URL }}{{ images.1.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% endif %}
         </div>
+
+
+        {% if images.2 %}
+        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.2.work_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if images.3 %}
+        <div class="col-12 col-md-3 er-detail-right">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.3.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% if images.4 %}
+            <div class=" er-detail-bottom">
+                <img src="{{ MEDIA_URL }}{{ images.4.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if images.2 %}
+        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.2.work_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if images.3 %}
+        <div class="col-12 col-md-3 er-detail-right">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.3.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% if images.4 %}
+            <div class=" er-detail-bottom">
+                <img src="{{ MEDIA_URL }}{{ images.4.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if images.5 %}
+        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.5.work_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if images.6 %}
+        <div class="col-12 col-md-3 er-detail-right">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.6.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% if images.7 %}
+            <div class=" er-detail-bottom">
+                <img src="{{ MEDIA_URL }}{{ images.7.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if images.8 %}
+        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.8.work_image }}" alt="{{ work.title }}">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if images.9 %}
+        <div class="col-12 col-md-3 er-detail-right">
+            <div>
+                <img src="{{ MEDIA_URL }}{{ images.9.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% if images.10 %}
+            <div class=" er-detail-bottom">
+                <img src="{{ MEDIA_URL }}{{ images.10.work_image }}" alt="{{ work.title }}">
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+
         {% endif %}
     </div>
 </div>

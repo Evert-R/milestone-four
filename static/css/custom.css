@@ -160,6 +160,11 @@ table {
     margin-right: 0;
 }
 
+.er-shop-nav {
+    z-index: 3000;
+    background-color: rgb(255, 255, 255);
+}
+
 .er-nav-button {
     width: 5rem;
     display: block;
@@ -304,28 +309,20 @@ table {
 }
 
 .er-detail-left {
-    padding-right: 6.4rem;
     margin-bottom: 4.68rem;
 }
 
 .er-detail-right {
     margin-bottom: 4.68rem;
     background-position: bottom;
-    background-size: 93%;
+    background-size: 0%;
     background-repeat: no-repeat;
-}
-
-.er-detail-bottom {}
-
-.er-detail-bottom img {
-    width: 100%;
 }
 
 .er-detail-bottom {
-    height: 600px;
-    background-position: bottom;
-    background-size: contain;
-    background-repeat: no-repeat;
+    margin-top: 4.68rem;
+    position: unset;
+    bottom: 0;
 }
 
 /* --------------------------Shop classes */
@@ -736,7 +733,7 @@ form .row {
 }
 
 .custom-checkbox {
-    margin-left: 33%;
+    margin-left: 0.6rem;
 }
 
 .custom-control-label:before {
@@ -769,7 +766,7 @@ form .row {
 
 .btn-primary {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 0.9rem!important;
+    font-size: 0.8rem!important;
     font-weight: 400!important;
     letter-spacing: 0.2rem;
     border-color: rgba(0, 0, 0, 0.5);
@@ -895,6 +892,18 @@ form .row {
     }
     .er-cart-cell i {
         font-size: 0.9rem;
+    }
+    .er-detail-right {
+        background-size: 90%;
+    }
+    .er-detail-left {
+        padding-right: 6.4rem;
+    }
+    .er-detail-bottom {
+        padding-right: 1rem;
+        position: absolute;
+        bottom: 0;
+        margin-top: unset;
     }
 }
 
