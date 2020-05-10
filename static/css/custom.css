@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@300&display=swap');
 html {
-    font-size: 12.5px;
+    font-size: 15px;
 }
 
 body {
@@ -331,18 +331,36 @@ table {
     padding-top: 2rem;
 }
 
+.er-shop-wrap {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+}
+
+.er-shop-top {
+    margin-bottom: 1rem;
+}
+
+.er-shop-image {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 1rem;
+    height: 15rem;
+    margin-bottom: 1rem;
+}
+
+.er-shop-image img {
+    height: 100%;
+}
+
 .er-shop h5 {
-    text-align: left;
+    text-align: center;
     font-size: 0.9rem;
-}
-
-.er-shop td {
-    vertical-align: middle;
-}
-
-.er-shop .card-body p {
-    margin-top: 0.6rem;
-    text-align: right;
 }
 
 .er-shop .er-price-cell {
@@ -376,14 +394,10 @@ table {
 
 .er-shop-button {
     float: right;
-    padding: 0.2rem 0;
+    padding: 0.3rem 0;
     margin-left: 0.5rem;
     width: 2rem;
     text-align: center;
-}
-
-.er-shop .er-shop-button {
-    padding: 0.2rem 0;
 }
 
 .er-cart .er-shop-button i {
@@ -804,7 +818,7 @@ form .row {
 
 @media(min-width: 576px) {
     html {
-        font-size: 12.5px;
+        font-size: 16px;
     }
     form .row {
         margin-bottom: 0.9rem;
@@ -821,7 +835,7 @@ form .row {
 
 @media(min-width: 768px) {
     html {
-        font-size: 15px;
+        font-size: 16px;
     }
     .navbar {
         width: 100%;
@@ -833,6 +847,10 @@ form .row {
     }
     .er-nav-button {
         margin-top: 0.7rem;
+        margin-bottom: 0;
+    }
+    .er-shop-button {
+        margin-top: 0;
         margin-bottom: 0;
     }
     .er-cart-button {

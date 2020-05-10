@@ -2,7 +2,7 @@
 {% load static %}
 {% load bootstrap_tags %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/columns.css' %}">
+
 <!-- Show all shop_works -->
 <div class="container-md er-shop">
     <div class="row">
@@ -11,40 +11,47 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <div class="card-columns er-relative">
-                {% for work in works %}
-                <div class="card border-0" id="er-hover-{{ work.id }}">
-                    <a href="{% url 'shop:shop_details' pk=work.id %}" title="View this shop item">
-                        <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <div class="er-slide" id="er-slide-{{ work.id }}">
-                            <table>
-                                <tr>
-                                    <td class="er-price-cell">
-                                        {{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i>
-                                    </td>
-                                    <td class="er-cart-cell">
-                                        <div class="er-nav-button er-shop-button">
-                                            <a class=""
-                                                href="{% url 'cart:add_cart' id=work.pk %}?next={{ request.path|urlencode }}">
-                                                <i class="fas fa-plus"></i>
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </a>
-                                        </div>
+        {% for work in works %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" id="er-hover-{{ work.id }}">
+            <div class="er-shop-wrap">
+                <div class="er-shop-top">
+                    <h5>{{ work.title }}</h5>
 
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <p>{{ work.shop_settings.work_type }}</p>
-                        <hr>
-                        <h5>{{ work.title }}</h5>
-                        <hr>
-                    </div>
                 </div>
-                <!-- 
+                <a href="{% url 'shop:shop_details' pk=work.id %}" title="View this shop item">
+                    <div class="er-shop-image" style="background-image: url({{ MEDIA_URL }}{{ work.main_image }});">
+
+                    </div>
+                </a>
+                <div class="er-shop-body">
+                    <p class="text-center">{{ work.shop_settings.work_type }}</p>
+                    <div class="er-slide" id="er-slide-{{ work.id }}">
+                        <table>
+                            <tr>
+                                <td class="er-price-cell">
+                                    <span> {{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i></span>
+                                </td>
+                                <td class="er-cart-cell">
+                                    <a href="{% url 'cart:add_cart' id=work.pk %}?next={{ request.path|urlencode }}"
+                                        title="Add to cart">
+                                        <div class="er-nav-button er-shop-button">
+
+                                            <i class="fas fa-plus"></i>
+                                            <i class="fas fa-shopping-cart"></i>
+
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <!-- 
                 <script>
                     $('#er-slide-{{ work.id }}').slideUp();
                     $('#er-hover-{{ work.id }}').hover(function () {
@@ -55,10 +62,14 @@
                     });
                 </script>
                 -->
-                {% endfor %}
-            </div>
+
+
+
         </div>
+        {% endfor %}
     </div>
+
+
 </div>
 
 <!-- Load special screen events -->
