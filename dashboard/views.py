@@ -123,7 +123,7 @@ def list_works(request, filter=None):
 @admin_only
 def set_works_order(request, pk):
     """
-    Delete a work item from the database
+    Set the display order for works
     """
 
     # Check if this work exists
@@ -144,7 +144,7 @@ def set_works_order(request, pk):
 @admin_only
 def set_shop_order(request, pk):
     """
-    Delete a work item from the database
+    Set the display order for shop items
     """
 
     # Check if this work exists
@@ -158,6 +158,27 @@ def set_shop_order(request, pk):
         order = request.POST.get("sort_order")
         work.shop_settings.sort_order = order
         work.shop_settings.save()
+    return redirect(next)
+
+
+@login_required(login_url='accounts:log_in')
+@admin_only
+def set_image_order(request, pk):
+    """
+    Set the display order for extra images
+    """
+
+    # Check if this work exists
+    try:
+        image = work_images.objects.get(pk=pk)
+    except:
+        # if not return to the works list
+        return redirect('dashboard:list_works')
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+        order = request.POST.get("sort_order")
+        image.sort_order = order
+        image.save()
     return redirect(next)
 
 
@@ -208,7 +229,8 @@ def edit_works(request, pk=None):
         if work_images.objects.filter(work_item=work.id).count() == 0:
             images = None
         else:
-            images = work_images.objects.filter(work_item=work.id)
+            images = work_images.objects.filter(
+                work_item=work.id).order_by('sort_order', 'id')
         # Check if this is also a shop item
         if work.shop_item == True:
             # Check if the shop item is already created

@@ -55,3 +55,4 @@ class work_images(models.Model):
     work_item = models.ForeignKey(
         'works.work_items', on_delete=models.CASCADE, null=True)
     work_image = models.ImageField(upload_to=work_upload_dir)
+    sort_order = models.SmallIntegerField(default=999)

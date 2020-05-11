@@ -46,7 +46,8 @@ def all_works(request):
 
 def work_details(request, pk):
     work = work_items.objects.get(pk=pk)
-    images = work_images.objects.filter(work_item_id=pk)
+    images = work_images.objects.filter(
+        work_item_id=pk).order_by('sort_order', 'id')
     return render(request, "workdetails.html", {"work": work, "images": images})
 
 
