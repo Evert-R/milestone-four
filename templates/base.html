@@ -48,7 +48,7 @@
 </head>
 
 <body>
-    <header class="container">
+    <header class="container-md">
 
         <div class="er-logo" id="er-logo">
             <a href="{% url 'all_works' %}">
@@ -63,7 +63,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse er-white-front" id="navbarNavAltMarkup">
                     <!-- Center menu -->
                     <div class="col-md-4 order-2">
                         <div class="navbar-nav er-nav-links er-links-center">
@@ -81,27 +81,28 @@
                     <div class="col-md-4 order-1 er-links-left">
                         {% if request.user.is_staff %}
                         {# Only show admin links to staff #}
-                        <div class="d-flex navbar-nav er-nav-links" id="er-admin-links">
+                        <div class="navbar-nav er-nav-links" id="er-admin-links">
                             <div>
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'dashboard:add_works' %}"
                                         title="Add new work"><i class="fas fa-plus"></i> Work</a>
                                 </div>
-
+                                <br class="d-sm-none">
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'dashboard:list_works' %}"
                                         title="Edit works"><i class="fas fa-edit"></i> Works</a>
                                 </div>
-
+                                <br class="d-sm-none">
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'dashboard:list_orders' %}"
                                         title="View orders"><i class="fas fa-shopping-cart"></i> Orders</a>
                                 </div>
-
+                                <br class="d-sm-none">
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'dashboard:list_works' %}"
                                         title="Edit works"><i class="fas fa-edit"></i> Orders</a>
                                 </div>
+                                <br class="d-sm-none">
                             </div>
                         </div>
                         {% endif %}
@@ -163,7 +164,7 @@
                 </div>
             </nav>
             <!-- Shop menu (up to 768px) -->
-            <div class="navbar-nav er-nav-links d-block d-md-none">
+            <div class="navbar-nav er-nav-links d-block d-md-none er-shop-nav">
                 <div id="er-shop-nav">
 
 
