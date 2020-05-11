@@ -4,6 +4,7 @@
 {% block content %}
 
 {% block head_js %}
+<!-- Load stripe payment javascript -->
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
@@ -13,8 +14,7 @@
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
 
-<div class="container-lg er-checkout">
-
+<section class="container-lg er-checkout">
     <div class="row">
         <div class="col-12">
             <div class="er-wrap">
@@ -24,7 +24,7 @@
     </div>
     <div class="row">
         <div class="col-12 order-2 col-md-6 order-md-2">
-
+            <!-- Show a slide open form to adjust shipping details -->
             <div class="er-form-wrap">
                 <a data-toggle="collapse" href="#er-shipping-details">
                     <h2><i class="fas fa-angle-down"></i> Check your shipping details</h2>
@@ -35,6 +35,7 @@
                     </form>
                 </div>
             </div>
+            <!-- Show shipping details and total price -->
             <div class="row er-list-wrap">
                 <div class="col-12 col-sm-5 er-checkout-address">
                     <p>{{ user.first_name }} {{ user.last_name }}<br>
@@ -56,7 +57,7 @@
                     <p>{{ total|add:user_details.shipping.price }} <i class="fas fa-euro-sign"></i></p>
                 </div>
             </div>
-
+            <!-- The payment form -->
             <div class="er-form-wrap">
                 <h2>Place your order:</h2>
             </div>
@@ -72,8 +73,8 @@
         </div>
 
         <div class="col-12 order-1 col-md-6 order-md-2">
+            <!-- Message from the site owner -->
             <div class="er-info-wrap">
-
                 <h2>Thank you so much for purchasing one of my works!</h2>
                 <p>After I have received your payment I will prepare the package with the greatest care and will sent
                     you
@@ -89,28 +90,31 @@
                     <p>
                         <hr>
                     </p>
-
                 </div>
             </div>
-
+            <!-- Show all items in the shopping cart -->
             {% for item in cart_items %}
             <div class="row er-list-wrap">
                 <div class="col-6">
-                    <div class="er-image">
-                        <img src="{{ MEDIA_URL }}{{ item.work.main_image }}" alt="{{ item.work.title }}">
-                    </div>
+                    <a href="{% url 'shop:shop_details' pk=item.work.id %}" title="View this shop item">
+                        <div class="er-image">
+                            <img src="{{ MEDIA_URL }}{{ item.work.main_image }}" alt="{{ item.work.title }}">
+                        </div>
+                    </a>
                 </div>
                 <div class="col-6">
-                    <div class="er-list-wrap">
-                        <h5>{{ item.work.title }}</h5>
-                        <p>
-                            {{ item.work.shop_settings.work_type }}<br>
-                            {{ item.work.shop_settings.work_size }}
-                        </p>
-                        <p class="er-quantity">
-                            Quantity: {{ item.quantity }}
-                        </p>
-                    </div>
+                    <a href="{% url 'shop:shop_details' pk=item.work.id %}" title="View this shop item">
+                        <div class="er-list-wrap">
+                            <h5>{{ item.work.title }}</h5>
+                            <p>
+                                {{ item.work.shop_settings.work_type }}<br>
+                                {{ item.work.shop_settings.work_size }}
+                            </p>
+                            <p class="er-quantity">
+                                Quantity: {{ item.quantity }}
+                            </p>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-6">
                 </div>
@@ -151,9 +155,8 @@
                     </p>
                 </div>
             </div>
-
             {% endfor %}
-
+            <!-- Show total and shipping costs -->
             <div class="row">
                 <div class="col-6 er-checkout-left">
                     <p>Ship to :</p>
@@ -179,14 +182,11 @@
                     <p>{{ total|add:user_details.shipping.price }} <i class="fas fa-euro-sign"></i></p>
                 </div>
             </div>
-
-
-
         </div>
     </div>
-</div>
+</section>
 
-<!-- Make menu item active -->
+<!-- Main menu highlite shop -->
 <script>
     $('#er-shop-active').addClass('active');
 </script>
