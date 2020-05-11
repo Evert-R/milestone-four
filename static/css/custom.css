@@ -6,7 +6,7 @@ html {
 
 body {
     font-family: 'FuturaBT-Book', 'Muli';
-    padding-top: 12.5rem;
+    padding-top: 8rem;
     padding-bottom: 6rem;
     background-color: rgb(255, 255, 255);
 }
@@ -111,6 +111,11 @@ table {
 
 /* -----------Navigation bar classes */
 
+.er-white-front {
+    z-index: 5000;
+    background-color: rgb(255, 255, 255);
+}
+
 .er-logo {
     z-index: 1000;
     position: fixed;
@@ -122,6 +127,10 @@ table {
 
 .er-logo img {
     height: 3.75rem;
+}
+
+.er-center-link {
+    display: block;
 }
 
 .er-nav-links {
@@ -137,6 +146,7 @@ table {
 }
 
 .er-links-left {
+    padding-bottom: 0.6rem;
     padding-right: 0;
     padding-left: 0;
 }
@@ -147,10 +157,13 @@ table {
 }
 
 .er-links-center {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     justify-content: center;
 }
 
 .er-links-right {
+    padding-bottom: 0.6rem;
     padding-right: 0;
     padding-left: 0;
 }
@@ -161,7 +174,6 @@ table {
 }
 
 .er-shop-nav {
-    z-index: 3000;
     background-color: rgb(255, 255, 255);
 }
 
@@ -282,7 +294,7 @@ table {
 /* --------------------------Works page */
 
 .er-works {
-    padding-top: 1rem;
+    padding-top: 2rem;
 }
 
 /* --------------------------Workdetail page */
@@ -328,7 +340,11 @@ table {
 /* --------------------------Shop classes */
 
 .er-shop {
-    padding-top: 2rem;
+    padding-top: 0;
+}
+
+.er-shop-details {
+    padding-top: 0;
 }
 
 .er-shop-wrap {
@@ -343,6 +359,39 @@ table {
 
 .er-shop-top {
     margin-bottom: 1rem;
+}
+
+.er-shop-top p {
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+}
+
+.er-shop-detail-image {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 25vh;
+}
+
+.er-image-select {
+    width: 100%;
+    text-align: center;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.er-image-select span {
+    cursor: pointer;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+}
+
+.er-image-select span i {
+    font-size: 0.5rem;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .er-shop-image {
@@ -394,9 +443,9 @@ table {
 
 .er-shop-button {
     float: right;
-    padding: 0.3rem 0;
+    padding: 0.4rem 0.2rem;
     margin-left: 0.5rem;
-    width: 2rem;
+    width: 2.5rem;
     text-align: center;
 }
 
@@ -416,13 +465,8 @@ table {
     font-size: 0.7rem;
 }
 
-.er-shop-details h1 {
-    padding-top: 1rem;
-    padding-bottom: 1.5rem;
-}
-
 .er-shop-details h5 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.8rem;
 }
 
 .er-bottom-div {
@@ -435,7 +479,7 @@ table {
 /* --------------------------Cart classes */
 
 .er-cart {
-    padding-top: 2rem;
+    padding-top: 0;
 }
 
 .er-cart h5 {
@@ -455,7 +499,7 @@ table {
 /* --------------------------Dashboard classes */
 
 .er-dashboard {
-    padding-top: 2rem;
+    padding-top: 0;
 }
 
 .er-dashboard-list td {
@@ -534,7 +578,7 @@ table {
 /* --------------------------Accounts classes */
 
 .er-accounts {
-    padding-top: 2rem;
+    padding-top: 0;
 }
 
 .er-accounts .er-form-wrap p {
@@ -557,7 +601,7 @@ table {
 /* --------------------------Checkout classes */
 
 .er-checkout {
-    padding-top: 2rem;
+    padding-top: 0;
 }
 
 .er-checkout h5 {
@@ -728,7 +772,6 @@ form .row {
 
 .navbar {
     width: 100%;
-    display: unset;
     background-color: rgba(255, 255, 255, 0.9);
     transition: height 2s;
 }
@@ -814,7 +857,7 @@ form .row {
     padding: 0.7rem 1.5rem;
 }
 
-/* --------------------------576 - MD */
+/* --------------------------576 - SM */
 
 @media(min-width: 576px) {
     html {
@@ -829,6 +872,13 @@ form .row {
         padding-right: 1rem;
         background-color: rgba(92, 109, 178, 0.7);
     }
+    .er-shop-detail-image {
+        margin-bottom: unset;
+        height: unset;
+    }
+    .er-image-select {
+        margin-bottom: 0.1rem;
+    }
 }
 
 /* --------------------------768 - MD */
@@ -836,6 +886,38 @@ form .row {
 @media(min-width: 768px) {
     html {
         font-size: 16px;
+    }
+    body {
+        padding-top: 12.5rem;
+    }
+    .er-white-front {
+        z-index: 5000;
+        background-color: unset;
+    }
+    .er-links-center {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .er-works {
+        padding-top: 1rem;
+    }
+    .er-shop {
+        padding-top: 2rem;
+    }
+    .er-shop-details {
+        padding-top: 2rem;
+    }
+    .er-cart {
+        padding-top: 2rem;
+    }
+    .er-dashboard {
+        padding-top: 2rem;
+    }
+    .er-accounts {
+        padding-top: 2rem;
+    }
+    .er-checkout {
+        padding-top: 2rem;
     }
     .navbar {
         width: 100%;
