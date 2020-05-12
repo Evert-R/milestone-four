@@ -705,6 +705,10 @@ form .row {
     margin-right: 1.5rem;
 }
 
+.er-attr-form {
+    margin-bottom: 0;
+}
+
 .er-wrap {
     width: 100%;
     margin-left: auto;
@@ -966,8 +970,8 @@ form .row {
     }
     .er-nav-left {
         top: 8.7rem;
-        left: 1rem;
-        transform: unset;
+        left: 19%;
+        transform: translateX(-50%);
     }
     .er-nav-links {
         padding-top: 6.5rem;

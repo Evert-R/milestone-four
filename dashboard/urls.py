@@ -23,6 +23,11 @@ urlpatterns = [
     path('deleteimage/<int:pk>',
          views.delete_image, name='delete_image'),
 
+    path('editcategories/<int:pk>',
+         views.edit_categories, name='edit_categories'),
+    path('addcategory/',
+         views.edit_categories, name='add_category'),
+
     path('listorders/', views.list_orders,
          name='list_orders'),
     path('vieworder/<int:pk>', views.view_order,

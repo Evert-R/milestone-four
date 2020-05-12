@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-lg-6">
         <div class="er-wrap">
-            <h3>{{ work.title }}</h3>
+            <h3>Edit {{ work.title }}:</h3>
         </div>
         <div class="er-form-wrap">
             <a data-toggle="collapse" href="#er-work-details">
@@ -48,86 +48,305 @@
                 </div>
             </div>
             {% endif %}
+            <!-- edit global attribute for works and shop items -->
+            {% if not work %}
+            {# if initial work create column #}
         </div>
+        <div class="col-lg-6">
+            {% endif %}
+            <div class="er-wrap">
+                {% if work %}
+                <h3>Manage global attributes:</h3>
+                {% else %}
+
+                <h4 class="d-none d-lg-block">Manage global attributes:</h4>
+                <h3 class="d-lg-none">Manage global attributes:</h3>
+                {% endif %}
+            </div>
+            <!-- Edit/add categories -->
+            <div class="er-form-wrap er-attr-form">
+                <a data-toggle="collapse" href="#er-manage-categories">
+                    <h2><i class="fas fa-angle-down"></i> Manage categories</h2>
+                </a>
+                <div class="collapse" id="er-manage-categories">
+                    <table class="er-dashboard-list table table-hover">
+                        <!-- Create a new category -->
+                        <tr>
+                            <form method="post" action="{% url 'dashboard:add_category' %}">
+                                {% csrf_token %}
+                                <td class="text-left">
+                                    <input type="text" name="category" maxlength="50"
+                                        class="textinput textInput form-control">
+                                </td>
+
+                                <td class="er-list-button">
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <input type="submit" name="submit" value="Create" class="btn btn-primary er-green"
+                                        id="submit-id-submit">
+                                </td>
+                            </form>
+                        </tr>
+                        <!-- List all categories with edit forms and delete button -->
+                        {% for category in categories %}
+                        <tr>
+                            <form method="post" action="{% url 'dashboard:edit_categories' pk=category.id %}">
+                                {% csrf_token %}
+                                <td class="text-left">
+                                    <input type="text" name="category" value="{{category.name}}" maxlength="50"
+                                        class="textinput textInput form-control">
+                                </td>
+                                <td class="er-list-button">
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <input type="submit" name="submit" value="Update" class="btn btn-primary er-green"
+                                        id="submit-id-submit">
+                                </td>
+                            </form>
+                            <td class="er-list-button">
+                                <a href="{% url 'dashboard:edit_categories' pk=category.id %}?next={{ request.path|urlencode }}"
+                                    title="Delete this Category?">
+                                    <button class="btn btn-primary er-red">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <!-- Edit/add work-types -->
+            <div class="er-form-wrap er-attr-form">
+                <a data-toggle="collapse" href="#er-manage-worktypes">
+                    <h2><i class="fas fa-angle-down"></i> Manage work types</h2>
+                </a>
+                <div class="collapse" id="er-manage-worktypes">
+                    <table class="er-dashboard-list table table-hover">
+                        <!-- Create a new work-type -->
+                        <tr>
+                            <form method="post" action="{% url 'dashboard:add_work_type' %}">
+                                {% csrf_token %}
+                                <td class="text-left">
+                                    <input type="text" name="worktype" maxlength="50"
+                                        class="textinput textInput form-control">
+                                </td>
+
+                                <td class="er-list-button">
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <input type="submit" name="submit" value="Create" class="btn btn-primary er-green"
+                                        id="submit-id-submit">
+                                </td>
+                            </form>
+                        </tr>
+                        <!-- List all work-types with edit forms and delete button -->
+                        {% for type in types %}
+                        <tr>
+                            <form method="post" action="{% url 'dashboard:edit_work_types' pk=type.id %}">
+                                {% csrf_token %}
+                                <td class="text-left">
+                                    <input type="text" name="worktype" value="{{type.name}}" maxlength="50"
+                                        class="textinput textInput form-control">
+                                </td>
+                                <td class="er-list-button">
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <input type="submit" name="submit" value="Update" class="btn btn-primary er-green"
+                                        id="submit-id-submit">
+                                </td>
+                            </form>
+                            <td class="er-list-button">
+                                <a href="{% url 'dashboard:edit_work_types' pk=type.id %}?next={{ request.path|urlencode }}"
+                                    title="Delete this work type?">
+                                    <button class="btn btn-primary er-red">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <!-- Edit/add work-sizes -->
+            <div class="er-form-wrap er-attr-form">
+                <a data-toggle="collapse" href="#er-manage-worksizes">
+                    <h2><i class="fas fa-angle-down"></i> Manage work sizes</h2>
+                </a>
+                <div class="collapse" id="er-manage-worksizes">
+                    <table class="er-dashboard-list table table-hover">
+                        <!-- Create a new work-size -->
+                        <tr>
+                            <form method="post" action="{% url 'dashboard:add_work_size' %}">
+                                {% csrf_token %}
+                                <td class="text-left">
+                                    <input type="text" name="worksize" maxlength="50"
+                                        class="textinput textInput form-control">
+                                </td>
+
+                                <td class="er-list-button">
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <input type="submit" name="submit" value="Create" class="btn btn-primary er-green"
+                                        id="submit-id-submit">
+                                </td>
+                            </form>
+                        </tr>
+                        <!-- List all work-sizes with edit forms and delete button -->
+                        {% for size in sizes %}
+                        <tr>
+                            <form method="post" action="{% url 'dashboard:edit_work_sizes' pk=size.id %}">
+                                {% csrf_token %}
+                                <td class="text-left">
+                                    <input type="text" name="worksize" value="{{size.name}}" maxlength="50"
+                                        class="textinput textInput form-control">
+                                </td>
+                                <td class="er-list-button">
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <input type="submit" name="submit" value="Update" class="btn btn-primary er-green"
+                                        id="submit-id-submit">
+                                </td>
+                            </form>
+                            <td class="er-list-button">
+                                <a href="{% url 'dashboard:edit_work_sizes' pk=size.id %}?next={{ request.path|urlencode }}"
+                                    title="Delete this Size?">
+                                    <button class="btn btn-primary er-red">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <!-- Edit/add materials -->
+            <div class="er-form-wrap er-attr-form">
+                <a data-toggle="collapse" href="#er-manage-materials">
+                    <h2><i class="fas fa-angle-down"></i> Manage materials</h2>
+                </a>
+                <div class="collapse" id="er-manage-materials">
+                    <table class="er-dashboard-list table table-hover">
+                        <!-- Create a new material -->
+                        <tr>
+                            <form method="post" action="{% url 'dashboard:add_material' %}">
+                                {% csrf_token %}
+                                <td class="text-left">
+                                    <input type="text" name="material" maxlength="50"
+                                        class="textinput textInput form-control">
+                                </td>
+
+                                <td class="er-list-button">
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <input type="submit" name="submit" value="Create" class="btn btn-primary er-green"
+                                        id="submit-id-submit">
+                                </td>
+                            </form>
+                        </tr>
+                        <!-- List all materials with edit forms and delete button -->
+                        {% for material in materials %}
+                        <tr>
+                            <form method="post" action="{% url 'dashboard:edit_materials' pk=material.id %}">
+                                {% csrf_token %}
+                                <td class="text-left">
+                                    <input type="text" name="material" value="{{material.name}}" maxlength="50"
+                                        class="textinput textInput form-control">
+                                </td>
+                                <td class="er-list-button">
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <input type="submit" name="submit" value="Update" class="btn btn-primary er-green"
+                                        id="submit-id-submit">
+                                </td>
+                            </form>
+                            <td class="er-list-button">
+                                <a href="{% url 'dashboard:edit_materials' pk=material.id %}?next={{ request.path|urlencode }}"
+                                    title="Delete this material?">
+                                    <button class="btn btn-primary er-red">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% if not work %}
+    </div>
+    {% endif %}
+
+
+    {% if work %}
+    {# Check if this is an existing work #}
+    <div class="col-lg-6">
 
         <!-- Display work images -->
-        {% if work %}
-        {# Check if this is an existing work #}
-        <div class="col-lg-6">
-            <div class="er-wrap">
-                <h4>Main image</h4>
-            </div>
-            <div class="er-form-wrap">
-                <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
-            </div>
-            {% endif %}
-            <!-- Display extra images and set display order -->
-            {% if images|length > 0 %}
-            <div class="er-wrap">
-                <h4>Extra images</h4>
-            </div>
-            <div class="er-wrap">
-                <table class="er-dashboard-list table table-hover">
-                    <tr>
-                        <th class="text-center">
-                            View order
-                        </th>
-                        <th>
 
-                        </th>
-                        <th>
 
-                        </th>
-                    </tr>
-                    {% for image in images %}
-                    <tr>
-                        <td class="er-list-button">
-                            <form method="post" id="{{image.id}}"
-                                action="{% url 'dashboard:set_image_order' pk=image.id %}">
-                                {% csrf_token %}
-                                <input type="number" name="sort_order" value="{{image.sort_order}}"
-                                    class="numberinput form-control" required="" id="id_sort_order">
-                                <input type="hidden" name="next" value="{{ request.path }}">
-                                <input type="submit" name="submit" value="Set" class="btn btn-primary er-green"
-                                    id="submit-id-submit">
-                            </form>
-                        </td>
-                        <td class="er-list-icons">
-                            {% if work.work_item %}
-                            <a href="{% url 'works:work_details' pk=work.id %}?next={{ request.path|urlencode }}"
-                                title="View this works details">
-                                <i class="fas fa-palette"></i>
-                            </a><br>
-                            {% endif %}
-                            {% if work.shop_item %}
-                            <a href="{% url 'shop:shop_details' pk=work.id %}?next={{ request.path|urlencode }}"
-                                title="View this shop item">
-                                <i class="fas fa-shopping-cart"></i>
-                            </a>
-                            {% endif %}
-
-                        </td>
-
-                        <td class="er-list-image">
-                            <a href="{% url 'works:work_details' pk=work.id %}?next={{ request.path|urlencode }}">
-                                <img src="{{ MEDIA_URL }}{{ image.work_image }}" alt="{{work.title}}">
-                            </a>
-
-                        </td>
-
-                        <td class="er-list-button">
-
-                            <a href="{% url 'dashboard:delete_image' pk=image.id %}" title="Delete this image?">
-                                <button class="btn btn-primary er-red">Delete</button>
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
+        <div class="er-wrap">
+            <h4>Main image</h4>
+        </div>
+        <div class="er-form-wrap">
+            <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
         </div>
         {% endif %}
+        <!-- Display extra images and set display order -->
+        {% if images|length > 0 %}
+        <div class="er-wrap">
+            <h4>Extra images</h4>
+        </div>
+        <div class="er-wrap">
+            <table class="er-dashboard-list table table-hover">
+                <tr>
+                    <th class="text-center">
+                        View order
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                {% for image in images %}
+                <tr>
+                    <td class="er-list-button">
+                        <form method="post" id="{{image.id}}"
+                            action="{% url 'dashboard:set_image_order' pk=image.id %}">
+                            {% csrf_token %}
+                            <input type="number" name="sort_order" value="{{image.sort_order}}"
+                                class="numberinput form-control" required="" id="id_sort_order">
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <input type="submit" name="submit" value="Set" class="btn btn-primary er-green"
+                                id="submit-id-submit">
+                        </form>
+                    </td>
+                    <td class="er-list-icons">
+                        {% if work.work_item %}
+                        <a href="{% url 'works:work_details' pk=work.id %}?next={{ request.path|urlencode }}"
+                            title="View this works details">
+                            <i class="fas fa-palette"></i>
+                        </a><br>
+                        {% endif %}
+                        {% if work.shop_item %}
+                        <a href="{% url 'shop:shop_details' pk=work.id %}?next={{ request.path|urlencode }}"
+                            title="View this shop item">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                        {% endif %}
+
+                    </td>
+
+                    <td class="er-list-image">
+                        <a href="{% url 'works:work_details' pk=work.id %}?next={{ request.path|urlencode }}">
+                            <img src="{{ MEDIA_URL }}{{ image.work_image }}" alt="{{work.title}}">
+                        </a>
+
+                    </td>
+
+                    <td class="er-list-button">
+
+                        <a href="{% url 'dashboard:delete_image' pk=image.id %}" title="Delete this image?">
+                            <button class="btn btn-primary er-red">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
     </div>
+    {% endif %}
+
 </div>
 
 {% endblock %}

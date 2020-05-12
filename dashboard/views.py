@@ -281,13 +281,58 @@ def edit_works(request, pk=None):
         # Return to edit page for specific work
         return redirect('dashboard:edit_works', work.pk)
     else:
+        cats = categories.objects.all()
+        sizes = work_sizes.objects.all()
+        mats = materials.objects.all()
+        sizes = work_sizes.objects.all()
+        types = work_types.objects.all()
         # Show the edit-work page
         return render(request, "editworks.html", {'title': title,
                                                   'edit_works': form,
                                                   'edit_shop': shop_form,
                                                   'work': work,
                                                   'images': images,
-                                                  'add_images': image_form})
+                                                  'add_images': image_form,
+                                                  'categories': cats,
+                                                  'sizes': sizes,
+                                                  'materials': mats,
+                                                  'sizes': sizes,
+                                                  'types': types})
+
+
+@login_required()
+@admin_only
+def edit_categories(request, pk=None):
+    # if this is an extisting category
+    if pk:
+        # Get the category
+        try:
+            category = categories.objects.get(pk=pk)
+        # When not found return to origin
+        except:
+            return redirect(next)
+        # if a form was posted
+        if request.method == 'POST':
+            next = request.POST.get('next', '/')
+            # Update the category name
+            new_name = request.POST.get('category')
+            category.name = new_name
+            category.save()
+            return redirect(next)
+        # If not delete it
+        else:
+            next = request.GET.get('next', '/')
+            category.delete()
+            return redirect(next)
+    # if not an extisting category
+    else:
+        # Create a new one
+        if request.method == 'POST':
+            next = request.POST.get('next', '/')
+            new_name = request.POST.get('category')
+            new_category = categories(name=new_name)
+            new_category.save()
+        return redirect(next)
 
 
 @login_required(login_url='accounts:log_in')
