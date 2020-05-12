@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 from works.models import work_items, categories, work_images
-from shop.models import shop_items, work_sizes, work_types, materials
+from shop.models import shop_items, work_sizes, work_types, materials, shipping
 from checkout.models import orders, order_items
 from dashboard.forms import EditWorksForm, EditShopWorksForm, AddExtraImagesForm
 from accounts.decorators import admin_only
@@ -300,6 +300,25 @@ def edit_works(request, pk=None):
                                                   'types': types})
 
 
+@login_required(login_url='accounts:log_in')
+@admin_only
+def delete_image(request, pk):
+    """
+    Delete an extra image from the database
+    """
+    image = get_object_or_404(work_images, pk=pk)
+    work = get_object_or_404(work_items, pk=image.work_item.id)
+    # when confirmed delete the image
+    if request.method == 'POST':
+        image.delete()
+        return redirect('dashboard:edit_works', work.pk)
+    # render confirmation page
+    return render(request, "delete_image.html",
+                  {'title': 'Permanently delete this image?',
+                   'work': work,
+                   'image': image})
+
+
 @login_required()
 @admin_only
 def edit_categories(request, pk=None):
@@ -335,20 +354,153 @@ def edit_categories(request, pk=None):
         return redirect(next)
 
 
-@login_required(login_url='accounts:log_in')
+@login_required()
 @admin_only
-def delete_image(request, pk):
-    """
-    Delete an extra image from the database
-    """
-    image = get_object_or_404(work_images, pk=pk)
-    work = get_object_or_404(work_items, pk=image.work_item.id)
-    # when confirmed delete the image
-    if request.method == 'POST':
-        image.delete()
-        return redirect('dashboard:edit_works', work.pk)
-    # render confirmation page
-    return render(request, "delete_image.html",
-                  {'title': 'Permanently delete this image?',
-                   'work': work,
-                   'image': image})
+def edit_work_types(request, pk=None):
+    # if this is an extisting work type
+    if pk:
+        # Get the work type
+        try:
+            work_type = work_types.objects.get(pk=pk)
+        # When not found return to origin
+        except:
+            return redirect(next)
+        # if a form was posted
+        if request.method == 'POST':
+            next = request.POST.get('next', '/')
+            # Update the work type name
+            new_name = request.POST.get('worktype')
+            work_type.name = new_name
+            work_type.save()
+            return redirect(next)
+        # If not delete it
+        else:
+            next = request.GET.get('next', '/')
+            work_type.delete()
+            return redirect(next)
+    # if not an extisting work type
+    else:
+        # Create a new one
+        if request.method == 'POST':
+            next = request.POST.get('next', '/')
+            new_name = request.POST.get('worktype')
+            new_work_type = work_types(name=new_name)
+            new_work_type.save()
+        return redirect(next)
+
+
+@login_required()
+@admin_only
+def edit_work_sizes(request, pk=None):
+    # if this is an extisting category
+    if pk:
+        # Get the category
+        try:
+            work_size = work_sizes.objects.get(pk=pk)
+        # When not found return to origin
+        except:
+            return redirect(next)
+        # if a form was posted
+        if request.method == 'POST':
+            next = request.POST.get('next', '/')
+            # Update the category name
+            new_name = request.POST.get('worksize')
+            work_size.name = new_name
+            work_size.save()
+            return redirect(next)
+        # If not delete it
+        else:
+            next = request.GET.get('next', '/')
+            work_size.delete()
+            return redirect(next)
+    # if not an extisting category
+    else:
+        # Create a new one
+        if request.method == 'POST':
+            next = request.POST.get('next', '/')
+            new_name = request.POST.get('worksize')
+            new_work_size = work_sizes(name=new_name)
+            new_work_size.save()
+        return redirect(next)
+
+
+@login_required()
+@admin_only
+def edit_materials(request, pk=None):
+    # if this is an extisting material
+    if pk:
+        # Get the material
+        try:
+            material = materials.objects.get(pk=pk)
+        # When not found return to origin
+        except:
+            return redirect(next)
+        # if a form was posted
+        if request.method == 'POST':
+            next = request.POST.get('next', '/')
+            # Update the category name
+            new_name = request.POST.get('material')
+            material.name = new_name
+            material.save()
+            return redirect(next)
+        # If not delete it
+        else:
+            next = request.GET.get('next', '/')
+            material.delete()
+            return redirect(next)
+    # if not an extisting material
+    else:
+        # Create a new one
+        if request.method == 'POST':
+            next = request.POST.get('next', '/')
+            new_name = request.POST.get('material')
+            new_material = materials(name=new_name)
+            new_material.save()
+        return redirect(next)
+
+
+@login_required()
+@admin_only
+def edit_settings(request):
+    shippings = shipping.objects.all()
+    title = 'Adjust shop settings'
+    return render(request, "settings.html", {'title': title,
+                                             'shippings': shippings})
+
+
+@login_required()
+@admin_only
+def edit_shipping(request, pk=None):
+    # if this is an extisting region
+    if pk:
+        # Get the region
+        try:
+            this_shipping = shipping.objects.get(pk=pk)
+        # When not found return to origin
+        except:
+            return redirect(next)
+        # if a form was posted
+        if request.method == 'POST':
+            next = request.POST.get('next', '/')
+            # Update the region
+            new_region = request.POST.get('region')
+            new_price = request.POST.get('price')
+            this_shipping.region = new_region
+            this_shipping.price = new_price
+            this_shipping.save()
+            return redirect(next)
+        # If not delete it
+        else:
+            next = request.GET.get('next', '/')
+            this_shipping.delete()
+            return redirect(next)
+    # if not an extisting region
+    else:
+        # Create a new one
+        if request.method == 'POST':
+            next = request.POST.get('next', '/')
+            new_region = request.POST.get('region')
+            new_price = request.POST.get('price')
+            new_shipping = shipping(region=new_region, price=new_price)
+            new_shipping.save()
+        return redirect(next)
