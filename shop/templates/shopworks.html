@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- Show all shop_works -->
-<div class="container-md er-shop">
+<section class="container-md er-shop">
     <div class="row">
         <div class="col-12">
             <h1>Webshop</h1>
@@ -45,9 +45,6 @@
                             </tr>
                         </table>
                     </div>
-
-
-
                 </div>
             </div>
 
@@ -62,20 +59,12 @@
                     });
                 </script>
                 -->
-
-
-
         </div>
         {% endfor %}
     </div>
+</section>
 
-
-</div>
-
-<!-- Load special screen events -->
-<script src="{% static 'js/shop-events.js' %}"></script>
-
-<!-- Make menu item active -->
+<!-- Main menu highlite shop -->
 <script>
     $('#er-shop-active').addClass('active');
 </script>
