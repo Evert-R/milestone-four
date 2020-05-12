@@ -6,13 +6,15 @@
 {% if not request.user.is_staff %}
 {# Only show filter options to regular users #}
 <!-- Category filter selector -->
-<div class="container">
-    <div class="er-nav-left">
-        <form method="post" id="er-filter-works" action="{% url 'all_works' %}">
-            {{ filter_form | as_bootstrap }}
-            {% csrf_token %}
-        </form><br>
-        <div><a href="{% url 'all_works' %}"><i class="fas fa-undo"></i></a></div>
+<div class="container-md">
+    <div class="row">
+        <div class="er-nav-left">
+            <form method="post" id="er-filter-works" action="{% url 'all_works' %}">
+                {{ filter_form | as_bootstrap }}
+                {% csrf_token %}
+            </form><br>
+            <div><a href="{% url 'all_works' %}"><i class="fas fa-undo"></i></a></div>
+        </div>
     </div>
 </div>
 {% endif %}
@@ -28,7 +30,7 @@
                         <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
                     </a>
                     <div class="card-body">
-                        <h5>{{ work.category }}</h5>
+                        <h5>{{ work.title }}</h5>
                         <p class="card-text">{{ work.category }}</p>
                     </div>
                 </div>
@@ -44,7 +46,7 @@
         $('#er-filter-works').submit();
     })
     $('#er-works-active').addClass('active');
-    $('.er-links-right').addClass('d-none');
+    $('#er-shop-nav').addClass('d-none');
 </script>
 
 {% endblock %}
