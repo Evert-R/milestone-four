@@ -7,7 +7,6 @@ html {
 body {
     font-family: 'FuturaBT-Book', 'Muli';
     padding-top: 8rem;
-    padding-bottom: 6rem;
     background-color: rgb(255, 255, 255);
 }
 
@@ -295,12 +294,14 @@ table {
 
 .er-works {
     padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 /* --------------------------Workdetail page */
 
 .er-detail {
     max-width: 1110px;
+    padding-bottom: 2rem;
 }
 
 .er-details-wrap {
@@ -341,10 +342,12 @@ table {
 
 .er-shop {
     padding-top: 0;
+    padding-bottom: 2rem;
 }
 
 .er-shop-details {
     padding-top: 0;
+    padding-bottom: 2rem;
 }
 
 .er-shop-wrap {
@@ -413,7 +416,6 @@ table {
 }
 
 .er-shop .er-price-cell {
-    font-family: 'FuturaBT-Book', 'Muli';
     font-weight: 400;
     font-size: 0.9rem;
 }
@@ -480,6 +482,7 @@ table {
 
 .er-cart {
     padding-top: 0;
+    padding-bottom: 2rem;
 }
 
 .er-cart h5 {
@@ -500,6 +503,7 @@ table {
 
 .er-dashboard {
     padding-top: 0;
+    padding-bottom: 2rem;
 }
 
 .er-dashboard-list td {
@@ -579,6 +583,7 @@ table {
 
 .er-accounts {
     padding-top: 0;
+    padding-bottom: 2rem;
 }
 
 .er-accounts .er-form-wrap p {
@@ -602,6 +607,7 @@ table {
 
 .er-checkout {
     padding-top: 0;
+    padding-bottom: 2rem;
 }
 
 .er-checkout h5 {
@@ -657,6 +663,63 @@ table {
 
 .er-checkout-total {
     height: 3.5rem;
+}
+
+/* --------------------------Footer classes */
+
+footer .container {
+    width: 100%;
+}
+
+.er-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.er-footer-col {
+    height: 3.5rem;
+}
+
+.er-footer-wrap {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.er-footer p {
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    color: rgba(255, 255, 255);
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    text-align: center;
+}
+
+.er-footer a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.er-footer i {
+    color: rgba(255. 255, 255, 0.6);
+    font-size: 1.1rem;
+}
+
+.er-web p {
+    font-family: 'FuturaBT-Book', 'Muli';
+    font-size: 0.7rem;
+    font-weight: 200;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+.er-web a {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.er-web-display {
+    display: none;
 }
 
 /* --------------------------Form classes */
@@ -1017,6 +1080,9 @@ form .row {
     .col-form-label {
         width: 100%;
         padding-bottom: 0;
+    }
+    .er-web-display {
+        display: block;
     }
 }
 
