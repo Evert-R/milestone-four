@@ -47,25 +47,12 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 
-                <script>
-                    $('#er-slide-{{ work.id }}').slideUp();
-                    $('#er-hover-{{ work.id }}').hover(function () {
-                        $('#er-slide-{{ work.id }}').slideDown(500)
-                    });
-                    $('#er-hover-{{ work.id }}').mouseleave(function () {
-                        $('#er-slide-{{ work.id }}').slideUp(500)
-                    });
-                </script>
-                -->
         </div>
         {% endfor %}
     </div>
 </section>
 
-<!-- Main menu highlite shop -->
-<script>
-    $('#er-shop-active').addClass('active');
-</script>
+<!-- Load special screen events (highlite shop item in navbar-->
+<script src="{% static 'js/shop-events.js' %}"></script>
+
 {% endblock %}
