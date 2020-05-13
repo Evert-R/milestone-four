@@ -243,11 +243,9 @@
     </div>
 </div>
 
-<!-- Load special screen events -->
+<!-- Load special screen events for small navigation bar -->
 <script src="{% static 'js/details-events.js' %}"></script>
-<script>
-    $('#er-works-active').addClass('active');
-    $('#er-shop-nav').addClass('d-none');
-</script>
+<!-- Load work events - remove shop navigation - set menu item active -->
+<script src="{% static 'js/work-events.js' %}"></script>
 
 {% endblock %}

@@ -40,13 +40,7 @@
     </div>
 </div>
 
-<!-- Submit filter on select -->
-<script>
-    $('#id_cat').change(function () {
-        $('#er-filter-works').submit();
-    })
-    $('#er-works-active').addClass('active');
-    $('#er-shop-nav').addClass('d-none');
-</script>
+<!-- Load work events - remove shop navigation - set menu item active - filter submit on select-->
+<script src="{% static 'js/work-events.js' %}"></script>
 
 {% endblock %}
