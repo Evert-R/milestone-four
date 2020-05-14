@@ -22,6 +22,10 @@ urlpatterns = [
          views.delete_work, name='delete_work'),
     path('deleteimage/<int:pk>',
          views.delete_image, name='delete_image'),
+    path('shopimage/<int:pk>',
+         views.set_shop_image, name='set_shop_image'),
+    path('unsetshopimage/<int:pk>',
+         views.unset_shop_image, name='unset_shop_image'),
 
     path('editcategories/<int:pk>',
          views.edit_categories, name='edit_categories'),

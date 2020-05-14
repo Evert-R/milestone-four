@@ -13,7 +13,7 @@ from accounts.decorators import admin_only
 # Create your views here.
 
 
-@login_required(login_url='accounts:log_in')
+@login_required()
 @admin_only
 def list_orders(request, filter=None):
     """
@@ -29,7 +29,7 @@ def list_orders(request, filter=None):
                    'orders': all_orders})
 
 
-@login_required(login_url='accounts:log_in')
+@login_required()
 @admin_only
 def view_order(request, pk):
     """
@@ -108,7 +108,7 @@ def update_order(request, pk, action=None):
         return redirect('dashboard:list_orders')
 
 
-@login_required(login_url='accounts:log_in')
+@login_required()
 @admin_only
 def list_works(request, filter=None):
     """
@@ -135,117 +135,7 @@ def list_works(request, filter=None):
                                               'filter': filter})
 
 
-@login_required(login_url='accounts:log_in')
-@admin_only
-def set_works_order(request, pk):
-    """
-    Set the display order for work view
-    """
-
-    # Check if this work exists
-    try:
-        work = work_items.objects.get(pk=pk)
-    except:
-        # if not return to the works list
-        messages.error(request, 'This work does not exist')
-        return redirect('dashboard:list_works')
-    # Get the new sort_order and update object
-    if request.method == 'POST':
-        next = request.POST.get('next', '/')
-        order = request.POST.get("sort_order")
-        work.sort_order = order
-        work.save()
-        messages.success(request, 'Display order of ' +
-                         work.title + ' has been updated')
-    return redirect(next)
-
-
-@login_required(login_url='accounts:log_in')
-@admin_only
-def set_shop_order(request, pk):
-    """
-    Set the display order for shop view
-    """
-
-    # Check if this work exists
-    try:
-        work = work_items.objects.get(pk=pk)
-    except:
-        # if not return to the works list
-        messages.error(request, 'This work does not exist')
-        return redirect('dashboard:list_works')
-    # Get the new sort_order and update object
-    if request.method == 'POST':
-        next = request.POST.get('next', '/')
-        order = request.POST.get("sort_order")
-        work.shop_settings.sort_order = order
-        work.shop_settings.save()
-        messages.success(request,
-                         'Display order in the shop of ' +
-                         work.title + ' has been updated')
-    return redirect(next)
-
-
-@login_required(login_url='accounts:log_in')
-@admin_only
-def set_image_order(request, pk):
-    """
-    Set the display order for extra images
-    """
-
-    # Check if this work exists
-    try:
-        image = work_images.objects.get(pk=pk)
-    except:
-        # if not return to the works list
-        messages.error(request,
-                       'This image does not exist')
-        return redirect('dashboard:list_works')
-    # Get the new sort_order and update object
-    if request.method == 'POST':
-        next = request.POST.get('next', '/')
-        order = request.POST.get("sort_order")
-        image.sort_order = order
-        image.save()
-        messages.success(
-            request,
-            'Display order of this image has been updated')
-    return redirect(next)
-
-
-@login_required(login_url='accounts:log_in')
-@admin_only
-def delete_work(request, pk):
-    """
-    Delete a work item from the database
-    """
-
-    # Check if this work exists
-    try:
-        work = work_items.objects.get(pk=pk)
-    except:
-        # if not return to the works list
-        messages.error(request,
-                       'This work does not exist')
-        return redirect('dashboard:list_works')
-    # when confirmed delete the image
-    if request.method == 'POST':
-        # Delete image from filesystem
-        work.main_image.delete()
-        # Delete work object
-        work.delete()
-        messages.success(request,
-                         work.title
-                         + ' was successfully deleted')
-        return redirect('dashboard:list_works')
-    # render confirmation page
-    return render(request, "delete_work.html",
-                  {'title': 'Permanently delete this work?',
-                   'work': work,
-                   })
-
-
-@login_required(login_url='accounts:log_in')
+@login_required()
 @admin_only
 def edit_works(request, pk=None):
     """
@@ -347,36 +237,200 @@ def edit_works(request, pk=None):
                                                   'types': types})
 
 
-@login_required(login_url='accounts:log_in')
+@login_required()
 @admin_only
-def delete_image(request, pk):
+def delete_work(request, pk):
     """
-    Delete an extra image from the database
+    Delete a work item from the database
     """
+
+    # Check if this work exists
+    try:
+        work = work_items.objects.get(pk=pk)
+    except:
+        # if not return to the works list
+        messages.error(request,
+                       'This work does not exist')
+        return redirect('dashboard:list_works')
+    # when confirmed delete the image
+    if request.method == 'POST':
+        # Delete image from filesystem
+        work.main_image.delete()
+        # Delete work object
+        work.delete()
+        messages.success(request,
+                         work.title
+                         + ' was successfully deleted')
+        return redirect('dashboard:list_works')
+    # render confirmation page
+    return render(request, "delete_work.html",
+                  {'title': 'Permanently delete this work?',
+                   'work': work,
+                   })
+
+
+@login_required()
+@admin_only
+def set_works_order(request, pk):
+    """
+    Set the display order for work view
+    """
+
+    # Check if this work exists
+    try:
+        work = work_items.objects.get(pk=pk)
+    except:
+        # if not return to the works list
+        messages.error(request, 'This work does not exist')
+        return redirect('dashboard:list_works')
+    # Get the new sort_order and update object
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+        order = request.POST.get("sort_order")
+        work.sort_order = order
+        work.save()
+        messages.success(request, 'Display order of ' +
+                         work.title + ' has been updated')
+    return redirect(next)
+
+
+@login_required()
+@admin_only
+def set_shop_order(request, pk):
+    """
+    Set the display order for shop view
+    """
+
+    # Check if this work exists
+    try:
+        work = work_items.objects.get(pk=pk)
+    except:
+        # if not return to the works list
+        messages.error(request, 'This work does not exist')
+        return redirect('dashboard:list_works')
+    # Get the new sort_order and update object
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+        order = request.POST.get("sort_order")
+        work.shop_settings.sort_order = order
+        work.shop_settings.save()
+        messages.success(request,
+                         'Display order in the shop of ' +
+                         work.title + ' has been updated')
+    return redirect(next)
+
+
+@login_required()
+@admin_only
+def set_image_order(request, pk):
+    """
+    Set the display order for extra images
+    """
+
+    # Check if this work exists
+    try:
+        image = work_images.objects.get(pk=pk)
+    except:
+        # if not return to the works list
+        messages.error(request,
+                       'This image does not exist')
+        return redirect('dashboard:list_works')
+    # Get the new sort_order and update object
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+        order = request.POST.get("sort_order")
+        image.sort_order = order
+        image.save()
+        messages.success(
+            request,
+            'Display order of this image has been updated')
+    return redirect(next)
+
+
+@login_required()
+@admin_only
+def set_shop_image(request, pk):
+    """
+    Set an image as default for the shop
+    """
+
+    next = request.GET.get('next', '/')
     try:
         image = work_images.objects.get(pk=pk)
     except:
         messages.error(request,
                        'This image does not exist')
-        return redirect('dashboard:list_works')
+        return redirect(next)
+    try:
+        shop = image.work_item.shop_settings
+        shop.main_image = image
+        shop.save()
+        messages.success(request,
+                         'Image set as shop default')
+    except:
+        messages.error(request,
+                       'This is not a shop item')
+        return redirect(next)
+    return redirect(next)
+
+
+@login_required()
+@admin_only
+def unset_shop_image(request, pk):
+    """
+    unset default image for the shop
+    """
+
+    next = request.GET.get('next', '/')
+    # Check if this shop item exists
+    try:
+        shop_item = shop_items.objects.get(pk=pk)
+    except:
+        messages.error(request,
+                       'This image does not exist')
+        return redirect(next)
+    # Unset custom main image (work main image will be used)
+    shop_item.main_image = None
+    shop_item.save()
+    messages.success(request,
+                     'Shop main image was reset to work main image')
+    return redirect(next)
+
+
+@login_required()
+@admin_only
+def delete_image(request, pk):
+    """
+    Delete an extra image from the database
+    """
+
+    next = request.GET.get('next', '/')
+    try:
+        image = work_images.objects.get(pk=pk)
+    except:
+        messages.error(request,
+                       'This image does not exist')
+        return redirect(next)
     try:
         work = work_items.objects.get(pk=image.work_item.id)
     except:
         messages.error(request,
                        'This image does not belong to an existing work')
-        return redirect('dashboard:list_works')
+        return redirect(next)
     # when confirmed delete the image and remove object
     if request.method == 'POST':
         image.work_image.delete()
         image.delete()
         messages.success(request,
                          'The image was successfully deleted')
-        return redirect('dashboard:edit_works', work.pk)
+        next = request.POST.get('next', '/')
+        return redirect(next)
     # render confirmation page
     return render(request, "delete_image.html",
                   {'title': 'Permanently delete this image?',
                    'work': work,
-                   'image': image})
+                   'image': image,
+                   'next': next})
 
 
 @login_required()

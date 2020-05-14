@@ -19,9 +19,14 @@
 
                 </div>
                 <a href="{% url 'shop:shop_details' pk=work.id %}" title="View this shop item">
-                    <div class="er-shop-image" style="background-image: url({{ MEDIA_URL }}{{ work.main_image }});">
-
-                    </div>
+                    {% if work.shop_settings.main_image %}
+                    {# check if a custom main image was set #}
+                    <div class="er-shop-image"
+                        style="background-image: url({{ MEDIA_URL }}{{ work.shop_settings.main_image.work_image }});">
+                        {% else %}
+                        <div class="er-shop-image" style="background-image: url({{ MEDIA_URL }}{{ work.main_image }});">
+                            {% endif %}
+                        </div>
                 </a>
                 <div class="er-shop-body">
                     <p class="text-center">{{ work.shop_settings.work_type }}</p>

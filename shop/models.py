@@ -89,6 +89,8 @@ class shop_items(models.Model):
         materials, on_delete=models.SET_NULL, null=True)
     work_size = models.ForeignKey(
         work_sizes, on_delete=models.SET_NULL, null=True)
+    main_image = models.ForeignKey(
+        'works.work_images', on_delete=models.SET_NULL, null=True)
     personal_message = models.CharField(max_length=200, blank=True)
     personal_text = models.BooleanField(default=False)
     standard_text = models.BooleanField(default=True)
