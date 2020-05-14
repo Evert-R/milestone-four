@@ -2,8 +2,8 @@
 {% load static %}
 {% load bootstrap_tags %}
 {% block content %}
-
-<div class="container-md er-detail">
+<link rel="stylesheet" href="{% static 'css/columns.css' %}">
+<div class="container-lg er-detail">
     <div class="row">
         {% if work.position == 'VT' %}
         {# Show if vertical layout is selected #}
@@ -241,6 +241,28 @@
 
         {% endif %}
     </div>
+
+    <!-- Show all works -->
+
+    <div class="row">
+        <div class="col-12 col-md-10 offset-md-1">
+            <div class="card-columns">
+                {% for work in works %}
+                <div class="card border-0">
+                    <a href="{% url 'works:work_details' pk=work.id %}" title="View this works details">
+                        <img class="card-img-top" src="{{ MEDIA_URL }}{{ work.main_image }}" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <h5>{{ work.title }}</h5>
+                        <p class="card-text">{{ work.category }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <!-- Load special screen events for small navigation bar -->
