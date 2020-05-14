@@ -4,9 +4,14 @@ window.onload = function () {
     $('.nav-item').on('click', function () {
         $('.nav-item').removeClass('active');
         $(this).addClass('active');
-    })
 
+    })
 }
+
+// Slide up error/success messages
+setTimeout(function () {
+    $('.er-messages').slideUp(1000);
+}, 2000);
 
 /* 
 When scrolled up, the footer is sticky
