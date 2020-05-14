@@ -17,33 +17,40 @@ from accounts.decorators import admin_only
 @admin_only
 def list_orders(request, filter=None):
     """
-    Display a list of all works
-    With links to their edit pages
-    Change display order of works
+    Display a list of all orders
+    With links to their details pages
     """
+
+    # Get all orders
     all_orders = orders.objects.all()
     title = 'Viewing all orders'
-    return render(request, "listorders.html", {'title': title,
-                                               'orders': all_orders})
+    return render(request, "listorders.html",
+                  {'title': title,
+                   'orders': all_orders})
 
 
 @login_required(login_url='accounts:log_in')
 @admin_only
 def view_order(request, pk):
     """
-    Display a list of all works
-    With links to their edit pages
-    Change display order of works
+    Display the details of an order
+    With buttons to update shipping/ payment status
     """
+    # Check if this order exists
     try:
         order = orders.objects.get(pk=pk)
+    # if not show the list and rais an error message
     except:
-        messages.error(request, 'This order does not exist')
+        messages.error(request,
+                       'This order does not exist')
         return redirect('dashboard:list_orders')
+    # Check if there are order items
     try:
         items = order_items.objects.filter(order=order)
+    # If not show the list and raise an error message
     except:
-        messages.error(request, 'This order does not have any items')
+        messages.error(request,
+                       'This order does not have any items')
         return redirect('dashboard:list_orders')
     title = 'Viewing order'
     return render(request, "vieworder.html", {'title': title,
@@ -51,43 +58,51 @@ def view_order(request, pk):
                                               'items': items})
 
 
-@login_required(login_url='accounts:log_in')
+@login_required()
 @admin_only
 def update_order(request, pk, action=None):
     """
-    Display a list of all works
-    With links to their edit pages
-    Change display order of works
+    Change the shipping/payment status of an order
     """
+
     next = request.GET.get('next', '/')
+    # Check if this is an existing order
     try:
         order = orders.objects.get(pk=pk)
+    # If not Show the list and raise an error message
     except:
-        messages.error(request, 'This order does not exist')
+        messages.error(request,
+                       'This order does not exist')
         return redirect('dashboard:list_orders')
+    # Check wich attributes needs to be updated and save the object
     if action == 'paid':
         order.paid = True
         order.save()
+        messages.success(request,
+                         'The order was marked as paid')
         return redirect(next)
     elif action == 'notpaid':
         order.paid = False
         order.save()
+        messages.success(request,
+                         'The order was marked as not paid')
         return redirect(next)
     elif action == 'sent':
         order.sent = True
         order.save()
+        messages.success(request,
+                         'The order was marked as sent')
         return redirect(next)
     elif action == 'notsent':
         order.sent = False
         order.save()
-        return redirect(next)
-    elif action == 'notsent':
-        order.sent = False
-        order.save()
+        messages.success(request,
+                         'The order was marked as not sent')
         return redirect(next)
     elif action == 'delete':
         order.delete()
-        messages.success(request, 'The order was successfully deleted')
+        messages.success(request,
+                         'The order was successfully deleted')
         return redirect(next)
     else:
         return redirect('dashboard:list_orders')
@@ -102,6 +117,7 @@ def list_works(request, filter=None):
     Change display order of works
     """
 
+    # Check wich filter was selected and get objects
     if filter == 'work':
         works = work_items.objects.filter(
             work_item=True).order_by('sort_order', 'id')
@@ -123,7 +139,7 @@ def list_works(request, filter=None):
 @admin_only
 def set_works_order(request, pk):
     """
-    Set the display order for works
+    Set the display order for work view
     """
 
     # Check if this work exists
@@ -131,12 +147,16 @@ def set_works_order(request, pk):
         work = work_items.objects.get(pk=pk)
     except:
         # if not return to the works list
+        messages.error(request, 'This work does not exist')
         return redirect('dashboard:list_works')
+    # Get the new sort_order and update object
     if request.method == 'POST':
         next = request.POST.get('next', '/')
         order = request.POST.get("sort_order")
         work.sort_order = order
         work.save()
+        messages.success(request, 'Display order of ' +
+                         work.title + ' has been updated')
     return redirect(next)
 
 
@@ -144,7 +164,7 @@ def set_works_order(request, pk):
 @admin_only
 def set_shop_order(request, pk):
     """
-    Set the display order for shop items
+    Set the display order for shop view
     """
 
     # Check if this work exists
@@ -152,12 +172,17 @@ def set_shop_order(request, pk):
         work = work_items.objects.get(pk=pk)
     except:
         # if not return to the works list
+        messages.error(request, 'This work does not exist')
         return redirect('dashboard:list_works')
+    # Get the new sort_order and update object
     if request.method == 'POST':
         next = request.POST.get('next', '/')
         order = request.POST.get("sort_order")
         work.shop_settings.sort_order = order
         work.shop_settings.save()
+        messages.success(request,
+                         'Display order in the shop of ' +
+                         work.title + ' has been updated')
     return redirect(next)
 
 
@@ -173,12 +198,18 @@ def set_image_order(request, pk):
         image = work_images.objects.get(pk=pk)
     except:
         # if not return to the works list
+        messages.error(request,
+                       'This image does not exist')
         return redirect('dashboard:list_works')
+    # Get the new sort_order and update object
     if request.method == 'POST':
         next = request.POST.get('next', '/')
         order = request.POST.get("sort_order")
         image.sort_order = order
         image.save()
+        messages.success(
+            request,
+            'Display order of this image has been updated')
     return redirect(next)
 
 
@@ -188,16 +219,24 @@ def delete_work(request, pk):
     """
     Delete a work item from the database
     """
+
     # Check if this work exists
     try:
         work = work_items.objects.get(pk=pk)
     except:
         # if not return to the works list
+        messages.error(request,
+                       'This work does not exist')
         return redirect('dashboard:list_works')
     # when confirmed delete the image
     if request.method == 'POST':
+        # Delete image from filesystem
+        work.main_image.delete()
+        # Delete work object
         work.delete()
-        messages.success(request, work.title + 'was successfully deleted')
+        messages.success(request,
+                         work.title
+                         + ' was successfully deleted')
         return redirect('dashboard:list_works')
     # render confirmation page
     return render(request, "delete_work.html",
@@ -214,6 +253,7 @@ def edit_works(request, pk=None):
     Edit an existing work-item, with optional related shop-item
     Add extra images to the work-item
     """
+
     # Check if this is an extisting work
     if pk:
         try:
@@ -265,8 +305,12 @@ def edit_works(request, pk=None):
         # Check wich form was submitted and save to database
         if form.is_valid():
             work = form.save()
+            messages.success(request,
+                             work.title + ' has been saved')
         if shop_form.is_valid():
             shop_work = shop_form.save()
+            messages.success(request,
+                             'Shop settings have been updated')
             # Check if this is the initial shop_settings
             try:
                 existing_shop = shop_items.objects.get(
@@ -278,6 +322,9 @@ def edit_works(request, pk=None):
                 work.save()
         if image_form.is_valid():
             new_work_images = image_form.save()
+            messages.success(request,
+                             'Image has been added to '
+                             + work.title)
         # Return to edit page for specific work
         return redirect('dashboard:edit_works', work.pk)
     else:
@@ -306,11 +353,24 @@ def delete_image(request, pk):
     """
     Delete an extra image from the database
     """
-    image = get_object_or_404(work_images, pk=pk)
-    work = get_object_or_404(work_items, pk=image.work_item.id)
-    # when confirmed delete the image
+    try:
+        image = work_images.objects.get(pk=pk)
+    except:
+        messages.error(request,
+                       'This image does not exist')
+        return redirect('dashboard:list_works')
+    try:
+        work = work_items.objects.get(pk=image.work_item.id)
+    except:
+        messages.error(request,
+                       'This image does not belong to an existing work')
+        return redirect('dashboard:list_works')
+    # when confirmed delete the image and remove object
     if request.method == 'POST':
+        image.work_image.delete()
         image.delete()
+        messages.success(request,
+                         'The image was successfully deleted')
         return redirect('dashboard:edit_works', work.pk)
     # render confirmation page
     return render(request, "delete_image.html",
@@ -329,6 +389,8 @@ def edit_categories(request, pk=None):
             category = categories.objects.get(pk=pk)
         # When not found return to origin
         except:
+            messages.error(request,
+                           'This category does not exist')
             return redirect(next)
         # if a form was posted
         if request.method == 'POST':
@@ -337,10 +399,15 @@ def edit_categories(request, pk=None):
             new_name = request.POST.get('category')
             category.name = new_name
             category.save()
+            messages.success(
+                request, 'Category has been changed to '
+                + category.name)
             return redirect(next)
         # If not delete it
         else:
             next = request.GET.get('next', '/')
+            messages.success(request, category.name
+                             + ' has been deleted')
             category.delete()
             return redirect(next)
     # if not an extisting category
@@ -351,6 +418,8 @@ def edit_categories(request, pk=None):
             new_name = request.POST.get('category')
             new_category = categories(name=new_name)
             new_category.save()
+            messages.success(request, new_category.name
+                             + ' has been saved')
         return redirect(next)
 
 
@@ -364,6 +433,8 @@ def edit_work_types(request, pk=None):
             work_type = work_types.objects.get(pk=pk)
         # When not found return to origin
         except:
+            messages.error(request,
+                           'This work type does not exist')
             return redirect(next)
         # if a form was posted
         if request.method == 'POST':
@@ -372,10 +443,15 @@ def edit_work_types(request, pk=None):
             new_name = request.POST.get('worktype')
             work_type.name = new_name
             work_type.save()
+            messages.success(request,
+                             'Work type had been changed to '
+                             + work_type.name)
             return redirect(next)
         # If not delete it
         else:
             next = request.GET.get('next', '/')
+            messages.success(request, work_type.name
+                             + ' had been deleted')
             work_type.delete()
             return redirect(next)
     # if not an extisting work type
@@ -386,19 +462,23 @@ def edit_work_types(request, pk=None):
             new_name = request.POST.get('worktype')
             new_work_type = work_types(name=new_name)
             new_work_type.save()
+            messages.success(request, new_work_type.name
+                             + ' has been saved')
         return redirect(next)
 
 
 @login_required()
 @admin_only
 def edit_work_sizes(request, pk=None):
-    # if this is an extisting category
+    # if this is an extisting work-size
     if pk:
         # Get the category
         try:
             work_size = work_sizes.objects.get(pk=pk)
         # When not found return to origin
         except:
+            messages.error(request,
+                           'This work size does not exist')
             return redirect(next)
         # if a form was posted
         if request.method == 'POST':
@@ -407,13 +487,18 @@ def edit_work_sizes(request, pk=None):
             new_name = request.POST.get('worksize')
             work_size.name = new_name
             work_size.save()
+            messages.success(
+                request, 'Work size had been changed to '
+                + work_size.name)
             return redirect(next)
         # If not delete it
         else:
             next = request.GET.get('next', '/')
+            messages.success(request, work_size.name
+                             + ' had been deleted')
             work_size.delete()
             return redirect(next)
-    # if not an extisting category
+    # if not an extisting work-size
     else:
         # Create a new one
         if request.method == 'POST':
@@ -421,6 +506,8 @@ def edit_work_sizes(request, pk=None):
             new_name = request.POST.get('worksize')
             new_work_size = work_sizes(name=new_name)
             new_work_size.save()
+            messages.success(request, new_work_size.name
+                             + ' has been saved')
         return redirect(next)
 
 
@@ -434,6 +521,8 @@ def edit_materials(request, pk=None):
             material = materials.objects.get(pk=pk)
         # When not found return to origin
         except:
+            messages.error(request,
+                           'This material does not exist')
             return redirect(next)
         # if a form was posted
         if request.method == 'POST':
@@ -442,10 +531,15 @@ def edit_materials(request, pk=None):
             new_name = request.POST.get('material')
             material.name = new_name
             material.save()
+            messages.success(
+                request, 'Material has been changed to '
+                + material.name)
             return redirect(next)
         # If not delete it
         else:
             next = request.GET.get('next', '/')
+            messages.success(request, material.name
+                             + ' has been deleted')
             material.delete()
             return redirect(next)
     # if not an extisting material
@@ -456,21 +550,32 @@ def edit_materials(request, pk=None):
             new_name = request.POST.get('material')
             new_material = materials(name=new_name)
             new_material.save()
+            messages.success(request, new_material.name
+                             + ' has been saved')
         return redirect(next)
 
 
 @login_required()
 @admin_only
 def edit_settings(request):
+    """
+    Edit shop settings
+    """
+
     shippings = shipping.objects.all()
     title = 'Adjust shop settings'
-    return render(request, "settings.html", {'title': title,
-                                             'shippings': shippings})
+    return render(request, "settings.html",
+                  {'title': title,
+                   'shippings': shippings})
 
 
 @login_required()
 @admin_only
 def edit_shipping(request, pk=None):
+    """
+    Add/edit shipping region/costs
+    """
+
     # if this is an extisting region
     if pk:
         # Get the region
@@ -478,6 +583,8 @@ def edit_shipping(request, pk=None):
             this_shipping = shipping.objects.get(pk=pk)
         # When not found return to origin
         except:
+            messages.error(request,
+                           'This region does not exist')
             return redirect(next)
         # if a form was posted
         if request.method == 'POST':
@@ -488,10 +595,16 @@ def edit_shipping(request, pk=None):
             this_shipping.region = new_region
             this_shipping.price = new_price
             this_shipping.save()
+            messages.success(request, this_shipping.region +
+                             ' was changed to '
+                             + this_shipping.price
+                             + ' Euro')
             return redirect(next)
         # If not delete it
         else:
             next = request.GET.get('next', '/')
+            messages.success(request, this_shipping.region +
+                             ' has been deleted')
             this_shipping.delete()
             return redirect(next)
     # if not an extisting region
@@ -501,6 +614,10 @@ def edit_shipping(request, pk=None):
             next = request.POST.get('next', '/')
             new_region = request.POST.get('region')
             new_price = request.POST.get('price')
-            new_shipping = shipping(region=new_region, price=new_price)
+            new_shipping = shipping(region=new_region,
+                                    price=new_price)
             new_shipping.save()
+            messages.success(request,
+                             new_shipping.region
+                             + ' has been saved')
         return redirect(next)
