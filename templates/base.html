@@ -225,6 +225,20 @@
     </div>
     {% endif %}
 
+    {% if next %}
+    {# if a next page is given show back button #}
+    <div class="row">
+        <a href="{{next}}">
+            <div class="er-page-back d-none">
+                <div class="er-back-inner">
+                    <a href="{{next}}">
+                        <i class="fas fa-undo"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+
     {% block content %} {% endblock %}
     <footer class="er-footer">
         <div class="container">

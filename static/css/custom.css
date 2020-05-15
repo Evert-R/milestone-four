@@ -32,7 +32,7 @@ h2 {
     border-radius: 0.35rem;
     padding: 0.3rem;
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 1rem;
+    font-size: 0.8rem;
     letter-spacing: 0.2rem;
     text-align: center;
     margin-bottom: 2rem;
@@ -288,6 +288,44 @@ table {
     text-align: center;
     color: rgba(255, 255, 255);
     background-color: rgb(212, 170, 60, 0.9);
+}
+
+.er-page-back {
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    position: fixed;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+}
+
+.er-page-back:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.er-page-back:active {
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0);
+}
+
+.er-page-back:active i {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.er-page-back i {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+}
+
+.er-back-inner {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* --------------------------Works page */
@@ -579,6 +617,11 @@ table {
     margin-bottom: 0;
 }
 
+.er-preview {
+    padding-top: 3rem;
+    padding-bottom: 20rem;
+}
+
 /* --------------------------Accounts classes */
 
 .er-accounts {
@@ -672,6 +715,7 @@ footer .container {
 }
 
 .er-footer {
+    z-index: 2000;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -930,6 +974,9 @@ form .row {
     html {
         font-size: 16px;
     }
+    h2 {
+        font-size: 0.9rem;
+    }
     form .row {
         margin-bottom: 0.9rem;
     }
@@ -956,6 +1003,9 @@ form .row {
     }
     body {
         padding-top: 12.5rem;
+    }
+    h2 {
+        font-size: 1rem;
     }
     .er-white-front {
         z-index: 5000;
