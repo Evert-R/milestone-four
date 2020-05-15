@@ -25,13 +25,15 @@ def work_details(request, pk):
     Display a works details 
     and an overview of all works beneath
     """
+    next = request.GET.get('next', '/')
     work = work_items.objects.get(pk=pk)
     images = work_images.objects.filter(
         work_item_id=pk).order_by('sort_order', 'id')
     works = work_items.objects.all().order_by('sort_order', 'id')
     return render(request, "workdetails.html", {"work": work,
                                                 "images": images,
-                                                "works": works, })
+                                                "works": works,
+                                                "next": next})
 
 
 def all_test(request):
