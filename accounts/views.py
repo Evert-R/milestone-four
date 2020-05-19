@@ -36,7 +36,10 @@ def register_user(request):
             # Return to request origin
             return redirect(next)
     # Show the register page
-    return render(request, 'register.html', {'accounts_form': accounts_form, 'next': next, 'title': 'Please register to use the webshop'})
+    return render(request, 'register.html',
+                  {'accounts_form': accounts_form,
+                   'next': next,
+                   'title': 'Please register to use the webshop'})
 
 
 @login_required
@@ -70,7 +73,10 @@ def add_user_details(request, next):
             messages.success(request, 'Your details have been saved')
             # return to origin
             return redirect(next)
-    return render(request, 'userdetails.html', {'accounts_form': accounts_form, 'next': next, 'title': 'Please provide your shipping details'})
+    return render(request, 'userdetails.html',
+                  {'accounts_form': accounts_form,
+                   'next': next,
+                   'title': 'Please provide your shipping details'})
 
 
 def log_in(request):
@@ -101,7 +107,10 @@ def log_in(request):
                 accounts_form.add_error(
                     None, "Your username or password is incorrect")
     # Show the login page
-    return render(request, 'login.html', {'accounts_form': accounts_form, 'title': 'Please login to use the webshop'})
+    return render(request, 'login.html',
+                  {'accounts_form': accounts_form,
+                   'title': 'Please login to use the webshop',
+                   'next': next})
 
 
 @login_required
