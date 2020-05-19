@@ -63,9 +63,9 @@
                     </p>
                 </td>
                 <td>
-
-                    {{ order.user.email }}
-
+                    <a href="mailto:{{ order.user.email }}" title="E-mail this customer">
+                        {{ order.user.email }}
+                    </a>
                 </td>
 
                 <td>
@@ -105,7 +105,8 @@
                     {{ item.quantity }}
                 </td>
                 <td class="er-list-image">
-                    <a href="{% url 'shop:shop_details' pk=item.work_item.id %}" title="Edit this work">
+                    <a href="{% url 'shop:shop_details' pk=item.work_item.id %}?next={{ request.path|urlencode }}"
+                        title="View in the shop">
                         <img src="{{ MEDIA_URL }}{{ item.work_item.main_image }}" alt="{{ item.work_item.title }}">
                     </a>
 

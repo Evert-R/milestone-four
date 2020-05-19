@@ -74,8 +74,9 @@
                     </a>
                 </td>
                 <td>
-
-                    {{ order.user.email }}
+                    <a href="mailto:{{ order.user.email }}" title="E-mail this customer">
+                        {{ order.user.email }}
+                    </a>
 
                 </td>
 
