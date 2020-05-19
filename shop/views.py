@@ -11,7 +11,11 @@ def all_shop_works(request):
 
 
 def shop_details(request, pk):
+    next = request.GET.get('next', '/')
     work = work_items.objects.get(pk=pk)
     images = work_images.objects.filter(
         work_item_id=pk).order_by('sort_order', 'id')
-    return render(request, "shopdetails.html", {"work": work, "images": images})
+    return render(request, "shopdetails.html",
+                  {"work": work,
+                   "images": images,
+                   "next": next})

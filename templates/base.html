@@ -117,7 +117,8 @@
                                 {% if request.session.cart %}
                                 {# Show only when something is in the cart #}
                                 <div class="er-nav-button">
-                                    <a class="nav-item nav-link" href="{% url 'cart:view_cart' %}"
+                                    <a class="nav-item nav-link"
+                                        href="{% url 'cart:view_cart' %}?next={{ request.path|urlencode }}"
                                         title="View shopping cart"><i class="fas fa-shopping-cart"></i> <span
                                             class="er-cart-count">{{ request.session.cart|length }}</span></a>
                                 </div>
@@ -172,8 +173,8 @@
                     {# Show only when something is in the cart #}
                     <!-- Profile button -->
                     <div class="er-nav-button er-cart-button">
-                        <a class="nav-item nav-link" href="{% url 'cart:view_cart' %}" title="View shopping cart"><i
-                                class="fas fa-shopping-cart"></i> <span
+                        <a class="nav-item nav-link" href="{% url 'cart:view_cart' %}?next={{ request.path|urlencode }}"
+                            title="View shopping cart"><i class="fas fa-shopping-cart"></i> <span
                                 class="er-cart-count">{{ request.session.cart|length }}</span></a>
                     </div>
                     {% endif %}
@@ -229,7 +230,7 @@
     {# if a next page is given show back button #}
     <div class="row">
         <a href="{{next}}">
-            <div class="er-page-back d-none">
+            <div class="er-page-back">
                 <div class="er-back-inner">
                     <a href="{{next}}">
                         <i class="fas fa-undo"></i>

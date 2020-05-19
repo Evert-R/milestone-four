@@ -89,7 +89,8 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a href="{% url 'checkout:check_out' %}">
+                    <a href="{% url 'checkout:check_out' %}?next={{ request.path|urlencode }}"
+                        title="Proceed to checkout">
                         <button class="btn btn-primary er-green">
                             Proceed to checkout
                         </button>

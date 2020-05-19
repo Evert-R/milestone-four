@@ -19,6 +19,7 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required(login_url='accounts:register_user')
 def check_out(request):
+    next = request.GET.get('next', '/')
     if not request.user.is_authenticated:
         messages.error(request, "Please register before checking out")
         return redirect('accounts:register_user')
@@ -107,4 +108,5 @@ def check_out(request):
                    'user_details': current_user_details,
                    'accounts_form': accounts_form,
                    'payment_form': payment_form,
-                   'publishable': settings.STRIPE_PUBLISHABLE})
+                   'publishable': settings.STRIPE_PUBLISHABLE,
+                   'next': next})

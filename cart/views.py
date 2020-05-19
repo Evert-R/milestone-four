@@ -4,7 +4,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 
 def view_cart(request):
-    return render(request, "cart.html")
+    next = request.GET.get('next', '/')
+    return render(request, "cart.html", {'next': next})
 
 
 def add_cart(request, id):
