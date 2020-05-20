@@ -32,6 +32,9 @@ urlpatterns = [
     path('addcategory/',
          views.edit_categories, name='add_category'),
 
+    path('setshopmessage/',
+         views.set_shop_message, name='set_shop_message'),
+
     path('editworktypes/<int:pk>',
          views.edit_work_types, name='edit_work_types'),
     path('addworktype/',

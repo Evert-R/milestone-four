@@ -5,6 +5,15 @@
 
 <!-- Show all shop_works -->
 <section class="container-md er-shop">
+    {% if info and message %}
+    <div class="row">
+        <div class="col-12">
+            <div class="er-shop-info">
+                {{ message.info }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <div class="row">
         <div class="col-12">
             <h1>Webshop</h1>

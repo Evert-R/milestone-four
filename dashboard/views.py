@@ -5,9 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 from works.models import work_items, categories, work_images
-from shop.models import shop_items, work_sizes, work_types, materials, shipping
+from shop.models import shop_items, work_sizes, work_types, materials, shipping, shop_message
 from checkout.models import orders, order_items
-from dashboard.forms import EditWorksForm, EditShopWorksForm, AddExtraImagesForm
+from dashboard.forms import EditWorksForm, EditShopWorksForm, AddExtraImagesForm, SetShopMessageForm
 from accounts.decorators import admin_only
 
 # Create your views here.
@@ -124,7 +124,7 @@ def list_works(request, filter=None):
         title = 'Edit work items only'
     elif filter == 'shop':
         works = work_items.objects.filter(
-            shop_item=True).order_by('sort_order', 'id')
+            shop_item=True).order_by('shop_settings__sort_order', 'id')
         title = 'Edit Shop items only'
     else:
         works = work_items.objects.all().order_by('sort_order', 'id')
@@ -615,12 +615,48 @@ def edit_settings(request):
     """
     Edit shop settings
     """
+    # Get shop message object and create form
+    try:
+        message = shop_message.objects.first()
+        message_form = SetShopMessageForm(instance=message)
+    except:
+        # Create empty form
+        message_form = SetShopMessageForm()
 
+    # Get all shipping regions
     shippings = shipping.objects.all()
+
     title = 'Adjust shop settings'
     return render(request, "settings.html",
                   {'title': title,
+                   'message_form': message_form,
                    'shippings': shippings})
+
+
+@login_required()
+@admin_only
+def set_shop_message(request):
+    """
+    Set shop message
+    """
+    # check if there already is an object
+    try:
+        message = shop_message.objects.first()
+    except:
+        message = None
+    if request.method == 'POST':
+        # Get the form
+        message_form = SetShopMessageForm(
+            request.POST, instance=message)
+        next = request.POST.get('next', '/')
+        if message_form.is_valid():
+            # Save the message to the database
+            message_form.save()
+            return redirect(next)
+        else:
+            return redirect(next)
+    else:
+        return redirect('dashboard:edit_settings')
 
 
 @login_required()

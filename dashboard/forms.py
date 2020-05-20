@@ -2,12 +2,16 @@ from django import forms
 from django.forms import ModelForm, Textarea
 from django.utils.translation import gettext_lazy as _
 from works.models import work_items, work_images
-from shop.models import shop_items, work_types, work_sizes, materials
+from shop.models import shop_items, work_types, work_sizes, materials, shop_message
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Field, LayoutObject
 
 
 class EditWorksForm(ModelForm):
+    """
+    Form to add a work to the portfolio and shop
+    """
+
     class Meta:
         model = work_items
         fields = ['main_image', 'position', 'category', 'title',
@@ -37,7 +41,39 @@ class EditWorksForm(ModelForm):
             Submit('submit', 'Submit work details', css_class='er-green'))
 
 
+class SetShopMessageForm(ModelForm):
+    """
+    Form for setting a message on the shop page
+    """
+
+    class Meta:
+        model = shop_message
+        fields = ['info', 'show']
+        widgets = {
+            'info': Textarea(attrs={'cols': 10, 'rows': 4}),
+        }
+        labels = {
+            'info': _('Shop message'),
+        }
+        help_texts = {
+            'info': _('Set a message on the front page of the shop')
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(SetShopMessageForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.help_text_inline = True
+        self.helper.form_tag = False
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-4 er-form-padding'
+        self.helper.field_class = 'col-sm-8 er-form-padding'
+
+
 class EditShopWorksForm(ModelForm):
+    """
+    Form for adding shop settings to a work
+    """
+
     class Meta:
         model = shop_items
         fields = ['price', 'stock', 'edition_count', 'work_type', 'material', 'work_size', 'frame',
@@ -69,6 +105,10 @@ class EditShopWorksForm(ModelForm):
 
 
 class AddExtraImagesForm(ModelForm):
+    """
+    Form for adding images to a work
+    """
+
     class Meta:
         model = work_images
         fields = ['work_item', 'work_image']

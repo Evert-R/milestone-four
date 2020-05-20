@@ -95,3 +95,11 @@ class shop_items(models.Model):
     personal_text = models.BooleanField(default=False)
     standard_text = models.BooleanField(default=True)
     sort_order = models.SmallIntegerField(default=999)
+
+
+class shop_message(models.Model):
+    """
+    Adding an info block for the shop
+    """
+    info = models.CharField(max_length=200, blank=True)
+    show = models.BooleanField(default=False)

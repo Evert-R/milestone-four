@@ -5,6 +5,20 @@
 <!-- Edit works -->
 <div class="row">
     <div class="col-lg-6">
+        <!-- Set a shop message -->
+        <div class="er-form-wrap">
+            <a data-toggle="collapse" href="#er-shop-message">
+                <h2><i class="fas fa-angle-down"></i> Set a shop message</h2>
+            </a>
+            <div class="collapse" id="er-shop-message">
+                <form method="post" action="{% url 'dashboard:set_shop_message' %}">
+                    {% crispy message_form message_form.helper %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <input type="submit" name="submit" value="Set" class="btn btn-primary er-green">
+                </form>
+            </div>
+        </div>
+
         <!-- Edit/add shipping costs -->
         <div class="er-form-wrap er-attr-form">
             <a data-toggle="collapse" href="#er-manage-shipping">
