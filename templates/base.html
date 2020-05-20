@@ -73,7 +73,7 @@
                             <a class="nav-item nav-link" id="er-about-active" href="#">About</a>
 
                             <a class="nav-item nav-link" id="er-shop-active"
-                                href="{% url 'shop:all_shop_works' %}">Shop</a>
+                                href="{% url 'shop:all_shop_works' %}?info=show">Shop</a>
 
                         </div>
                     </div>
@@ -232,8 +232,8 @@
         <a href="{{next}}">
             <div class="er-page-back">
                 <div class="er-back-inner">
-                    <a href="{{next}}">
-                        <i class="fas fa-undo"></i>
+
+                    <i class="fas fa-undo"></i>
                 </div>
             </div>
         </a>
