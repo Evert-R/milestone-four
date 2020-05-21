@@ -22,7 +22,7 @@ def list_orders(request, filter=None):
     """
 
     # Get all orders
-    all_orders = orders.objects.all()
+    all_orders = orders.objects.all().order_by('paid', 'sent', '-date')
     title = 'Viewing all orders'
     return render(request, "listorders.html",
                   {'title': title,
@@ -36,6 +36,8 @@ def view_order(request, pk):
     Display the details of an order
     With buttons to update shipping/ payment status
     """
+
+    next = request.GET.get('next', '/')
     # Check if this order exists
     try:
         order = orders.objects.get(pk=pk)
@@ -43,7 +45,7 @@ def view_order(request, pk):
     except:
         messages.error(request,
                        'This order does not exist')
-        return redirect('dashboard:list_orders')
+        return redirect(next)
     # Check if there are order items
     try:
         items = order_items.objects.filter(order=order)
@@ -51,11 +53,12 @@ def view_order(request, pk):
     except:
         messages.error(request,
                        'This order does not have any items')
-        return redirect('dashboard:list_orders')
+        return redirect(next)
     title = 'Viewing order'
     return render(request, "vieworder.html", {'title': title,
                                               'order': order,
-                                              'items': items})
+                                              'items': items,
+                                              'next': next})
 
 
 @login_required()

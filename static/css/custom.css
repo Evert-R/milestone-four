@@ -635,6 +635,10 @@ table {
     width: 6rem;
 }
 
+.er-list-status i {
+    font-size: 1rem;
+}
+
 .er-dashboard-list .form-control, .form-control-file {
     font-size: 0.7rem;
     text-align: center;
