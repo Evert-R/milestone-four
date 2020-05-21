@@ -10,7 +10,7 @@ class work_types(models.Model):
     Adding a work type to the database
     Selectable in the work_type field in the work_items model
     """
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name

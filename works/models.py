@@ -9,7 +9,7 @@ class categories(models.Model):
     Adding a category to the database
     Selectable in the category field in the work_items model
     """
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
