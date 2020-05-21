@@ -192,7 +192,8 @@ def edit_works(request, pk=None):
     # Check if a form was submitted
     if request.method == 'POST':
         # Create form objects with submitted data
-        form = EditWorksForm(request.POST, request.FILES, instance=work)
+        form = EditWorksForm(request.POST, request.FILES,
+                             instance=work)
         shop_form = EditShopWorksForm(request.POST, instance=shop_work)
         image_form = AddExtraImagesForm(request.POST, request.FILES)
         # Check wich form was submitted and save to database
@@ -259,6 +260,16 @@ def delete_work(request, pk):
     if request.method == 'POST':
         # Delete image from filesystem
         work.main_image.delete()
+
+        # Get all associated images
+        images = work_images.objects.filter(
+            work_item_id=pk)
+        for image in images:
+            # Delete image from file system
+            image.work_image.delete()
+            # Delete image object
+            image.delete()
+
         # Delete work object
         work.delete()
         messages.success(request,
