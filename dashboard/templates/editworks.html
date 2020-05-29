@@ -334,10 +334,13 @@
                     <td></td>
                     <td></td>
                     <td class="er-list-button">
+                        {% if work.shop_settings %}
+                        {# check if a shop item is already made #}
                         <a href="{% url 'dashboard:unset_shop_image' pk=work.shop_settings.id %}?next={{ request.path|urlencode }}"
                             title="Unset as shop default?">
                             <button class="btn btn-primary er-red">Unset</button>
                         </a>
+                        {% endif %}
                     </td>
                     <td></td>
                 </tr>
