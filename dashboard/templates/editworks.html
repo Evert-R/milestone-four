@@ -75,7 +75,7 @@
                             <form method="post" action="{% url 'dashboard:add_category' %}">
                                 {% csrf_token %}
                                 <td class="text-left">
-                                    <input type="text" name="category" maxlength="50"
+                                    <input type="text" name="category" maxlength="200"
                                         class="textinput textInput form-control">
                                 </td>
 
@@ -92,7 +92,7 @@
                             <form method="post" action="{% url 'dashboard:edit_categories' pk=category.id %}">
                                 {% csrf_token %}
                                 <td class="text-left">
-                                    <input type="text" name="category" value="{{category.name}}" maxlength="50"
+                                    <input type="text" name="category" value="{{category.name}}" maxlength="200"
                                         class="textinput textInput form-control">
                                 </td>
                                 <td class="er-list-button">
@@ -124,7 +124,7 @@
                             <form method="post" action="{% url 'dashboard:add_work_type' %}">
                                 {% csrf_token %}
                                 <td class="text-left">
-                                    <input type="text" name="worktype" maxlength="50"
+                                    <input type="text" name="worktype" maxlength="200"
                                         class="textinput textInput form-control">
                                 </td>
 
@@ -141,7 +141,7 @@
                             <form method="post" action="{% url 'dashboard:edit_work_types' pk=type.id %}">
                                 {% csrf_token %}
                                 <td class="text-left">
-                                    <input type="text" name="worktype" value="{{type.name}}" maxlength="50"
+                                    <input type="text" name="worktype" value="{{type.name}}" maxlength="200"
                                         class="textinput textInput form-control">
                                 </td>
                                 <td class="er-list-button">
@@ -173,7 +173,7 @@
                             <form method="post" action="{% url 'dashboard:add_work_size' %}">
                                 {% csrf_token %}
                                 <td class="text-left">
-                                    <input type="text" name="worksize" maxlength="50"
+                                    <input type="text" name="worksize" maxlength="200"
                                         class="textinput textInput form-control">
                                 </td>
 
@@ -190,7 +190,7 @@
                             <form method="post" action="{% url 'dashboard:edit_work_sizes' pk=size.id %}">
                                 {% csrf_token %}
                                 <td class="text-left">
-                                    <input type="text" name="worksize" value="{{size.name}}" maxlength="50"
+                                    <input type="text" name="worksize" value="{{size.name}}" maxlength="200"
                                         class="textinput textInput form-control">
                                 </td>
                                 <td class="er-list-button">
@@ -222,7 +222,7 @@
                             <form method="post" action="{% url 'dashboard:add_material' %}">
                                 {% csrf_token %}
                                 <td class="text-left">
-                                    <input type="text" name="material" maxlength="50"
+                                    <input type="text" name="material" maxlength="200"
                                         class="textinput textInput form-control">
                                 </td>
 
@@ -239,7 +239,7 @@
                             <form method="post" action="{% url 'dashboard:edit_materials' pk=material.id %}">
                                 {% csrf_token %}
                                 <td class="text-left">
-                                    <input type="text" name="material" value="{{material.name}}" maxlength="50"
+                                    <input type="text" name="material" value="{{material.name}}" maxlength="200"
                                         class="textinput textInput form-control">
                                 </td>
                                 <td class="er-list-button">
@@ -394,7 +394,12 @@
                 {% endfor %}
             </table>
         </div>
-
+        <a href="{% url 'works:work_details' pk=work.id %}?next={{ request.path|urlencode }}">
+            <h3><i class="fas fa-eye"></i> Preview work view</h3>
+        </a>
+        <a href="{% url 'shop:shop_details' pk=work.id %}?next={{ request.path|urlencode }}">
+            <h3><i class="fas fa-eye"></i> Preview shop view</h3>
+        </a>
     </div>
     {% endif %}
 </div>
