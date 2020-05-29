@@ -14,11 +14,12 @@ def all_shop_works(request):
     # Get the shop message object
     try:
         message = shop_message.objects.first()
+        # Show only if message is set to show
+        if message.show == False:
+            message = None
     except:
         message = None
-    # Show only if message is set to show
-    if message.show == False:
-        message = None
+
     # Get all works for the shop
     works = work_items.objects.filter(
         shop_item=True).order_by('shop_settings__sort_order', 'id')
