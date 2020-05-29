@@ -6,7 +6,7 @@
 <div class="container-lg er-detail">
     <div class="row">
         {% if work.position == 'VT' %}
-        {# Show if vertical layout is selected #}
+        {# Show when vertical layout is selected #}
 
         <div class="col-12 col-md-7 offset-md-1 er-detail-left">
             <div>
@@ -113,7 +113,7 @@
 
 
         {% else %}
-        {# Show if Horizontal layout is selected #}
+        {# Show when Horizontal layout is selected #}
         <div class="col-12 col-md-10 offset-md-1 er-detail-main">
             <div>
                 <img src="{{ MEDIA_URL }}{{ work.main_image }}" alt="{{ work.title }}">
@@ -153,27 +153,6 @@
             {% endif %}
         </div>
 
-
-        {% if images.2 %}
-        <div class="col-12 col-md-7 offset-md-1 er-detail-left">
-            <div>
-                <img src="{{ MEDIA_URL }}{{ images.2.work_image }}" alt="{{ work.title }}">
-            </div>
-        </div>
-        {% endif %}
-
-        {% if images.3 %}
-        <div class="col-12 col-md-3 er-detail-right">
-            <div>
-                <img src="{{ MEDIA_URL }}{{ images.3.work_image }}" alt="{{ work.title }}">
-            </div>
-            {% if images.4 %}
-            <div class=" er-detail-bottom">
-                <img src="{{ MEDIA_URL }}{{ images.4.work_image }}" alt="{{ work.title }}">
-            </div>
-            {% endif %}
-        </div>
-        {% endif %}
 
         {% if images.2 %}
         <div class="col-12 col-md-7 offset-md-1 er-detail-left">
@@ -237,7 +216,6 @@
             {% endif %}
         </div>
         {% endif %}
-
 
         {% endif %}
     </div>
