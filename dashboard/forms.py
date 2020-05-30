@@ -76,21 +76,24 @@ class EditShopWorksForm(ModelForm):
 
     class Meta:
         model = shop_items
-        fields = ['price', 'stock', 'edition_count', 'work_type', 'material', 'work_size', 'frame',
+        fields = ['price', 'on_sale', 'discount', 'stock', 'edition_count', 'work_type', 'material', 'work_size', 'frame',
                   'signed', 'personal_message', 'standard_text', 'personal_text', 'sort_order']
         widgets = {
             'personal_message': Textarea(attrs={'cols': 10, 'rows': 10}),
         }
         labels = {
+            'discount': _('Discount'),
             'edition_count': _('Edition total'),
             'personal_message': _('Personal desription'),
         }
         help_texts = {
+            'discount': _('%'),
             'edition_count': _('How many were made?'),
             'signed': _('Is this item signed?'),
             'standard_text': _('Generate a description for the shop'),
             'personal_text': _('Show the personal desription in the shop'),
             'personal_message': _('Add a personal description for the shop'),
+            'sort_order': _('Overrides default (Latest first)'),
         }
 
     def __init__(self, *args, **kwargs):

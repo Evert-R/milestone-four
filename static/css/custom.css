@@ -441,6 +441,31 @@ table {
     height: 25vh;
 }
 
+.er-discount {
+    position: absolute;
+    top: -0.3rem;
+    left: -0.2rem;
+    z-index: 1500;
+    transform: rotate(-25deg);
+    background: rgba(109, 168, 160, 0.8);
+    padding: 0.2rem 1rem;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 0.3px;
+    border-color: rgba(0, 0, 0, 0.2);
+    font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 0.8rem;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+}
+
+.er-strike-price {
+    color: rgba(0, 0, 0, 0.3);
+    margin-left: 1rem;
+}
+
 .er-image-select {
     width: 100%;
     text-align: center;
@@ -489,12 +514,12 @@ table {
 
 .er-cart .er-price-cell {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 .er-checkout .er-price-cell {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 .er-cart-cell {
@@ -502,12 +527,12 @@ table {
 }
 
 .er-cart-cell i {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .er-shop-button {
     float: right;
-    padding: 0.4rem 0.2rem;
+    padding: 0.3rem 0rem;
     margin-left: 0.5rem;
     width: 2.5rem;
     text-align: center;
@@ -558,6 +583,7 @@ table {
 
 .er-quantity {
     font-family: 'FuturaBT-Heavy', 'Hind';
+    font-size: 0.8rem;
     text-align: center;
 }
 
@@ -695,6 +721,10 @@ table {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0.7rem;
+}
+
+.er-list-wrap p {
+    font-size: 0.8rem;
 }
 
 .er-list-divider {
@@ -1120,23 +1150,17 @@ form .row {
         margin-right: auto;
     }
     .er-shop-button {
-        padding: 0.4rem 0;
-        width: 3rem;
-    }
-    .er-cart .er-price-cell {
-        font-size: 1rem;
-    }
-    .er-checkout .er-price-cell {
-        font-size: 1rem;
-    }
-    .er-cart .er-shop-button i {
-        font-size: 0.7rem;
-    }
-    .er-checkout .er-shop-button i {
-        font-size: 0.7rem;
+        padding: 0.3rem 0;
+        width: 2.8rem;
     }
     .er-cart-cell i {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+    }
+    .er-checkout-right p {
+        font-size: 0.8rem;
+    }
+    .er-checkout-left p {
+        font-size: 0.8rem;
     }
     .er-detail-right {
         background-size: 90%;

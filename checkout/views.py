@@ -64,13 +64,18 @@ def check_out(request):
             total = current_user_details.shipping.price
             # Create order items for order
             for id, quantity in cart.items():
-                work_item = get_object_or_404(work_items, pk=id)
-                total += quantity * work_item.shop_settings.price
+                work = get_object_or_404(work_items, pk=id)
+                # Check if there is a discount
+                if work.shop_settings.on_sale == True:
+                    price = work.shop_settings.discount_price
+                else:
+                    price = work.shop_settings.price
+                total += quantity * price
                 order_item = order_items(
                     order=order,
-                    work_item=work_item,
+                    work_item=work,
                     quantity=quantity,
-                    price=work_item.shop_settings.price
+                    price=price
                 )
                 order_item.save()
             # Make payment
@@ -92,6 +97,8 @@ def check_out(request):
                 request.session['cart'] = {}
                 return redirect(reverse('shop:all_shop_works'))
             else:
+                order.paid = False
+                order.save()
                 messages.error(request, "Unable to take payment")
         else:
             print(payment_form.errors)
@@ -99,8 +106,14 @@ def check_out(request):
                 request, "We were unable to take a payment with that card!")
     else:
         for id, quantity in cart.items():
-            work_item = get_object_or_404(work_items, pk=id)
-            total += quantity * work_item.shop_settings.price
+            # Get work object
+            work = get_object_or_404(work_items, pk=id)
+            # Check if there is a discount
+            if work.shop_settings.on_sale == True:
+                price = work.shop_settings.discount_price
+            else:
+                price = work.shop_settings.price
+            total += quantity * price
         payment_form = PaymentForm()
     return render(request, "checkout.html",
                   {'total': total,

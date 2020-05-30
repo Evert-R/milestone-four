@@ -14,8 +14,14 @@ def cart_contents(request):
     product_count = 0
 
     for id, quantity in cart.items():
+        # get work object
         work = get_object_or_404(work_items, pk=id)
-        total += quantity * work.shop_settings.price
+        # Check if there is a discount
+        if work.shop_settings.on_sale == True:
+            price = work.shop_settings.discount_price
+        else:
+            price = work.shop_settings.price
+        total += quantity * price
         product_count += quantity
         cart_items.append({'id': id, 'quantity': quantity, 'work': work})
 

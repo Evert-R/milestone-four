@@ -24,7 +24,6 @@
 
                     <div class="col-12 order-3 col-sm-6 order-sm-3">
                         <div class="er-shop-top">
-                            <h5>{{ work.title }}</h5>
                             <p>{{ work.under_title }}</p>
                         </div>
                         <!-- Show item description -->
@@ -80,7 +79,18 @@
                         <table>
                             <tr>
                                 <td class="er-price-cell">
-                                    <span> {{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i></span>
+                                    {% if work.shop_settings.on_sale %}
+                                    <span>
+                                        {{ work.shop_settings.discount_price }}
+                                        <i class="fas fa-euro-sign"></i>
+                                        <del class="er-strike-price">
+                                            {{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i>
+                                        </del>
+                                    </span>
+                                    {% else %}
+                                    <span>{{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i></span>
+                                    {% endif %}
+
                                 </td>
                                 <td class="er-cart-cell">
                                     <a href="{% url 'cart:add_cart' id=work.pk %}?next={{ request.path|urlencode }}"

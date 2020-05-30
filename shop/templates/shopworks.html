@@ -22,9 +22,14 @@
     <div class="row">
         {% for work in works %}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" id="er-hover-{{ work.id }}">
+            {% if work.shop_settings.on_sale %}
+            {# Show on sale notification #}
+            <div class="er-discount">-{{ work.shop_settings.discount }}%</div>
+            {% endif %}
             <div class="er-shop-wrap">
                 <div class="er-shop-top">
                     <h5>{{ work.title }}</h5>
+
                 </div>
                 <a href="{% url 'shop:shop_details' pk=work.id %}?next={{ request.path|urlencode }}"
                     title="View this shop item">
@@ -43,7 +48,18 @@
                         <table>
                             <tr>
                                 <td class="er-price-cell">
+                                    {% if work.shop_settings.on_sale %}
+                                    <span>
+                                        {{ work.shop_settings.discount_price }}
+                                        <i class="fas fa-euro-sign"></i>
+                                        <del class="er-strike-price">
+                                            {{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i>
+                                        </del>
+                                    </span>
+                                    {% else %}
                                     <span> {{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i></span>
+                                    {% endif %}
+
                                 </td>
                                 <td class="er-cart-cell">
                                     <a href="{% url 'cart:add_cart' id=work.pk %}?next={{ request.path|urlencode }}"

@@ -66,7 +66,7 @@ class reviews(models.Model):
 
 class shop_items(models.Model):
     """
-    Adding a work to the database
+    Adding shop settings to a work
     """
 
     price = models.DecimalField(
@@ -99,6 +99,11 @@ class shop_items(models.Model):
     personal_text = models.BooleanField(default=False)
     standard_text = models.BooleanField(default=True)
     sort_order = models.SmallIntegerField(default=999)
+
+    @property
+    def discount_price(self):
+        # Create a field with discounted price
+        return self.price - ((self.price/100) * self.discount)
 
 
 class shop_message(models.Model):

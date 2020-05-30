@@ -123,7 +123,14 @@
                         <table>
                             <tr>
                                 <td class="er-price-cell">
-                                    {{ item.work.shop_settings.price }} <i class="fas fa-euro-sign"></i>
+                                    {% if item.work.shop_settings.on_sale %}
+                                    {# Show discounted price if on_sale #}
+                                    <span>
+                                        {{ item.work.shop_settings.discount_price }} <i class="fas fa-euro-sign"></i>
+                                    </span>
+                                    {% else %}
+                                    <span>{{ item.work.shop_settings.price }} <i class="fas fa-euro-sign"></i></span>
+                                    {% endif %}
                                 </td>
                                 <td class="er-cart-cell">
                                     <a
