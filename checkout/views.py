@@ -94,6 +94,11 @@ def check_out(request):
                 order.paid = True
                 order.total = total
                 order.save()
+                # Adjust the stock for sold items
+                for id, quantity in cart.items():
+                    work = get_object_or_404(work_items, pk=id)
+                    work.shop_settings.stock -= quantity
+                    work.shop_settings.save()
                 request.session['cart'] = {}
                 return redirect(reverse('shop:all_shop_works'))
             else:
