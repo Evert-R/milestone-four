@@ -15,7 +15,7 @@ class EditWorksForm(ModelForm):
     class Meta:
         model = work_items
         fields = ['main_image', 'position', 'category', 'title',
-                  'under_title', 'free_text', 'work_item', 'shop_item', 'sort_order']
+                  'under_title', 'free_text', 'work_item', 'shop_item', 'collection', 'sort_order']
         widgets = {
             'free_text': Textarea(attrs={'cols': 10, 'rows': 10}),
         }
@@ -28,6 +28,7 @@ class EditWorksForm(ModelForm):
             'sort_order': _('Choose the view order on the work page'),
             'work_item': _('<br>Show on the work page?'),
             'shop_item': _('<br>Show in the shop and create a shop settings form?'),
+            'collection': _('<br>Make this work a collection'),
         }
 
     def __init__(self, *args, **kwargs):

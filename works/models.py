@@ -40,6 +40,7 @@ class work_items(models.Model):
     free_text = models.CharField(max_length=3000, blank=True)
     work_item = models.BooleanField(default=True, blank=True)
     shop_item = models.BooleanField(default=False, blank=True)
+    collection = models.BooleanField(default=False, blank=True)
     shop_settings = models.OneToOneField(
         'shop.shop_items', on_delete=models.SET_NULL, blank=True, null=True)
     sort_order = models.SmallIntegerField(default=999)

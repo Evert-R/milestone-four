@@ -31,10 +31,16 @@ def work_details(request, pk):
         work_item_id=pk).order_by('sort_order', 'id')
     works = work_items.objects.filter(
         work_item=True).order_by('sort_order', 'id')
-    return render(request, "workdetails.html", {"work": work,
-                                                "images": images,
-                                                "works": works,
-                                                "next": next})
+    if work.collection == True:
+        return render(request, "collection.html", {"work": work,
+                                                   "images": images,
+                                                   "works": works,
+                                                   "next": next})
+    else:
+        return render(request, "workdetails.html", {"work": work,
+                                                    "images": images,
+                                                    "works": works,
+                                                    "next": next})
 
 
 def all_test(request):
