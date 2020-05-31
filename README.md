@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/Evert-R/milestone-four
-.svg?branch=master)](https://travis-ci.org/Evert-R/milestone-four
-)
+[![Build Status](https://travis-ci.org/Evert-R/milestone-four.svg?branch=master)](https://travis-ci.org/Evert-R/milestone-four)
 
 # Lobke van Aar
 ## Web application to sell and display original works of art
