@@ -72,6 +72,15 @@ class TestEditWorksForm(TestCase):
         self.assertFalse(form.is_valid())
 
     def test_create_work_only_image(self):
+        # Create a fake image
+        image = InMemoryUploadedFile(
+            BytesIO(base64.b64decode(TEST_IMAGE)),
+            field_name='tempfile',
+            name='tempfile.png',
+            content_type='image/png',
+            size=len(TEST_IMAGE),
+            charset='utf-8',
+        )
         form = EditWorksForm({}, files={'main_image': image})
         self.assertFalse(form.is_valid())
 
