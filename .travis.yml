@@ -3,4 +3,4 @@ python:
   - "3.8.1"
 install: "pip install -r requirements.txt"
 script:
-  - SECRET_KEY="whatever" python manage.py test --keepdb
+  - SECRET_KEY="whatever" python manage.py test
