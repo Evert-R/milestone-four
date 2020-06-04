@@ -727,6 +727,38 @@ table {
     padding-bottom: 20rem;
 }
 
+.er-status-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+}
+
+.er-status-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.er-status-button:active {
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0);
+}
+
+.er-status-button:active i {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.er-status-button i {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+}
+
 /* --------------------------Accounts classes */
 
 .er-accounts {

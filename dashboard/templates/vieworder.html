@@ -40,33 +40,57 @@
                     {{ order.total }}
                 </td>
                 {% if order.paid %}
-                <td class="er-list-status er-green">
-                    <a href="{% url 'dashboard:view_order' pk=order.id %}?next={{ request.path|urlencode }}"
-                        title="View this order">
-                        <i class="fas fa-check er-color-green"></i>
+                <td>
+                    <a href="{% url 'dashboard:update_order' pk=order.id action='notpaid' %}?next={{ request.path|urlencode }}"
+                        title="Mark order as not paid">
+                        <div class="er-status-button er-green">
+                            <div class="er-back-inner">
+
+                                <i class="fas fa-check er-color-green"></i>
+
+                            </div>
+                        </div>
                     </a>
                 </td>
                 {% else %}
-                <td class="er-list-status er-red">
-                    <a href="{% url 'dashboard:view_order' pk=order.id %}?next={{ request.path|urlencode }}"
-                        title="View this order">
-                        <i class="fas fa-times"></i>
+                <td>
+                    <a href="{% url 'dashboard:update_order' pk=order.id action='paid' %}?next={{ request.path|urlencode }}"
+                        title="Mark order as paid">
+                        <div class="er-status-button er-red">
+                            <div class="er-back-inner">
+
+                                <i class="fas fa-times"></i>
+
+                            </div>
+                        </div>
                     </a>
                 </td>
                 {% endif %}
 
                 {% if order.sent %}
-                <td class="er-list-status er-green">
-                    <a href="{% url 'dashboard:view_order' pk=order.id %}?next={{ request.path|urlencode }}"
-                        title="View this order">
-                        <i class="fas fa-check"></i>
+                <td>
+                    <a href="{% url 'dashboard:update_order' pk=order.id action='notsent' %}?next={{ request.path|urlencode }}"
+                        title="Mark order as not sent">
+                        <div class="er-status-button er-green">
+                            <div class="er-back-inner">
+
+                                <i class="fas fa-check"></i>
+
+                            </div>
+                        </div>
                     </a>
                 </td>
                 {% else %}
-                <td class="er-list-status er-red">
-                    <a href="{% url 'dashboard:view_order' pk=order.id %}?next={{ request.path|urlencode }}"
-                        title="View this order">
-                        <i class="fas fa-times"></i>
+                <td>
+                    <a href="{% url 'dashboard:update_order' pk=order.id action='sent' %}?next={{ request.path|urlencode }}"
+                        title="Mark order as sent">
+                        <div class="er-status-button er-red">
+                            <div class="er-back-inner">
+
+                                <i class="fas fa-times"></i>
+
+                            </div>
+                        </div>
                     </a>
                 </td>
                 {% endif %}
