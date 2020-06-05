@@ -11,4 +11,6 @@ urlpatterns = [
          {'next': None}, name='add_user_details'),
     path('shippingdetails/', views.add_user_details,
          {'next': 'checkout:check_out'}, name='shipping_details'),
+    path('profile/', views.user_profile, name='user_profile'),
+    path('userupdate/', views.update_user, name='update_user'),
 ]

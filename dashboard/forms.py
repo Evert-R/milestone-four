@@ -42,34 +42,6 @@ class EditWorksForm(ModelForm):
             Submit('submit', 'Submit work details', css_class='er-green'))
 
 
-class SetShopMessageForm(ModelForm):
-    """
-    Form for setting a message on the shop page
-    """
-
-    class Meta:
-        model = shop_message
-        fields = ['info', 'show']
-        widgets = {
-            'info': Textarea(attrs={'cols': 10, 'rows': 4}),
-        }
-        labels = {
-            'info': _('Shop message'),
-        }
-        help_texts = {
-            'info': _('Set a message on the front page of the shop')
-        }
-
-    def __init__(self, *args, **kwargs):
-        super(SetShopMessageForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-        self.helper.help_text_inline = True
-        self.helper.form_tag = False
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-sm-4 er-form-padding'
-        self.helper.field_class = 'col-sm-8 er-form-padding'
-
-
 class EditShopWorksForm(ModelForm):
     """
     Form for adding shop settings to a work
@@ -133,3 +105,32 @@ class AddExtraImagesForm(ModelForm):
         self.helper.field_class = 'col-sm-8 er-form-padding'
         self.helper.add_input(
             Submit('submit', 'Submit extra image', css_class='er-green'))
+
+
+class SetShopMessageForm(ModelForm):
+    """
+    Form for setting a message on the shop page
+    """
+
+    class Meta:
+        model = shop_message
+        fields = ['info', 'show']
+        widgets = {
+            'info': Textarea(attrs={'cols': 10, 'rows': 4}),
+        }
+        labels = {
+            'info': _('Shop message'),
+        }
+        help_texts = {
+            'info': _('Set a message on the front page of the shop')
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(SetShopMessageForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.help_text_inline = True
+        self.helper.form_tag = False
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-4 er-form-padding'
+        self.helper.field_class = 'col-sm-8 er-form-padding'
+

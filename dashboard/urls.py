@@ -4,6 +4,7 @@ from . import views
 
 app_name = 'dashboard'
 urlpatterns = [
+    # Edit/add work items
     path('addwork/', views.edit_works,
          name='add_works'),
     path('editworks/', views.list_works,
@@ -27,43 +28,42 @@ urlpatterns = [
     path('unsetshopimage/<int:pk>',
          views.unset_shop_image, name='unset_shop_image'),
 
-    path('editcategories/<int:pk>',
-         views.edit_categories, name='edit_categories'),
+    # Manage global attributes
     path('addcategory/',
          views.edit_categories, name='add_category'),
-
-    path('setshopmessage/',
-         views.set_shop_message, name='set_shop_message'),
+    path('editcategories/<int:pk>',
+         views.edit_categories, name='edit_categories'),
 
     path('editworktypes/<int:pk>',
          views.edit_work_types, name='edit_work_types'),
     path('addworktype/',
          views.edit_work_types, name='add_work_type'),
 
-    path('editworksizes/<int:pk>',
-         views.edit_work_sizes, name='edit_work_sizes'),
     path('addworksize/',
          views.edit_work_sizes, name='add_work_size'),
+    path('editworksizes/<int:pk>',
+         views.edit_work_sizes, name='edit_work_sizes'),
 
-    path('editmaterials/<int:pk>',
-         views.edit_materials, name='edit_materials'),
     path('addmaterial/',
          views.edit_materials, name='add_material'),
+    path('editmaterials/<int:pk>',
+         views.edit_materials, name='edit_materials'),
 
+    # Global settings
+    path('settings/', views.edit_settings,
+         name='edit_settings'),
+    path('setshopmessage/',
+         views.set_shop_message, name='set_shop_message'),
+    path('addshipping/',
+         views.edit_shipping, name='add_shipping'),
+    path('editshipping/<int:pk>',
+         views.edit_shipping, name='edit_shipping'),
 
+    # Order handling
     path('listorders/', views.list_orders,
          name='list_orders'),
     path('vieworder/<int:pk>', views.view_order,
          name='view_order'),
     path('updateorder/<int:pk>/<action>', views.update_order,
          name='update_order'),
-
-    path('settings/', views.edit_settings,
-         name='edit_settings'),
-
-    path('editshipping/<int:pk>',
-         views.edit_shipping, name='edit_shipping'),
-    path('addshipping/',
-         views.edit_shipping, name='add_shipping'),
-
 ]
