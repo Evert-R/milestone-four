@@ -4,10 +4,58 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from accounts.models import user_details
-from accounts.forms import LogInForm, RegisterForm, UserDetailsForm
+from checkout.models import orders, order_items
+from accounts.forms import LogInForm, RegisterForm, UserDetailsForm, UserUpdateForm
 from accounts import decorators
 
 # Create your views here.
+
+
+def user_profile(request):
+    """Display profile page"""
+    # Get active user
+    active_user = request.user
+    user_form = UserUpdateForm(instance=active_user)
+    # Check if details already exist
+    try:
+        # If so create form with details
+        current_user_details = user_details.objects.get(user=active_user)
+        details_form = UserDetailsForm(instance=current_user_details)
+    except:
+        # If not create empty form
+        details_form = UserDetailsForm({'user': active_user.id})
+        current_user_details = None
+
+     # Check if this order exists
+    try:
+        user_orders = orders.objects.filter(user=active_user)
+
+    # if not show the list and rais an error message
+    except:
+        user_orders = None
+    ordered_items = {}
+    for order in user_orders:
+        ordered_items[order] = order_items.objects.filter(order=order)
+    return render(request, 'profile.html',
+                  {'user_form': user_form,
+                   'details_form': details_form,
+                   'orders': user_orders,
+                   'ordered_items': ordered_items
+                   })
+
+
+def update_user(request):
+    """Register new users"""
+    active_user = request.user
+    # check if a form was submitted
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+        user_form = UserUpdateForm(request.POST, instance=active_user)
+        if user_form.is_valid():
+            user = user_form.save()
+    else:
+        return redirect('accounts:profile')
+    return redirect(next)
 
 
 def register_user(request):
@@ -18,7 +66,7 @@ def register_user(request):
     accounts_form = RegisterForm()
     # check if a form was submitted
     if request.method == 'POST':
-        # Get request origin from form
+            # Get request origin from form
         next = request.POST.get('next', '/')
         # Create form object with submitted data
         accounts_form = RegisterForm(request.POST)
@@ -89,6 +137,8 @@ def log_in(request):
         return redirect(reverse('all_works'))
     # check if a form was submitted
     if request.method == 'POST':
+        # Get request origin from form
+        next = request.POST.get('next', '/')
         # Create form object with submitted data
         accounts_form = LogInForm(request.POST)
         if accounts_form.is_valid():

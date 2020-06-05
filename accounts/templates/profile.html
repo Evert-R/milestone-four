@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<main class="container-md er-accounts">
+    <div class="row">
+        <div class="col-12">
+            <div class="er-wrap">
+                <h1>{{ title }}</h1>
+            </div>
+        </div>
+    </div>
+    <!-- user info forms -->
+    <div class="row">
+        <div class="col-lg-6">
+            <!-- User details -->
+            <div class="er-form-wrap">
+                <a data-toggle="collapse" href="#er-login-details">
+                    <h2><i class="fas fa-angle-down"></i> Login details</h2>
+                </a>
+                <div class="collapse" id="er-login-details">
+                    <form action="{% url 'accounts:update_user' %}" class="form-horizontal" method="post">
+                        <input type="hidden" name="next" value="{% url 'accounts:user_profile' %}">
+                        {% crispy user_form user_form.helper %}
+                    </form>
+                </div>
+            </div>
+            <!-- User details -->
+            <div class="er-form-wrap">
+                <a data-toggle="collapse" href="#er-user-details">
+                    <h2><i class="fas fa-angle-down"></i> Shipping details</h2>
+                </a>
+                <div class="collapse" id="er-user-details">
+                    <form action="{% url 'accounts:add_user_details' %}" class="form-horizontal" method="post">
+                        <input type="hidden" name="next" value="{% url 'accounts:user_profile' %}">
+                        {% crispy details_form details_form.helper %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <table class="er-dashboard-list table table-responsive-sm table-bordered table-striped table-hover">
+                <tr>
+                    <th>
+                        Order date:
+                    </th>
+                    <th>
+                        Total:
+                    </th>
+                    <th>
+                        Paid:
+                    </th>
+                    <th>
+                        Sent:
+                    </th>
+                    <th>
+                        Address:
+                    </th>
+                    <th>
+                        E-mail:
+                    </th>
+
+                    <th>
+                        Ship to:
+                    </th>
+
+                    <th>
+
+                    </th>
+                </tr>
+                {% for order in orders %}
+                <tr>
+                    <td class="er-list-accent">
+                        {{ order.date }}
+                    </td>
+                    <td class="er-list-accent">
+                        <a href="{% url 'dashboard:view_order' pk=order.id %}?next={{ request.path|urlencode }}"
+                            title="View this order">
+                            {{ order.total }}
+                        </a>
+                    </td>
+
+                    {% if order.paid %}
+                    <td class="er-list-status er-green">
+                        <a href="{% url 'dashboard:update_order' pk=order.id action='notpaid' %}?next={{ request.path|urlencode }}"
+                            title="Mark order as not paid">
+                            <i class="fas fa-check er-color-green"></i>
+                        </a>
+                    </td>
+                    {% else %}
+                    <td class="er-list-status er-red">
+                        <a href="{% url 'dashboard:update_order' pk=order.id action='paid' %}?next={{ request.path|urlencode }}"
+                            title="Mark order as paid">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </td>
+                    {% endif %}
+
+                    {% if order.sent %}
+                    <td class="er-list-status er-green">
+                        <a href="{% url 'dashboard:update_order' pk=order.id action='notsent' %}?next={{ request.path|urlencode }}"
+                            title="Mark order as not sent">
+                            <i class="fas fa-check"></i>
+                        </a>
+                    </td>
+                    {% else %}
+                    <td class="er-list-status er-red">
+                        <a href="{% url 'dashboard:update_order' pk=order.id action='sent' %}?next={{ request.path|urlencode }}"
+                            title="Mark order as sent">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </td>
+                    {% endif %}
+                    <td>
+                        <a href="{% url 'dashboard:view_order' pk=order.id %}?next={{ request.path|urlencode }}"
+                            title="View this order">
+                            <p>
+                                {{ order.user.first_name }} {{ order.user.last_name }}<br>
+                                {{ order.address1 }}, {{ order.address2 }}<br>
+                                {{ order.postcode }}, {{ order.city }}<br>
+                                {{ order.country }}<br>
+                            </p>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="mailto:{{ order.user.email }}" title="E-mail this customer">
+                            {{ order.user.email }}
+                        </a>
+
+                    </td>
+
+                    <td>
+                        {{order.user.user_details.shipping.region}}<br>
+                        {{order.user.user_details.shipping.price }}
+                    </td>
+
+
+
+                    <td class="er-list-button">
+                        <a href="{% url 'dashboard:view_order' pk=order.id %}?next={{ request.path|urlencode }}"
+                            title="View order">
+                            <button class="btn btn-primary er-green">View</button>
+                        </a>
+                        <a href="{% url 'dashboard:update_order' pk=order.id action='delete' %}?next={{ request.path|urlencode }}"
+                            title="Delete this order">
+                            <button class="btn btn-primary er-red">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+
+            {% for item in items %}
+            <div class="row er-list-wrap">
+                <div class="col-6">
+                    <a href="{% url 'shop:shop_details' pk=item.work.id %}" title="View this shop item">
+                        <div class="er-image">
+                            <img src="{{ MEDIA_URL }}{{ item.work.main_image }}" alt="{{ item.work.title }}">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <a href="{% url 'shop:shop_details' pk=item.work.id %}" title="View this shop item">
+                        <div class="er-list-wrap">
+                            <h5>{{ item.work.title }}</h5>
+                            <p>
+                                {{ item.work.shop_settings.work_type }}<br>
+                                {{ item.work.shop_settings.work_size }}
+                            </p>
+                            <p class="er-quantity">
+                                Quantity: {{ item.quantity }}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6">
+                </div>
+                <div class="col-6">
+                    <div>
+                        <table>
+                            <tr>
+                                <td class="er-price-cell">
+                                    {% if item.work.shop_settings.on_sale %}
+                                    {# Show discounted price if on_sale #}
+                                    <span>
+                                        {{ item.work.shop_settings.discount_price }} <i class="fas fa-euro-sign"></i>
+                                    </span>
+                                    {% else %}
+                                    <span>{{ item.work.shop_settings.price }} <i class="fas fa-euro-sign"></i></span>
+                                    {% endif %}
+                                </td>
+                                <td class="er-cart-cell">
+                                    <a
+                                        href="{% url 'cart:add_cart' id=item.work.pk %}?next={{ request.path|urlencode }}">
+                                        <div class="er-nav-button er-shop-button">
+                                            <i class="fas fa-plus"></i>
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td class="er-cart-cell">
+                                    <a
+                                        href="{% url 'cart:remove_cart' id=item.work.pk %}?next={{ request.path|urlencode }}">
+                                        <div class="er-nav-button er-shop-button">
+                                            <i class="fas fa-minus"></i>
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row er-list-divider">
+                <div class="col-12">
+                    <p>
+                        <hr>
+                    </p>
+                </div>
+            </div>
+
+            {% endfor %}
+            <!-- Total price and link to checkout -->
+            <div class="row">
+                <div class="col-6 er-checkout-left">
+                    <p>Total :</p>
+                </div>
+                <div class="col-6 er-checkout-right">
+                    <p>{{ total }} <i class="fas fa-euro-sign"></i></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<!-- Load special screen events (highlite shop item in navbar-->
+<script src="{% static 'js/shop-events.js' %}"></script>
+
+{% endblock %}

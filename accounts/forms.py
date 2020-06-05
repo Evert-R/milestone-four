@@ -46,6 +46,26 @@ class RegisterForm(UserCreationForm):
             Submit('submit', 'Register', css_class='er-green'))
 
 
+class UserUpdateForm(ModelForm):
+    """Update user"""
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name',
+                  'email']
+
+    def __init__(self, *args, **kwargs):
+        super(UserUpdateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.help_text_inline = True
+        self.helper.form_tag = False
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-4 er-form-padding'
+        self.helper.field_class = 'col-sm-8 er-form-padding'
+        self.helper.add_input(
+            Submit('submit', 'Submit', css_class='er-green'))
+
+
 class ResetPasswordForm(PasswordResetForm):
     """Let users reset their password"""
 
