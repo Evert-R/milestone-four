@@ -15,9 +15,11 @@ def all_works(request):
             filter_results = filter_method.cleaned_data['cat'].id
             works = works.filter(
                 category=filter_results)
-            return render(request, "works.html", {"works": works, "filter_form": filter_form})
+            return render(request, "works.html", {"works": works,
+                                                  "filter_form": filter_form})
     else:
-        return render(request, "works.html", {"works": works, "filter_form": filter_form})
+        return render(request, "works.html", {"works": works,
+                                              "filter_form": filter_form})
 
 
 def work_details(request, pk):
@@ -41,7 +43,3 @@ def work_details(request, pk):
                                                     "images": images,
                                                     "works": works,
                                                     "next": next})
-
-
-def all_test(request):
-    return render(request, "test.html")
