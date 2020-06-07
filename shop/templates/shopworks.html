@@ -1,7 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load bootstrap_tags %}
+{% load crispy_forms_tags %}
 {% block content %}
+
+{% if not request.user.is_staff %}
+{# Only show filter options to regular users #}
+<!-- Filter selectors -->
+<div class="container-md">
+    <div class="row">
+        <div class="er-nav-button er-nav-shop">
+            <div>
+                <a class="nav-item nav-link" data-toggle="collapse" href="#er-shop-filters">
+                    <i class="fas fa-angle-down"></i> <span> Filters </span>
+                </a>
+                <div class="collapse" id="er-shop-filters">
+                    <form method="post" id="er-shop-filter" action="{% url 'shop:all_shop_works' %}">
+                        {% crispy shop_filter_form shop_filter_form.helper %}
+                    </form>
+                </div>
+            </div>
+            <div class="er-filter-undo">
+                <a href="{% url 'shop:all_shop_works' %}"><i class="fas fa-undo"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
 
 <!-- Show all shop_works -->
 <section class="container-md er-shop">
@@ -16,7 +40,7 @@
     {% endif %}
     <div class="row">
         <div class="col-12">
-            <h1>Webshop</h1>
+            <h1>{{ title }}</h1>
         </div>
     </div>
     <div class="row">

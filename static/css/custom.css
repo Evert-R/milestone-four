@@ -32,7 +32,7 @@ h2 {
     border-radius: 0.35rem;
     padding: 0.3rem;
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     letter-spacing: 0.2rem;
     text-align: center;
     margin-bottom: 2rem;
@@ -40,7 +40,7 @@ h2 {
 
 h3 {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 0.2rem;
     margin-bottom: 1.3rem;
     margin-left: 1.2rem;
@@ -48,7 +48,7 @@ h3 {
 
 h4 {
     font-family: 'FuturaBT-Heavy', 'Hind';
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-align: right;
     letter-spacing: 0.2rem;
     margin-bottom: 1.3rem;
@@ -261,16 +261,55 @@ table {
     justify-content: center;
 }
 
+.er-nav-shop {
+    position: fixed;
+    top: 8rem;
+    left: 19%;
+    transform: translateX(-50%);
+    z-index: 5000;
+    align-items: center;
+    justify-content: center;
+    width: 9rem;
+    height: 1.5rem;
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0);
+    padding: 0;
+    margin: 0;
+}
+
+.er-nav-shop form {
+    float: left;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.er-filter-undo {
+    position: absolute;
+    right: -3rem;
+    top: 0.3rem;
+    margin-left: 0.3rem;
+    margin-bottom: 0.8rem;
+}
+
+.er-nav-shop span {
+    margin-right: 1.5rem;
+}
+
 .er-nav-left i {
-    padding-left: 0.5rem;
+    margin-left: 1.3rem;
+    margin-right: 1.3rem;
     font-size: 0.8rem;
 }
 
-.er-nav-left a {
-    color: rgba(0, 0, 0, 0.5)
+.er-nav-shop i {
+    margin-left: 0.5rem;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
 }
 
-.er-nav-left .form-control, .form-control-file {
+.er-nav-left a, .er-nav-shop a {}
+
+.er-nav-left .form-control, .er-nav-shop .form-control {
     height: unset;
     color: rgba(0, 0, 0);
     padding-left: 0.3rem;
@@ -278,6 +317,10 @@ table {
     border-radius: 4px;
     background-color: white;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.er-shop-field {
+    display: inline-flexbox;
 }
 
 .er-messages {
@@ -334,6 +377,30 @@ table {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+}
+
+/* --------------------------About page */
+
+.er-about-wrap {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2.3rem;
+}
+
+.er-about p {
+    text-align: justify;
+}
+
+.er-about-image {
+    margin-left: 2.3rem;
+    margin-bottom: 1.6rem;
+    width: 33%;
+    float: right;
+}
+
+.er-about-image img {
+    width: 100%;
 }
 
 /* --------------------------Works page */
@@ -1088,8 +1155,8 @@ form .row {
 
 .col-form-label {
     width: 100%;
-    text-align: right;
-    padding-right: 50%;
+    text-align: left;
+    padding-left: 2.3rem;
     margin-bottom: 0.4rem;
     background-color: rgba(92, 109, 178, 0.7);
     border-radius: 4px;
@@ -1146,7 +1213,7 @@ form .row {
         padding-top: 12.5rem;
     }
     h2 {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     .er-white-front {
         z-index: 5000;
@@ -1158,6 +1225,13 @@ form .row {
     }
     .er-works {
         padding-top: 1rem;
+    }
+    .er-about-wrap {
+        margin-bottom: 4.7rem;
+    }
+    .er-about-image {
+        margin-left: 4.7rem;
+        margin-bottom: 4.7rem;
     }
     .er-shop {
         padding-top: 2rem;
@@ -1223,9 +1297,12 @@ form .row {
         bottom: unset;
     }
     .er-nav-left {
-        top: 8.7rem;
+        top: 8.4rem;
         left: 19%;
         transform: translateX(-50%);
+    }
+    .er-nav-shop {
+        top: 7.8rem;
     }
     .er-nav-links {
         padding-top: 6.5rem;
