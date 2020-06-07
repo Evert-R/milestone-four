@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block content %}
+
+<section class="container-lg er-about">
+    <div class="row">
+        <div class="col-12">
+            <div class="er-wrap">
+                <h1>Lobke van Aar</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+
+            <div class="er-about-wrap">
+                <div class="er-about-image">
+                    <img src="{% static 'images/LobkevanAar_400_267.jpg' %}" alt="Lobke van Aar">
+                </div>
+                <p>
+                    Lobke van Aar (1982) - working in the fields of illustration and custom lettering - is
+                    currently
+                    living
+                    and working in Rotterdam, in the Netherlands. Since 2008 she has been working as a
+                    freelancer on
+                    a
+                    daily
+                    basis.<br><br>
+
+                    The works by Lobke van Aar are a playful mix of illustration, color and typography. Lobke
+                    has a
+                    passion
+                    for hand lettering, a fascination for the whispers of the past and is always looking for the
+                    human
+                    element in her topics. In her day to day life it's the little things that jump out and
+                    inspire
+                    her.
+                </p>
+
+
+
+
+
+            </div>
+        </div>
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="er-about-wrap er-image">
+                <img src="{% static 'images/Lobke-van-Aar_1_670.jpg' %}" alt="Lobke van Aar">
+            </div>
+        </div>
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="row">
+                <div class="col-8 offset-4">
+                    <div class="er-about-wrap">
+                        <h2 class="text-right">Clients:</h2>
+
+                        <p>
+                            Flow magazine, Sesame street, Het Financieele Dagblad, ELLE (Japan), Uitgeverij Snor,
+                            NRC
+                            Handelsblad, nrc.next, De Standaard (B), De Tijd (B), Anne Frank Krant, Margriet
+                            magazine,
+                            Elsevier,
+                            Erasmus Universiteit Rotterdam, Stichting Appeltaartconcerten, I amsterdam, Ouders van
+                            nu,
+                            KLM,
+                            Heijmans, Nuon, ABN Amro, Baker Tilly Berk, Vice, Opzij, Boekie Boekie, toBe Magazine,
+                            Alrijne
+                            Zorggroep, Het Koninklijk Concertgebouw, TechniekTalent.nu, University of Missouri
+                            (USA),
+                            Kek
+                            Mama,
+                            Solos, Consumentenbond, Brabants Dagblad, HLB Nederland, Punt., Wijkplein, Avans
+                            Hogeschool,
+                            Starterslift, Productiehuis Brabant, Theaterfestival Boulevard, Divers, Willem II
+                            Fabriek,
+                            AxionContinu, DLL Group, Bakker.com
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="er-about-wrap">
+                <div style="padding:45.83% 0 0 0;position:relative;"><iframe
+                        src="https://player.vimeo.com/video/221556956?title=0&byline=0&portrait=0"
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
+                        allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+                <script src="https://player.vimeo.com/api/player.js"></script>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Load about events - set menu item active -->
+<script src="{% static 'js/about-events.js' %}"></script>
+
+{% endblock %}
