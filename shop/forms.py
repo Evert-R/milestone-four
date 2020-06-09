@@ -4,7 +4,6 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Field, LayoutObject
 
 
-
 class ShopFilterForm(forms.Form):
     type = forms.ModelChoiceField(
         queryset=work_types.objects.all(), empty_label="-- Type --", required=False)
@@ -19,6 +18,7 @@ class ShopFilterForm(forms.Form):
         self.fields['size'].label = False
         self.fields['mat'].label = False
         self.helper = FormHelper(self)
+        self.helper.form_tag = False
         self.helper.help_text_inline = True
         self.helper.form_class = 'form-horizontal'
         self.helper.field_class = 'er-shop-field'
