@@ -13,6 +13,8 @@ def all_works(request):
         filter_method = FilterForm(request.POST)
         if filter_method.is_valid():
             filter_results = filter_method.cleaned_data['cat'].id
+            # Set this category as initial value for the form
+            filter_form.fields['cat'].initial = filter_results
             works = works.filter(
                 category=filter_results)
             return render(request, "works.html", {"works": works,

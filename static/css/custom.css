@@ -250,66 +250,74 @@ table {
 
 /* -----------Filter selectors */
 
-.er-nav-left {
+.er-nav-works-filter {
     position: fixed;
-    top: 8.7rem;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 8.4rem;
+    left: 14rem;
     z-index: 5000;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.er-nav-shop {
+.er-nav-shop-filter {
     position: fixed;
-    top: 8rem;
-    left: 19%;
-    transform: translateX(-50%);
-    z-index: 5000;
-    align-items: center;
-    justify-content: center;
-    width: 9rem;
-    height: 1.5rem;
-    font-size: 0.7rem;
+    top: 3.5rem;
+    right: 0;
+    z-index: 3000;
+    text-align: right;
+    width: 50%;
+    font-family: 'FuturaBT-Book', 'Muli';
+    font-weight: 600;
+    background-color: white;
     color: rgba(0, 0, 0);
-    padding: 0;
+    padding: 0.2rem 0.3rem;
     margin: 0;
 }
 
-.er-nav-shop form {
+.er-nav-shop-filter form {
     float: left;
     width: 100%;
     padding: 0.5rem;
 }
 
 .er-filter-undo {
+    width: 2rem;
+    z-index: 1000;
     position: absolute;
-    right: -3rem;
-    top: 0.3rem;
+    left: -3.5rem;
+    top: 3.6rem;
     margin-left: 0.3rem;
     margin-bottom: 0.8rem;
 }
 
-.er-nav-shop span {
-    margin-right: 1.5rem;
+.er-nav-shop-filter span {
+    font-family: 'FuturaBT-Book', 'Muli';
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
 }
 
-.er-nav-left i {
-    margin-left: 1.3rem;
+.er-nav-works-filter i {
+    color: rgba(0, 0, 0, 0.5);
+    margin-left: 0.7rem;
     margin-right: 1.3rem;
     font-size: 0.8rem;
 }
 
-.er-nav-shop i {
-    margin-left: 0.5rem;
-    margin-right: 1.5rem;
-    font-size: 0.8rem;
+.er-nav-shop-filter i {
+    margin-left: 4.5rem;
+    margin-right: 0;
+    font-size: 0.9rem;
 }
 
-.er-nav-left a, .er-nav-shop a {}
+.er-filter-undo i {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1rem;
+    margin-left: 0;
+}
 
-.er-nav-left .form-control, .er-nav-shop .form-control {
+.er-nav-works-filter .form-control, .er-nav-shop-filter .form-control {
     height: unset;
     color: rgba(0, 0, 0);
     padding-left: 0.3rem;
@@ -320,6 +328,7 @@ table {
 }
 
 .er-shop-field {
+    width: 100%;
     display: inline-flexbox;
 }
 
@@ -528,7 +537,7 @@ table {
     font-size: 0.8rem;
     position: fixed;
     z-index: 3000;
-    top: 11.5rem;
+    top: 3rem;
     left: 50%;
     transform: translateX(-50%);
     padding: 0.2rem 1rem;
@@ -1296,13 +1305,48 @@ form .row {
         top: 0;
         bottom: unset;
     }
-    .er-nav-left {
+    .er-nav-works-filter {
         top: 8.4rem;
-        left: 19%;
-        transform: translateX(-50%);
+        left: 1rem;
+        transform: translateX(0);
     }
-    .er-nav-shop {
-        top: 7.8rem;
+    .er-shop-info {
+        top: 11.5rem;
+    }
+    .er-nav-shop-filter {
+        width: 10rem;
+        top: 8.4rem;
+        right: unset;
+        left: 1rem;
+        padding: 0.06rem 0.3rem;
+        transform: translateX(0%);
+        font-size: 0.9rem;
+        border-style: solid;
+        border-width: 0.5px;
+        border-radius: 4px;
+        background-color: white;
+        border-color: rgba(0, 0, 0, 0.2);
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    }
+    .er-nav-shop-filter span {
+        font-size: 0.8rem;
+        letter-spacing: 0;
+        margin-right: 1.5rem;
+    }
+    .er-filter-undo {
+        top: 0.3rem;
+        left: unset;
+        right: -1.5rem;
+    }
+    .er-filter-undo i {
+        font-size: 0.8rem;
+        margin-left: 0;
+    }
+    #er-collapse-filter {
+        display: block;
+    }
+    .er-shop-field {
+        width: unset;
     }
     .er-nav-links {
         padding-top: 6.5rem;

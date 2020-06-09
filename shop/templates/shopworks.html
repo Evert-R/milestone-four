@@ -8,17 +8,22 @@
 <!-- Filter selectors -->
 <div class="container-md">
     <div class="row">
-        <div class="er-nav-button er-nav-shop">
-            <div>
-                <a class="nav-item nav-link" data-toggle="collapse" href="#er-shop-filters">
-                    <i class="fas fa-angle-down"></i> <span> Filters </span>
-                </a>
-                <div class="collapse" id="er-shop-filters">
-                    <form method="post" id="er-shop-filter" action="{% url 'shop:all_shop_works' %}">
-                        {% crispy shop_filter_form shop_filter_form.helper %}
-                    </form>
-                </div>
+        <div class="er-nav-shop-filter collapse" id="er-collapse-filter">
+
+            <a data-toggle="collapse" href="#er-shop-filters">
+
+                <span class="d-none d-md-inline"> Filters
+                </span>
+
+                <i class="text-right d-none d-md-inline fas fa-angle-down"></i>
+
+            </a>
+            <div class="collapse" id="er-shop-filters">
+                <form method="post" id="er-shop-filter" action="{% url 'shop:all_shop_works' %}">
+                    {% crispy shop_filter_form shop_filter_form.helper %}
+                </form>
             </div>
+
             <div class="er-filter-undo">
                 <a href="{% url 'shop:all_shop_works' %}"><i class="fas fa-undo"></i></a>
             </div>
