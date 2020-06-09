@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+<!-- Load columns settings for work overview bottom page -->
 <link rel="stylesheet" href="{% static 'css/columns.css' %}">
-<div class="container-lg er-detail">
+
+<!-- Vertical Main image layout -->
+<section class="container-lg er-detail">
     <div class="row">
         {% if work.position == 'VT' %}
         {# Show when vertical layout is selected #}
@@ -110,6 +114,7 @@
         </div>
         {% endif %}
 
+        <!-- Horizontal Main image layout -->
 
         {% else %}
         {# Show when Horizontal layout is selected #}
@@ -151,7 +156,6 @@
             </div>
             {% endif %}
         </div>
-
 
         {% if images.2 %}
         <div class="col-12 col-md-7 offset-md-1 er-detail-left">
@@ -220,7 +224,6 @@
     </div>
 
     <!-- Show all works -->
-
     <div class="row">
         <div class="d-none d-md-block col-md-10 offset-md-1">
             <div class="card-columns">
@@ -239,8 +242,7 @@
         </div>
     </div>
 
-
-</div>
+</section>
 
 <!-- Load special screen events for small navigation bar -->
 <script src="{% static 'js/details-events.js' %}"></script>

@@ -12,9 +12,8 @@
         <div class="er-nav-works-filter">
             <form method="post" id="er-filter-works" action="{% url 'all_works' %}">
                 {% crispy filter_form %}
-
             </form><br>
-            <div><a href="{% url 'all_works' %}"><i class="fas fa-undo"></i></a></div>
+            <div><a href="{% url 'all_works' %}" title="Undo filter settings"><i class="fas fa-undo"></i></a></div>
         </div>
     </div>
 </div>

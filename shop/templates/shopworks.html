@@ -9,23 +9,18 @@
 <div class="container-md">
     <div class="row">
         <div class="er-nav-shop-filter collapse" id="er-collapse-filter">
-
             <a data-toggle="collapse" href="#er-shop-filters">
-
                 <span class="d-none d-md-inline"> Filters
                 </span>
-
                 <i class="text-right d-none d-md-inline fas fa-angle-down"></i>
-
             </a>
             <div class="collapse" id="er-shop-filters">
                 <form method="post" id="er-shop-filter" action="{% url 'shop:all_shop_works' %}">
                     {% crispy shop_filter_form shop_filter_form.helper %}
                 </form>
             </div>
-
             <div class="er-filter-undo">
-                <a href="{% url 'shop:all_shop_works' %}"><i class="fas fa-undo"></i></a>
+                <a href="{% url 'shop:all_shop_works' %}" title="Undo filter settings"><i class="fas fa-undo"></i></a>
             </div>
         </div>
     </div>
@@ -34,7 +29,9 @@
 
 <!-- Show all shop_works -->
 <section class="container-md er-shop">
+
     {% if info and message %}
+    {# Show shop message banner only when navigating from the main menu #}
     <div class="row">
         <div class="col-12">
             <div class="er-shop-info">
@@ -43,23 +40,27 @@
         </div>
     </div>
     {% endif %}
+
     <div class="row">
         <div class="col-12">
             <h1>{{ title }}</h1>
         </div>
     </div>
+    <!-- Show all shop items -->
     <div class="row">
         {% for work in works %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3" id="er-hover-{{ work.id }}">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
             {% if work.shop_settings.on_sale %}
-            {# Show on sale notification #}
+            {# Show discount banner when item on sale #}
             <div class="er-discount">-{{ work.shop_settings.discount }}%</div>
             {% endif %}
+
             <div class="er-shop-wrap">
                 <div class="er-shop-top">
                     <h5>{{ work.title }}</h5>
-
                 </div>
+                <!-- Main image -->
                 <a href="{% url 'shop:shop_details' pk=work.id %}?next={{ request.path|urlencode }}"
                     title="View this shop item">
                     {% if work.shop_settings.main_image %}
@@ -71,13 +72,15 @@
                             {% endif %}
                         </div>
                 </a>
+
                 <div class="er-shop-body">
                     <p class="text-center">{{ work.shop_settings.work_type }}</p>
-                    <div class="er-slide" id="er-slide-{{ work.id }}">
+                    <div>
                         <table>
                             <tr>
                                 <td class="er-price-cell">
                                     {% if work.shop_settings.on_sale %}
+                                    {# Show discounted price if applicable #}
                                     <span>
                                         {{ work.shop_settings.discount_price }}
                                         <i class="fas fa-euro-sign"></i>
@@ -92,12 +95,10 @@
                                 </td>
                                 <td class="er-cart-cell">
                                     <a href="{% url 'cart:add_cart' id=work.pk %}?next={{ request.path|urlencode }}"
-                                        title="Add to cart">
+                                        title="Add item to shopping cart">
                                         <div class="er-nav-button er-shop-button">
-
                                             <i class="fas fa-plus"></i>
                                             <i class="fas fa-shopping-cart"></i>
-
                                         </div>
                                     </a>
                                 </td>
@@ -108,6 +109,7 @@
             </div>
         </div>
         {% endfor %}
+
     </div>
 </section>
 

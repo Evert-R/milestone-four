@@ -7,7 +7,7 @@
             <h1>{{ work.title }}</h1>
         </div>
     </div>
-    <!-- Show details from a shop item -->
+    <!-- Show details of a shop item -->
     <div class="row">
         <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
             <div class="row er-shop-wrap">
@@ -35,7 +35,7 @@
                             {% endif %}
 
                             {% if work.shop_settings.standard_text %}
-                            {# if selected show standard text #}
+                            {# if selected show generated text #}
                             <p>
                                 {{ work.shop_settings.work_type }} {{ work.shop_settings.material }} with a size of
                                 {{ work.shop_settings.work_size }}.</p>
@@ -48,10 +48,10 @@
                                 {% if work.shop_settings.frame == 'FR' %} The frame is included.{% endif %}
                             </p>
                             {% endif %}
-
                         </div>
                     </div>
-                    <!-- Get all extra images and create dots to view them -->
+
+                    <!-- Get all extra images and create link-dots to view them -->
                     <div class="col-12 order-2 col-sm-6 order-sm-3">
                         <div class="er-image-select">
                             <!-- First dot is the main image -->
@@ -70,15 +70,16 @@
                                 });
                             </script>
                             {% endfor %}
-
                         </div>
                     </div>
+
                     <!-- The price and add cart button -->
                     <div class="col-12 order-4 col-sm-6">
                         <table>
                             <tr>
                                 <td class="er-price-cell">
                                     {% if work.shop_settings.on_sale %}
+                                    {# When on sale show discounted price#}
                                     <span>
                                         {{ work.shop_settings.discount_price }}
                                         <i class="fas fa-euro-sign"></i>
@@ -89,11 +90,11 @@
                                     {% else %}
                                     <span>{{ work.shop_settings.price }} <i class="fas fa-euro-sign"></i></span>
                                     {% endif %}
-
                                 </td>
+
                                 <td class="er-cart-cell">
                                     <a href="{% url 'cart:add_cart' id=work.pk %}?next={{ request.path|urlencode }}"
-                                        title="Add to cart">
+                                        title="Add item to shopping cart">
                                         <div class="er-nav-button er-shop-button">
                                             <i class="fas fa-plus"></i>
                                             <i class="fas fa-shopping-cart"></i>

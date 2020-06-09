@@ -21,6 +21,7 @@
         integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
+    <!-- Text needed for the licensed font used in this project -->
     <!--
         /**
         * @license
@@ -50,15 +51,16 @@
 
 <body>
     <header class="container-md">
-
+        <!-- Logo: Lobke van Aar -->
         <div class="er-logo" id="er-logo">
-            <a href="{% url 'all_works' %}">
+            <a href="{% url 'all_works' %}" title="Goto homepage">
                 <img src="{% static 'images/logo_Lobke-van-Aar.png' %}" alt="Lobke van Aar Logo" />
             </a>
         </div>
         <!-- Navigation bar -->
         <div class="row">
             <nav class="navbar fixed-top navbar-expand-md navbar-light">
+                <!-- Button for mobile menu -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarNavAltMarkup, #er-collapse-filter, #er-shop-filters"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,16 +72,19 @@
                     <div class="col-md-4 order-2">
                         <div class="navbar-nav er-nav-links er-links-center">
 
-                            <a class="nav-item nav-link" id="er-works-active" href="{% url 'all_works' %}">Work</a>
+                            <a class="nav-item nav-link" id="er-works-active" href="{% url 'all_works' %}"
+                                title="Portfolio">Work</a>
 
-                            <a class="nav-item nav-link" id="er-about-active" href="{% url 'about:about' %}">About</a>
+                            <a class="nav-item nav-link" id="er-about-active" href="{% url 'about:about' %}"
+                                title="About">About</a>
 
                             <a class="nav-item nav-link" id="er-shop-active"
-                                href="{% url 'shop:all_shop_works' %}?info=show">Shop</a>
+                                href="{% url 'shop:all_shop_works' %}?info=show" title="Webshop">Shop</a>
 
                         </div>
                     </div>
-                    <!-- Leftside menu -->
+
+                    <!-- Leftside menu Dashboard for site owner-->
                     <div class="col-md-4 order-1 er-links-left">
                         {% if request.user.is_staff %}
                         {# Only show admin links to staff #}
@@ -87,7 +92,7 @@
                             <div>
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link" href="{% url 'dashboard:add_works' %}"
-                                        title="Add new work"><i class="fas fa-plus"></i> Work</a>
+                                        title="Add a new work"><i class="fas fa-plus"></i> Work</a>
                                 </div>
                                 <br class="d-sm-none">
                                 <div class="er-nav-button">
@@ -114,7 +119,8 @@
                     <!-- Rightside menu (shop) -->
                     <div class="col-md-4 order-3 er-links-right d-none d-md-block">
                         <div class="d-flex flex-row-reverse navbar-nav er-nav-links">
-                            <div class="" id="er-shop-nav">
+                            <div id="er-shop-nav">
+
                                 <!-- Cart button -->
                                 {% if request.session.cart %}
                                 {# Show only when something is in the cart #}
@@ -141,9 +147,9 @@
                                         title="Log out"><i class="fas fa-sign-out-alt"></i> Log-out</a>
                                 </div>
                                 {% endif %}
-                                {% if not request.user.is_authenticated %}
-                                {# Show only when not logged in #}
 
+                                {% if not request.user.is_authenticated %}
+                                {# Show only when no user is logged in #}
                                 <!-- Register button -->
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link"
@@ -151,7 +157,6 @@
                                         title="Register as a new customer">
                                         <i class="fas fa-user-plus"></i> Register</a>
                                 </div>
-
                                 <!-- Log-in button -->
                                 <div class="er-nav-button">
                                     <a class="nav-item nav-link"
@@ -161,6 +166,7 @@
                                             class="sr-only">(current)</span></a>
                                 </div>
                                 {% endif %}
+
                             </div>
                         </div>
                     </div>
@@ -182,7 +188,7 @@
                     {% endif %}
 
                     {% if not request.user.is_authenticated %}
-                    {# Show only when not logged in #}
+                    {# Show only when no user is logged in #}
                     <!-- Log-in button -->
                     <div class="er-nav-button er-log-button">
                         <a class="nav-item nav-link"
@@ -190,7 +196,6 @@
                             title="Log in to use the shop">
                             <i class="fas fa-sign-in-alt"></i> Log-in<span class="sr-only">(current)</span></a>
                     </div>
-
                     <!-- Register button -->
                     <div class="er-nav-button er-profile-button">
                         <a class="nav-item nav-link"
@@ -208,7 +213,6 @@
                             href="{% url 'accounts:add_user_details' %}?next={{ request.path|urlencode }}"
                             title="See your profile"><i class="fas fa-user"></i> Profile</a>
                     </div>
-
                     <!-- Log-out button -->
                     <div class="er-nav-button er-log-button">
                         <a class="nav-item nav-link"
@@ -216,11 +220,13 @@
                                 class="fas fa-sign-out-alt"></i> Log-out</a>
                     </div>
                     {% endif %}
+
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- Show python generated warning messages -->
     {% if messages %}
     {# Show notifications #}
     <div class="er-messages">
@@ -228,6 +234,7 @@
     </div>
     {% endif %}
 
+    <!-- If an origin is given show a back button -->
     {% if next %}
     {# if a next page is given show back button #}
     <div class="row">
@@ -242,7 +249,10 @@
     </div>
     {% endif %}
 
+    <!-- Templates content -->
     {% block content %} {% endblock %}
+
+    <!-- Footer -->
     <footer class="er-footer">
         <div class="container">
             <div class="row">
@@ -253,10 +263,10 @@
                             -
                             <a href="mailto:info@lobkevanaar"
                                 title="Sent email to lobke van aar">info@lobkevanaar.nl</a>
-
                         </p>
                     </div>
                 </div>
+
                 <div class="col-2 order-2 col-md-1 order-md-1 col-lg-1 order-lg-2 er-footer-col">
                     <div class="er-footer-wrap">
                         <p>
@@ -268,6 +278,7 @@
                         </p>
                     </div>
                 </div>
+
                 <div class="col-8 order-3 col-md-10 order-md-2 col-lg-4 order-lg-3 er-footer-col">
                     <div class="er-footer-wrap">
                         <p>
@@ -278,6 +289,7 @@
                         </p>
                     </div>
                 </div>
+
                 <div class="col-2 order-4 col-md-1 order-md-3 col-lg-1 order-lg-4 er-footer-col">
                     <div class="er-footer-wrap">
                         <p>
@@ -289,15 +301,17 @@
                         </p>
                     </div>
                 </div>
+
                 <div class="col-12 order-5 col-md-6 order-md-5 col-lg-3 order-lg-5 er-footer-col er-web er-web-display">
                     <div class="er-footer-wrap">
                         <p>
                             <a href="https://www.evertrot.nl" target="blank" title="Evert Rot webdesgin-development">
                                 Web-design/development: Evert Rot
+                            </a>
                         </p>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </footer>
