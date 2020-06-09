@@ -7,4 +7,4 @@ $('#er-shop-nav').addClass('d-none');
 // Make filter submit on select
 $('#id_cat').change(function () {
     $('#er-filter-works').submit();
-})
+});

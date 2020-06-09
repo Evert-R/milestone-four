@@ -5,8 +5,8 @@ window.onload = function () {
         $('.nav-item').removeClass('active');
         $(this).addClass('active');
 
-    })
-}
+    });
+};
 
 // Slide up error/success messages
 setTimeout(function () {
@@ -24,9 +24,9 @@ so it's not too intrusive
 $(window).scroll(function () {
     if ($(this).scrollTop() > 0) {
         $('.er-footer').css('position', 'unset');
-        $('.er-web').removeClass('er-web-display')
+        $('.er-web').removeClass('er-web-display');
     } else {
         $('.er-footer').css('position', 'fixed');
-        $('.er-web').addClass('er-web-display')
+        $('.er-web').addClass('er-web-display');
     }
 });
