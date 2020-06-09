@@ -2,7 +2,9 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="container-md er-accounts">
+
+<!-- Login page -->
+<section class="container-md er-accounts">
     <div class="row">
         <div class="col-12">
             <div class="er-wrap">
@@ -14,7 +16,6 @@
         <div class="col-12 col-lg-6 offset-lg-3 er-third-screen">
             <div class="er-form-wrap">
                 <p class="text-left">
-
                     <a class="" href="{% url 'reset_password' %}?next={{ next }}" title="Reset your password"><i
                             class="fas fa-envelope"></i> Forgot your password?
                         Click here to reset </a>
@@ -23,18 +24,17 @@
                     <input type="hidden" name="next" value="{{ next }}">
                     {% crispy accounts_form accounts_form.helper %}
                 </form>
-
                 <p>
                     <a class="" href="{% url 'accounts:register_user' %}?next={{ next }}"
                         title="Register as a new customer">Don't have an account? Please register here <i
                             class="fas fa-user-plus"></i></a>
                 </p>
-
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- Load special screen events (highlite shop item in navbar-->
 <script src="{% static 'js/shop-events.js' %}"></script>
+
 {% endblock %}

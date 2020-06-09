@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<main class="container-lg er-dashboard">
+<section class="container-lg er-dashboard">
     <div class="row">
         <div class="col-lg-12">
             <h1>{{ title }}</h1>
@@ -10,7 +10,7 @@
 
     {% block dashboard %} {% endblock %}
 
-</main>
+</section>
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 <!-- Load special screen events -->
 
