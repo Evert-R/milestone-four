@@ -5,9 +5,9 @@ from shop.models import shop_items, work_sizes, work_types, materials
 import base64               # for decoding base64 image
 import tempfile             # for setting up tempdir for media
 from io import BytesIO
-from django.test import TestCase
 from django.core.files.uploadedfile import InMemoryUploadedFile
 # Create your tests here.
+
 # self.assertEqual(form.errors, '6767')
 
 
@@ -233,7 +233,7 @@ class TestAddExtraImagesForm(TestCase):
                                   main_image=image)
 
     def test_add_extra_images_all_fields(self):
-         # Get the category object
+        # Get the work object
         work = work_items.objects.first()
         # Create a fake image
         image = InMemoryUploadedFile(
@@ -252,7 +252,7 @@ class TestAddExtraImagesForm(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_add_extra_images_no_required_fields(self):
-         # Get the category object
+        # Get the work object
         work = work_items.objects.first()
         # Create a fake image
         image = InMemoryUploadedFile(
