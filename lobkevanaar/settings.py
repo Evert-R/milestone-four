@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import dj_database_url
 
-# Load local environment variables if run local
+# Load local environment variables if we run local
 if os.path.exists('env.py'):
     import env
 
@@ -95,6 +95,8 @@ WSGI_APPLICATION = 'lobkevanaar.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 # use heroku postgresql database
 
+# If a TEST variable is present we use the sqlite database
+# Heroku won't let us use the progresql for this
 if os.environ.get('TEST'):
     DATABASES = {
         'default': {
