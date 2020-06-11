@@ -1,5 +1,6 @@
 from django.test import TestCase
 from works.models import work_items, categories
+from .models import shop_items, work_types, work_sizes, materials, shop_message
 import base64               # for decoding base64 image
 import tempfile             # for setting up tempdir for media
 from io import BytesIO
@@ -23,18 +24,66 @@ class TestWorkViews(TestCase):
         categories.objects.create(name='test')
         # Get the category object
         category = categories.objects.first()
+        # Create a work type object
+        work_types.objects.create(name='test')
+        # Get the work type object
+        work_type = work_types.objects.first()
+        # Create a work size object
+        work_sizes.objects.create(name='test')
+        # Get the work size object
+        work_size = work_sizes.objects.first()
+        # Create a materials object
+        materials.objects.create(name='test')
+        # Get the materials object
+        material = materials.objects.first()
+        # Create shop settings
+        shop_items.objects.create(work_type=work_type,
+                                  work_size=work_size,
+                                  material=material
+                                  )
+        shop_item = shop_items.objects.first()
         # Create a work object
         work_items.objects.create(position='VT',
                                   category=category,
                                   title='test',
-                                  main_image=image)
+                                  main_image=image,
+                                  shop_settings=shop_item
+                                  )
 
     def test_show_all_shop_works(self):
-        response = self.client.get('/shop/')
+        response = self.client.get('/shop/?info=show')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'shopworks.html')
 
-    def test_show_work_details(self):
+    def test_show_all_shop_works_message_object_present(self):
+        shop_message.objects.create(info='test',
+                                    show=False)
+        response = self.client.get('/shop/?info=show')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'shopworks.html')
+
+    def test_show_type_filtered_shop_works(self):
+        # Get the work type object
+        work_type = work_types.objects.first()
+        response = self.client.post('/shop/', {'type': work_type.id})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'shopworks.html')
+
+    def test_show_size_filtered_shop_works(self):
+        # Get the work size object
+        work_size = work_sizes.objects.first()
+        response = self.client.post('/shop/', {'size': work_size.id})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'shopworks.html')
+
+    def test_show_material_filtered_shop_works(self):
+        # Get the work size object
+        material = work_sizes.objects.first()
+        response = self.client.post('/shop/', {'mat': material.id})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'shopworks.html')
+
+    def test_show_shop_details(self):
         # Get the work object
         work = work_items.objects.first()
         response = self.client.get(f'/shop/{work.id}')
