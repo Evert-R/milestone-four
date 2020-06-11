@@ -34,6 +34,13 @@ class TestWorkViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'works.html')
 
+    def test_show_all_filtered_works(self):
+        # Get the category object
+        category = categories.objects.first()
+        response = self.client.post('/works/', {'cat': category.id})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'works.html')
+
     def test_show_work_details(self):
         # Get the work object
         work = work_items.objects.first()
