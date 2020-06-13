@@ -13,6 +13,7 @@ from accounts import decorators
 
 def user_profile(request):
     """Display profile page"""
+    next = request.GET.get('next', '/')
     # Get active user
     active_user = request.user
     user_form = UserUpdateForm(instance=active_user)
@@ -33,14 +34,16 @@ def user_profile(request):
     # if not show the list and rais an error message
     except:
         user_orders = None
-    ordered_items = {}
-    for order in user_orders:
-        ordered_items[order] = order_items.objects.filter(order=order)
+
+    ordered_items = order_items.objects.all()
+
     return render(request, 'profile.html',
                   {'user_form': user_form,
                    'details_form': details_form,
                    'orders': user_orders,
-                   'ordered_items': ordered_items
+                   'ordered_items': ordered_items,
+                   'title': 'Profile for ' + active_user.first_name + ' ' + active_user.last_name,
+                   'next': next
                    })
 
 
