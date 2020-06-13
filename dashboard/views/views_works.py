@@ -216,8 +216,11 @@ def delete_image(request, pk):
     """
     Delete an extra image from the database
     """
-
-    next = request.GET.get('next', '/')
+    # Get next for either get or post request
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+    else:
+        next = request.GET.get('next', '/')
     try:
         image = work_images.objects.get(pk=pk)
     except:
@@ -236,7 +239,6 @@ def delete_image(request, pk):
         image.delete()
         messages.success(request,
                          'The image was successfully deleted')
-        next = request.POST.get('next', '/')
         return redirect(next)
     # render confirmation page
     return render(request, "delete_image.html",
@@ -244,4 +246,3 @@ def delete_image(request, pk):
                    'work': work,
                    'image': image,
                    'next': next})
-
