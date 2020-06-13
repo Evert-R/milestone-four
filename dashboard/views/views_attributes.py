@@ -11,6 +11,11 @@ from shop.models import work_sizes, work_types, materials, shipping
 @login_required()
 @admin_only
 def edit_categories(request, pk=None):
+    # Get next for either get or post request
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+    else:
+        next = request.GET.get('next', '/')
     # if this is an extisting category
     if pk:
         # Get the category
@@ -23,7 +28,6 @@ def edit_categories(request, pk=None):
             return redirect(next)
         # if a form was posted
         if request.method == 'POST':
-            next = request.POST.get('next', '/')
             # Update the category name
             new_name = request.POST.get('category')
             category.name = new_name
@@ -34,7 +38,6 @@ def edit_categories(request, pk=None):
             return redirect(next)
         # If not delete it
         else:
-            next = request.GET.get('next', '/')
             messages.success(request, category.name
                              + ' has been deleted')
             category.delete()
@@ -43,7 +46,6 @@ def edit_categories(request, pk=None):
     else:
         # Create a new one
         if request.method == 'POST':
-            next = request.POST.get('next', '/')
             new_name = request.POST.get('category')
             new_category = categories(name=new_name)
             new_category.save()
@@ -55,6 +57,11 @@ def edit_categories(request, pk=None):
 @login_required()
 @admin_only
 def edit_work_types(request, pk=None):
+    # Get next for either get or post request
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+    else:
+        next = request.GET.get('next', '/')
     # if this is an extisting work type
     if pk:
         # Get the work type
@@ -67,7 +74,6 @@ def edit_work_types(request, pk=None):
             return redirect(next)
         # if a form was posted
         if request.method == 'POST':
-            next = request.POST.get('next', '/')
             # Update the work type name
             new_name = request.POST.get('worktype')
             work_type.name = new_name
@@ -78,7 +84,6 @@ def edit_work_types(request, pk=None):
             return redirect(next)
         # If not delete it
         else:
-            next = request.GET.get('next', '/')
             messages.success(request, work_type.name
                              + ' had been deleted')
             work_type.delete()
@@ -87,7 +92,6 @@ def edit_work_types(request, pk=None):
     else:
         # Create a new one
         if request.method == 'POST':
-            next = request.POST.get('next', '/')
             new_name = request.POST.get('worktype')
             new_work_type = work_types(name=new_name)
             new_work_type.save()
@@ -99,7 +103,12 @@ def edit_work_types(request, pk=None):
 @login_required()
 @admin_only
 def edit_work_sizes(request, pk=None):
-    # if this is an extisting work-size
+    # Get next for either get or post request
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+    else:
+        next = request.GET.get('next', '/')
+    # check if this is an extisting work-size
     if pk:
         # Get the category
         try:
@@ -111,7 +120,6 @@ def edit_work_sizes(request, pk=None):
             return redirect(next)
         # if a form was posted
         if request.method == 'POST':
-            next = request.POST.get('next', '/')
             # Update the category name
             new_name = request.POST.get('worksize')
             work_size.name = new_name
@@ -122,7 +130,6 @@ def edit_work_sizes(request, pk=None):
             return redirect(next)
         # If not delete it
         else:
-            next = request.GET.get('next', '/')
             messages.success(request, work_size.name
                              + ' had been deleted')
             work_size.delete()
@@ -131,7 +138,6 @@ def edit_work_sizes(request, pk=None):
     else:
         # Create a new one
         if request.method == 'POST':
-            next = request.POST.get('next', '/')
             new_name = request.POST.get('worksize')
             new_work_size = work_sizes(name=new_name)
             new_work_size.save()
@@ -143,7 +149,12 @@ def edit_work_sizes(request, pk=None):
 @login_required()
 @admin_only
 def edit_materials(request, pk=None):
-    # if this is an extisting material
+    # Get next for either get or post request
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+    else:
+        next = request.GET.get('next', '/')
+    # check if this is an extisting material
     if pk:
         # Get the material
         try:
@@ -155,7 +166,6 @@ def edit_materials(request, pk=None):
             return redirect(next)
         # if a form was posted
         if request.method == 'POST':
-            next = request.POST.get('next', '/')
             # Update the category name
             new_name = request.POST.get('material')
             material.name = new_name
@@ -166,7 +176,6 @@ def edit_materials(request, pk=None):
             return redirect(next)
         # If not delete it
         else:
-            next = request.GET.get('next', '/')
             messages.success(request, material.name
                              + ' has been deleted')
             material.delete()
@@ -175,7 +184,6 @@ def edit_materials(request, pk=None):
     else:
         # Create a new one
         if request.method == 'POST':
-            next = request.POST.get('next', '/')
             new_name = request.POST.get('material')
             new_material = materials(name=new_name)
             new_material.save()
@@ -190,8 +198,12 @@ def edit_shipping(request, pk=None):
     """
     Add/edit shipping region/costs
     """
-
-    # if this is an extisting region
+    # Get next for either get or post request
+    if request.method == 'POST':
+        next = request.POST.get('next', '/')
+    else:
+        next = request.GET.get('next', '/')
+    # check if this is an extisting region
     if pk:
         # Get the region
         try:
@@ -203,7 +215,6 @@ def edit_shipping(request, pk=None):
             return redirect(next)
         # if a form was posted
         if request.method == 'POST':
-            next = request.POST.get('next', '/')
             # Update the region
             new_region = request.POST.get('region')
             new_price = request.POST.get('price')
@@ -217,7 +228,6 @@ def edit_shipping(request, pk=None):
             return redirect(next)
         # If not delete it
         else:
-            next = request.GET.get('next', '/')
             messages.success(request, this_shipping.region +
                              ' has been deleted')
             this_shipping.delete()
@@ -226,7 +236,6 @@ def edit_shipping(request, pk=None):
     else:
         # Create a new one
         if request.method == 'POST':
-            next = request.POST.get('next', '/')
             new_region = request.POST.get('region')
             new_price = request.POST.get('price')
             new_shipping = shipping(region=new_region,
