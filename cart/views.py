@@ -34,7 +34,3 @@ def remove_cart(request, id):
     request.session['cart'] = cart
 
     return redirect(next)
-
-
-def adjust_cart(request):
-    return render(request, "cart.html")
