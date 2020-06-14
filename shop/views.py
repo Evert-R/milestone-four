@@ -22,9 +22,12 @@ def all_shop_works(request):
         message = None
     works = work_items.objects.filter().order_by('shop_settings__sort_order', 'id')
     shop_filter_form = ShopFilterForm()
+
     if request.method == "POST":
+        title = 'all works'
         shop_filter = ShopFilterForm(request.POST)
         if shop_filter.is_valid():
+            title = ''
             try:
                 # Check if a work type was selected
                 filter_type = shop_filter.cleaned_data['type'].id
@@ -33,6 +36,7 @@ def all_shop_works(request):
                 shop_filter_form.fields['type'].initial = filter_type
                 # Filter the works by type
                 works = works.filter(shop_settings__work_type=filter_type)
+                title += ' / ' + type_name
             except:
                 type_name = ''
             try:
@@ -40,6 +44,7 @@ def all_shop_works(request):
                 size_name = shop_filter.cleaned_data['size'].name
                 shop_filter_form.fields['size'].initial = filter_size
                 works = works.filter(shop_settings__work_size=filter_size)
+                title += ' / ' + size_name
             except:
                 size_name = ''
             try:
@@ -47,19 +52,20 @@ def all_shop_works(request):
                 material_name = shop_filter.cleaned_data['mat'].name
                 shop_filter_form.fields['mat'].initial = filter_mat
                 works = works.filter(shop_settings__material=filter_mat)
+                title += ' / ' + material_name
             except:
                 filter_mat = ''
             return render(request, "shopworks.html", {"works": works,
                                                       "shop_filter_form": shop_filter_form,
-                                                      'title': 'Webshop'})
+                                                      'title': 'Viewing: ' + title})
 
     # Get all works for the shop
     works = work_items.objects.filter(
         shop_item=True).order_by('shop_settings__sort_order', 'id')
-
+    title = 'Viewing all works'
     return render(request, "shopworks.html", {"works": works,
                                               "shop_filter_form": shop_filter_form,
-                                              "title": 'Webshop',
+                                              "title": title,
                                               "message": message,
                                               "info": info})
 
