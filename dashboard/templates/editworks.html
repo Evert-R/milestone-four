@@ -15,43 +15,46 @@
             </a>
         </div>
         <div class="collapse er-info-wrap" id="er-help-work">
-            <h2 class="text-left">Portfolio works:</h2>
-            <p class="text-left">You can add new works to the portfolio on this page. Make sure you
-                first add a
-                category, if it's a new one.<br>Vertical/Horizontal will determine the layout of the details page
+            <h2 class="text-left">Edit or add a work:</h2>
+            <p class="text-left">New works can be added to the portfolio on this page. Make sure that you
+                first add a category, if it's a new one.<br>The Vertical/Horizontal setting will determine the layout of
+                the details page
                 for that work.
             </p>
             <h2 class="text-left">Shop items:</h2>
             <p class="text-left">
-                If a new work is set as a shop item a new panel with settings for the shop will be
-                shown. Again,
-                make sure you first add the work type, work size and material if they are not already in
-                the
-                list.
+                When a new work is set to be a shop item, a new panel with settings for use in the shop will be
+                automatically
+                shown. Make sure again, that you first add the work type, work size and material the work uses, if they
+                are not already in
+                the list, before making the shop settings.
             </p>
             <h2 class="text-left">Sort order:</h2>
             <p class="text-left">
-                The sorting order of both the portfolio, as the shop items, overrides the standard sorting,
-                wich is by submitted date.<br>Because of the layout of the portfolio, where items have
+                The sorting order of both the portfolio, and the shop items, override the standard sorting,
+                wich is by submitted date.<br>Because of the layout of the portfolio, where items in the grid have
                 different heights, the works are sorted from top to bottom and then left to right. This is
-                quite unpredictable, so you have to play around a bit to get the perfect
-                look.<br>
+                quite unpredictable, so it might take a little playing around to get the perfect look.<br>
             </p>
             <h2 class="text-left">Manage extra images:</h2>
-            <p class="text-left">You can also upload extra images for each work.<br>
-                The portfolio detail page will show a limit of 10 images.<br>A collection can have as
-                much
-                images as you want.</p>
-            <p class="text-left">If you want a different main image for the shop view, you can also set
-                this at
-                the extra images panel</p>
+            <p class="text-left">You can upload multiple extra images for each work.<br>
+                The portfolio details page will only show a limit of 10 images per work.<br>A collection can have as
+                much images as you want.</p>
+            <p class="text-left">When a work is both in the portfolio and in the shop you can set a different main image
+                for use in the shop. You set
+                this at the extra images panel.<br>Also the sorting order for extra images can be set here. This is
+                especially usefull for perfecting the details view in the portfolio.</p>
             <p>
             </p>
         </div>
 
         <div class="er-form-wrap">
             <a data-toggle="collapse" href="#er-work-details">
+                {% if work %}
                 <h2><i class="fas fa-angle-down"></i> Edit work details</h2>
+                {% else %}
+                <h2><i class="fas fa-angle-down"></i> Add a new work</h2>
+                {% endif %}
             </a>
         </div>
         <!-- Edit/add a work -->
