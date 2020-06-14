@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views.views_about import *
+
 from .views.views_shop import *
 from .views.views_works import *
 from .views.views_attributes import *
