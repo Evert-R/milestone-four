@@ -12,7 +12,11 @@ def all_works(request):
     if request.method == "POST":
         filter_method = FilterForm(request.POST)
         if filter_method.is_valid():
-            filter_results = filter_method.cleaned_data['cat'].id
+            try:
+                filter_results = filter_method.cleaned_data['cat'].id
+            except:
+                return render(request, "works.html", {"works": works,
+                                                      "filter_form": filter_form})
             # Set this category as initial value for the form
             filter_form.fields['cat'].initial = filter_results
             works = works.filter(
