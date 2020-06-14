@@ -26,14 +26,14 @@ def list_works(request, filter=None):
     if filter == 'work':
         works = work_items.objects.filter(
             work_item=True).order_by('sort_order', 'id')
-        title = 'Edit work items only'
+        title = 'Viewing portfolio works only'
     elif filter == 'shop':
         works = work_items.objects.filter(
             shop_item=True).order_by('shop_settings__sort_order', 'id')
-        title = 'Edit Shop items only'
+        title = 'Viewing shop works only'
     else:
         works = work_items.objects.all().order_by('sort_order', 'id')
-        title = 'Edit all works'
+        title = 'Viewing all works'
         filter = 'all'
     return render(request, "listworks.html", {'title': title,
                                               'works': works,
