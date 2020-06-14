@@ -1,15 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<section class="container-lg er-shop-details">
-    <div class="row">
-        <div class="col-12">
-            <h1>{{ work.title }}</h1>
-        </div>
-    </div>
+<section class="container-md er-shop-details">
+
     <!-- Show details of a shop item -->
     <div class="row">
-        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <div class="col-12 col-lg-10 offset-lg-1">
             <div class="row er-shop-wrap">
                 {% if work.shop_settings.main_image %}
                 {# check if a custom main image was set #}
@@ -23,6 +19,7 @@
 
                     <div class="col-12 order-3 col-sm-6 order-sm-3">
                         <div class="er-shop-top">
+                            <h1>{{ work.title }}</h1>
                             <p>{{ work.under_title }}</p>
                         </div>
                         <!-- Show item description -->
