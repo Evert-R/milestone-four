@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<main class="container-md er-checkout">
+<main class="container-md er-accounts">
     <div class="row">
         <div class="col-12">
             <div class="er-wrap">
@@ -13,25 +13,57 @@
     <!-- user info forms -->
     <div class="row">
         <div class="col-lg-6">
-            <div class="er-wrap">
+            <div class="d-none d-lg-block er-wrap">
                 <h3>Account details:</h3>
             </div>
             <!-- User details -->
+            <div class="er-info-wrap">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="text-left">
+                            {{ active_user.first_name }} {{ active_user.last_name }}<br>
+                            {{ user_details.address1 }}<br>
+                            {% if user_details.address2 %}
+                            {{ user_details.address2 }}<br>
+                            {% endif %}
+                            {{ user_details.postcode }}<br>
+                            {{ user_details.country }}<br>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p class="text-left">
+                            {{ user_details.telephone }}<br>
+                            {{ active_user.email }}<br>
+                            Ship to:<br>
+                            {{ user_details.shipping.region }}<br>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <br>
+                        <h2 class="text-center">Use the forms below to update this information.</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- user account form -->
             <div class="er-form-wrap">
                 <a data-toggle="collapse" href="#er-login-details">
-                    <h2><i class="fas fa-angle-down"></i> Login details</h2>
+                    <h2><i class="fas fa-angle-down"></i> Edit login details</h2>
                 </a>
                 <div class="collapse" id="er-login-details">
                     <form action="{% url 'accounts:update_user' %}" class="form-horizontal" method="post">
                         <input type="hidden" name="next" value="{% url 'accounts:user_profile' %}">
                         {% crispy user_form user_form.helper %}
                     </form>
+                    <p class="text-right">
+                        <a href="{% url 'reset_password' %}?next={{ next }}" title="Reset your password"> Click here to
+                            change your password <i class="fas fa-envelope"></i></a>
+                    </p>
                 </div>
             </div>
-            <!-- User details -->
+            <!-- User details form -->
             <div class="er-form-wrap">
                 <a data-toggle="collapse" href="#er-user-details">
-                    <h2><i class="fas fa-angle-down"></i> Shipping details</h2>
+                    <h2><i class="fas fa-angle-down"></i> Edit shipping details</h2>
                 </a>
                 <div class="collapse" id="er-user-details">
                     <form action="{% url 'accounts:add_user_details' %}" class="form-horizontal" method="post">
@@ -59,30 +91,11 @@
             </div>
             <div class="collapse" id="order{{order.pk}}">
                 <div class="row er-info-wrap">
-                    <div class="col-12">
-                        {% if order.sent %}
-                        <h5 class="text-center">This order was sent on {{ order.date }}</h5>
-                        {% else %}
-                        <h5 class="text-center">This order has not been sent yet</h5>
-                        {% endif %}
-                        <br>
-                    </div>
-                    <div class="col-6 col-md-3">
+                    <div class="col-6">
+                        <h2 class="text-left">Ship to:</h2>
+                        <p class="text-left">
 
-                        <h5>Total:</h5>
-                        <h5>Shipping:</h5>
-
-                    </div>
-                    <div class="col-6 col-md-3">
-
-                        <h5>{{ order.total}} <i class="fas fa-euro-sign"></i></h5>
-                        <h5>{{ order.shipping}} <i class="fas fa-euro-sign"></i></h5>
-
-
-                    </div>
-                    <div class="col-12 col-md-6">
-
-                        <p class="text-right">{{ user.first_name }} {{ user.last_name }}<br>
+                            {{ user.first_name }} {{ user.last_name }}<br>
                             {{ order.address1 }}<br>
                             {% if order.adress2 %}
                             {{ order.address2 }}<br>
@@ -92,9 +105,21 @@
                             {{ order.country }}
                         </p>
                     </div>
+                    <div class="col-6">
+                        <h2 class="text-right">Shipping: {{ order.shipping}} <i class="fas fa-euro-sign"></i></h2>
+                        <h2 class="text-right">Total: {{ order.total}} <i class="fas fa-euro-sign"></i></h2>
+                    </div>
+
+                    <div class="col-12">
+                        <br>
+                        {% if order.sent %}
+                        <h2 class="text-center">This order was sent on {{ order.sent_date }}</h2>
+                        {% else %}
+                        <h2 class="text-center">This order has not been sent yet</h2>
+                        {% endif %}
+
+                    </div>
                 </div>
-
-
                 {% for item in ordered_items %}
                 {% if item.order.pk ==  order.pk %}
                 <div class="row er-list-wrap">
@@ -152,15 +177,11 @@
                     <div class="col-6 er-checkout-right">
                         <p>{{ order.shipping }} <i class="fas fa-euro-sign"></i></p>
                     </div>
-
-
                     <div class="col-12">
                         <p>
                             <hr>
                         </p>
                     </div>
-
-
                     <div class="col-6 er-checkout-left">
                         <p>Total :</p>
                     </div>
@@ -171,15 +192,7 @@
             </div>
             {% endfor %}
         </div>
-
-
-
     </div>
-
-
-
-
-
 </main>
 
 <!-- Load special screen events (highlite shop item in navbar-->
