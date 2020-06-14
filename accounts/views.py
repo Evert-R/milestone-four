@@ -11,6 +11,7 @@ from accounts import decorators
 # Create your views here.
 
 
+@login_required
 def user_profile(request):
     """Display profile page"""
     next = request.GET.get('next', '/')
@@ -38,7 +39,9 @@ def user_profile(request):
     ordered_items = order_items.objects.all()
 
     return render(request, 'profile.html',
-                  {'user_form': user_form,
+                  {'active_user': active_user,
+                   'user_details': current_user_details,
+                   'user_form': user_form,
                    'details_form': details_form,
                    'orders': user_orders,
                    'ordered_items': ordered_items,
@@ -47,6 +50,7 @@ def user_profile(request):
                    })
 
 
+@login_required
 def update_user(request):
     """Register new users"""
     active_user = request.user

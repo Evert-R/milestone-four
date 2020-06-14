@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
-
+from django.utils import timezone
 from accounts.decorators import admin_only
 from works.models import work_items, work_images
 from shop.models import shop_items, shipping, shop_message
@@ -91,6 +91,7 @@ def update_order(request, pk, action=None):
         return redirect(next)
     elif action == 'sent':
         order.sent = True
+        order.sent_date = timezone.now()
         order.save()
         messages.success(request,
                          'The order was marked as sent')
@@ -213,7 +214,6 @@ def unset_shop_image(request, pk):
     return redirect(next)
 
 
-
 @login_required()
 @admin_only
 def edit_settings(request):
@@ -262,4 +262,3 @@ def set_shop_message(request):
             return redirect(next)
     else:
         return redirect('dashboard:edit_settings')
-
