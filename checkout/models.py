@@ -11,6 +11,7 @@ class orders(models.Model):
     date = models.DateField()
     paid = models.BooleanField(default=False)
     sent = models.BooleanField(default=False)
+    sent_date = models.DateField(blank=True, null=True)
     total = models.DecimalField(
         max_digits=5, decimal_places=2, default=0)
     address1 = models.CharField(blank=True, max_length=50)
