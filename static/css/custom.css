@@ -78,7 +78,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1.5rem;
-    padding: 2rem;
+    padding: 2rem 2rem 1.5rem 2rem;
     background-color: rgba(123, 123, 123, 0.12);
     border-radius: 0.8rem;
     border-style: solid;
@@ -92,14 +92,17 @@ table {
     font-size: 0.9rem;
     font-weight: 500;
     text-align: center;
+    color: rgba(0, 0, 0);
+    padding-left: .5rem;
+    padding-right: .5rem;
 }
 
 .er-info-wrap a {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .er-info-wrap h2 {
-    letter-spacing: 0rem;
+    letter-spacing: 1px;
     font-size: 0.9rem;
     text-align: center;
     margin-bottom: 1rem;
@@ -676,7 +679,7 @@ table {
     font-size: 0.8rem;
 }
 
-.er-checkout .er-price-cell {
+.er-checkout .er-price-cell, .er-accounts .er-price-cell {
     font-family: 'FuturaBT-Heavy', 'Hind';
     font-size: 0.8rem;
 }
@@ -884,7 +887,7 @@ table {
 }
 
 .er-accounts .er-form-wrap a {
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .er-accounts .er-form-wrap i {
@@ -1431,6 +1434,10 @@ form .row {
         position: absolute;
         bottom: 0;
         margin-top: unset;
+    }
+    .er-info-wrap p {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 }
 
