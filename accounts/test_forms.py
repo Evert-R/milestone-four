@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User, Group
 from django.test import TestCase
-from .forms import LogInForm, RegisterForm, UserUpdateForm, UserDetailsForm
+from .forms import LogInForm, RegisterForm, UserUpdateForm, UserDetailsForm, PasswordSetForm, ResetPasswordForm
 from shop.models import shipping
 
 
@@ -154,3 +154,16 @@ class TestUserDetailsForm(TestCase):
         form = UserDetailsForm()
         self.assertEqual(form.Meta.fields, ['user', 'address1', 'address2', 'postcode',
                                             'city', 'country', 'telephone', 'shipping'])
+
+
+class TestResetPasswordForm(TestCase):
+    def test_all_fields(self):
+        form = ResetPasswordForm({'email': 'test@test.nl'})
+        self.assertTrue(form.is_valid())
+
+    def test_no_fields(self):
+        form = ResetPasswordForm({'email': ''})
+        self.assertFalse(form.is_valid())
+        self.assertIn('email', form.errors.keys())
+        self.assertEqual(form.errors['email']
+                         [0], 'This field is required.')
