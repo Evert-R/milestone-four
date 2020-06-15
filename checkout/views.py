@@ -101,20 +101,23 @@ def check_out(request):
                     work.shop_settings.stock -= quantity
                     work.shop_settings.save()
                 request.session['cart'] = {}
-                send_mail(
-                    'Thank you for your order',
-                    'I will prepare the package with the greatest care and sent you an e-mail with the tracking code when I shipped it. If there is anything you would want to change or inform me about, please do not hesitate to send me an email.',
-                    'info@lobkevanaar.nl',
-                    [active_user.email],
-                    fail_silently=False,
-                )
-                send_mail(
-                    'New order in the shop',
-                    'A new order is waiting to be shipped.',
-                    'info@lobkevanaar.nl',
-                    ['evert.rot@gmx.com'],
-                    fail_silently=False,
-                )
+                try:
+                    send_mail(
+                        'Thank you for your order',
+                        'I will prepare the package with the greatest care and sent you an e-mail with the tracking code when I shipped it. If there is anything you would want to change or inform me about, please do not hesitate to send me an email.',
+                        'info@lobkevanaar.nl',
+                        [active_user.email],
+                        fail_silently=False,
+                    )
+                    send_mail(
+                        'New order in the shop',
+                        'A new order is waiting to be shipped.',
+                        'info@lobkevanaar.nl',
+                        ['evert.rot@gmx.com'],
+                        fail_silently=False,
+                    )
+                except:
+                    pass
                 return redirect(reverse('shop:all_shop_works'))
             else:
                 order.paid = False
