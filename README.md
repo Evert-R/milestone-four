@@ -440,7 +440,7 @@ We will need the credentials from these accounts in the next steps to setup our 
           os.environ["EMAIL_ADDRESS"] = "<your email address>"
           os.environ["EMAIL_PASSWORD"] = "<your email password>"
       
-- Add this file to the ```.gitignore``` file)
+- Add this file to the ```.gitignore``` file
 
 The app will first look for this file to load the environment variables. If this file is not found it assumes that the environment variables are already present, as will be the case when we run the project on an external server. This hidden file is there to ensure our credentials are not exposed on github.
 
@@ -536,22 +536,115 @@ The app will first look for this file to load the environment variables. If this
 - Works app: filter form
   - When the the default, empty label was selected i got a server error(500)
     - Added a try and except method to show all works when an error occurs
+- Checkout app
+  - On the deployed site on Heroku I got a server 500 error after making a payment
+  - In my mailbox I recieved a warning from google
+    - Created a special app password to use with unsafe apps
   
 ### Automated testing
 
 A test report using the test client in Django can be found here: 
 
-[coverage](http://evertrot.nl/codeinstitute/milestonefour/htmlcov/)
+[Coverage test results](http://evertrot.nl/codeinstitute/milestonefour/htmlcov/)
 - To create this report the tests were run on the following apps:
   - about, accounts, cart, checkout, dashboard, shop, works
-- Command used:
-  - ```coverage run --source=about,cart,checkout,shop,works,dashboard,accounts manage.py test``` 
+    - Command used: ```coverage run --source=about,cart,checkout,shop,works,dashboard,accounts manage.py test``` 
 
 
 #### Travis deployment testing
 [![Build Status](https://travis-ci.org/Evert-R/milestone-four.svg?branch=master)](https://travis-ci.org/Evert-R/milestone-four)
 
-The automated django testing is run by travis-ci whenever a new build is being pushed to github. For this purpose I have set an environment variable ```TEST``` in travis, so that django will use it's own sqlite database instead of the progresql database from Heroku. Otherwise we would get an error that django was unable to create a new database, as heroku doesn't allow this (on a free account). 
+The automated django testing is run by travis-ci whenever a new build is being pushed to github. 
+For this purpose I have set an environment variable ```TEST``` in travis, so that django will use it's own sqlite database instead of the progresql database from Heroku. 
+Otherwise we would get an error that django was unable to create a new database, as heroku doesn't allow this (on a free account). 
+
+### Manual testing
+
+##### User that was not logged in
+
+- entered ```https://lobkevanaar.herokuapp.com/checkout```
+  - viewed the register page
+- Got the same behaviour for all the urls in this readme with ```logged in as a customer required``` 
+- entered ```https://lobkevanaar.herokuapp.com/dashboard/addwork/```
+  - viewed the login page  
+- Got the same behaviour for all the urls in this readme with ```logged in as admin required``` 
+  
+##### Logged in as a customer
+- entered ```https://lobkevanaar.herokuapp.com/dashboard/addwork/```
+  - viewed the portfolio and a message that i'm not allowed to use that page
+- Got the same behaviour for all the urls in this readme with ```logged in as admin required``` 
+
+##### User that was not logged in
+
+- clicked ```work``` in the main menu
+  - viewed a list of the portfolio works
+- clicked ```filter categories``` and chose ```personal work```
+  - viewed a list with only the personal works
+- clicked the undo icon
+  - viewed the whole list again
+- clicked the artist email in the footer
+  - was promted to choose an email client to sent an email
+- clicked the artist phone number in the footer
+  - was promped to choose how to make the call
+- clicked the facebook icon in the footer
+  - got the artists facebook page in a new tab
+- clicked the instagram icon in the footer
+  - got the artists instagram page in a new tab
+- clicked the webdesigners name in the footer
+  - got the webdesigners homepage in a new tab
+
+- clicked ```about``` in the main menu
+  - viewed a story about the artist
+- clicked the ```play``` button on the vidio
+  - viewed a video about the artist
+- clicked the ```full screen``` button
+  - viewed the video full screen
+
+- clicked ```shop``` in the main menu
+  - viewed a list of the shop works
+  - a ```login``` and ```register``` button was added to the menu
+- clicked ```filters``` then ```Type``` and chose ```Top quality fine art print```
+  - viewed a list with only the Top quality fine art print items
+    - the title changed to ```Viewing: / Top quality fine art print```
+- clicked ```filters``` then ```size``` and chose ```50x50 cm (19x19 inch)```
+  - viewed a list with only the Top quality fine art print items of 50x50 cm (19x19 inch)
+    - the title changed to ```Viewing: / Top quality fine art print / 50x50 cm (19x19 inch)```
+- clicked ```filters``` then ```material``` and chose ```on Nettuno Bianco Artico```
+  - viewed a list with only the Top quality fine art print items of 50x50 cm (19x19 inch) on Nettuno Bianco Artico
+    - the title changed to ```Viewing: / Top quality fine art print / 50x50 cm (19x19 inch) / on Nettuno Bianco Artico```
+- clicked the undo icon
+  - viewed the whole list again
+- Clicked the ```add cart``` button on an item
+  - a ```cart``` button was added to the menu
+- clicked on ```cart``` button in the menu
+  - viewed the shopping cart with the item and a total price
+- clicked ```proceed to checkout```
+  - viewed the user registration form
+- clicked ```register```
+  - got the error that fields in the form were missing
+- filled out the form with different passwords and clicked ```register```
+  - got the error that the passwords didn't match
+- corrected the password and clicked ```register```
+  - viewed the shipping details form
+  - the ```register``` button turned into a ```profile``` button
+- clicked ```submit```
+  - got the error that fields in the form were missing
+- filled out the form and clicked ```submit```
+  - viewed the checkout page with the items, total price including the shipping costs
+- clicked ```place order```
+  - nothing happened
+- filled out the form using the test credentials for a credit card
+  - was returned to the shop with a message that I had paid
+  - recieved an email that my order was being prepared
+- cliced ```profile``` in the main menu
+  - Viewed my detailed information
+  - viewed forms to change these
+  - viewed a list of my orders with the sent status
+- clicked ```logout```
+  - viewed the login page
+
+
+
 
 
 ### Tools
