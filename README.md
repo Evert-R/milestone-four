@@ -8,47 +8,73 @@
 ##### Deployed version:
 - [Lobke van Aar](https://lobkevanaar.herokuapp.com/)
 
-- A temporary login account for the project's assessment by Code Institute was created with these credentials:
+###### 
+- A temporary login account with administrator status is created for the project assessment by Code Institute with these credentials:
   - user:   ```temp_access```
   - pass:   ```EvertRotMs4```
-
+  
+- A credit card payment can be simulated using this data:
+  - Credit card number: 4242424242424242
+  - CVV: 111
+  - Month: The current month
+  - Year: The current year
+  
 ### Project purpose
 
-This python web-application has been custom made to serve as a portfolio and webshop for the dutch illustration artist Lobke van Aar. It has been completely tailored to her needs in displaying and selling her unique art works. The application was designed to make it easy to update as much elements of the website as possible without the need of a web designer.  
+This python web-application has been custom build to serve as a portfolio and webshop for the dutch illustration artist Lobke van Aar. It has been completely tailored to her needs in displaying and selling her unique works of art. The application was designed to make it easy to update as much elements of the website as possible without knowing how to do webdesign.   
 
 The frontend consists of three parts:
-- Portfolio
+- Work (Portfolio)
 - About
-- Webshop
-   
-New works can be added easily from the dashboard on the backend and can be either in the porfolio, the webshop or in both.  You can also choose wich layout to use in the portfolio's details page. Vertical or horizontal. Larger quantities of works of a certain kind can be made into a collection and then be viewed in an convenient image carroussel. 
-Clicking on a work in the portfolio will take you to that work's details page: a large image of the work, the story behind the work and all other images related to that work. In the webshop this action will show you all the relevant information you need, should you would want to buy a work.
-Aldo for this purpose there is a shopping cart, a checkout page providing credit card payments and a user registration system with the possibility of resetting the password using an email link.
+- Shop
 
-Everything you see on the frontend can be controlled from the backend. For works that are marked as a shop item the dashboard will show an extra panel to add all the relevant shop settings, like price, discount, stock, how many were made. an extra personal description and wether the work comes framed and signed. Attributes like category, material, size and type, can be assigned to each shop item. These attributes can themselves be add, edited or deleted on the same page and are also used as filters for visitors of the webshop when viewing the works.
+The portfolio features a stylish overview of the works created by the artist including a detail page for every work, showing the description and all available images for that work. This detail view can be customized by the artist, in order to show every work at its full potential.
+
+The shop was designed to provide a clear overview of all the works that are offered for sale. Its detail page features an image carroussel to browse through the images, so the description, specifications and 'add to cart' button are always in sight.
+
+The shop features a complete authentication system for customers to create an account and a checkout page to make their payment. A forgotten password is covered as well, with a reset function and an e-mail to create a new password. 
+
+The dashboard in the backend provides all the tools needed for the artist to add works and configure their layout and parameters view orders as a list and in detail, with options to mark them as sent, moving them down in the list. 
+
+
 
 ### UX
 
 #### Design
 The initial mock-up for the portfolio frontend was provided by the site owner and can be found here: [Mock-Up](/static//UXD/v1_ontwerp-www.lobkevanaar.nl.pdf)
-She also provided the licensed font used in this project: Futura. As this font only has a limited count of 10.000 on the license, the 'Hind' font by google was implemented as a backup for 'Futura-Heavy' and the 'Muli' font by google for 'Futura-Book', should the license expire.
+She also provided the licensed font used in this project: Futura. As this font only has a limited count of 10.000 on the license, the 'Hind' font by google was implemented as a backup for 'Futura-Heavy' and the 'Muli' font by google as a backup for 'Futura-Book', should the license expire.
 
-I designed the rest of the application building on this mock-up, keeping it as clean as possible. For this reason the buttons for the webshop are only present when you enter the shop and dissapear again when you are browsing the portfolio or the about page. This way all the attention is directed at the works of the artist without any unnecessary distractions.
-For the same reason the optional shop message banner will only be shown when navigating to the shop from the main menu. It won't be shown if you use the back button or get redirected to the shop otherwise. If you have seen it once you got the message, is the idea.
-The artist already uses a lot of bright colours in her works, so for the design I used as little colours as possible and when I did I only used those that were already present in her works, as she has a very distinctive choice of colours. 
+I designed the rest of the application building on this mock-up, keeping it as clean as possible. For this reason the buttons for the webshop are only present when you enter the shop and will dissapear when you are browsing the portfolio or the about page. This way the user's attention is always  directed at the works of the artist without any unnecessary distractions.
+For the same reason the optional shop message banner will only be shown when navigating to the shop from the main menu. It will not be shown when you use the back button or when you get redirected to the shop otherwise. If you have seen it once then you got the message is the idea.
 
-The portfolio overview page uses bootstrap card-columns to allow images of different heights to make a closed pattern. The downside to this is that the works are ordered by bootstrap from top to bottom, and then left to right, wich is quite unpredictable, because sometimes when an image is half the height of the one next to it, two images will be placed in that spot instead of one. As a solution, or work-around, I implemented an option for every work to override the standard date-based order of displaying the works, thus creating the option to make the optimal sorting.
+The artist already uses a lot of bright colours in her works, so for the design I used as little colours as possible and when I did use colours I only used those that were already present in her works, as she has a very distinctive choice of colours. 
+
+The portfolio overview page uses bootstrap card-columns to allow images of different heights to make a closed pattern. The downside to this is that the works are ordered by bootstrap from top to bottom, and then left to right, wich is quite unpredictable, because sometimes when an image is half the height of the one next to it, two images will be placed in that spot instead of one, and there goes the sorting. As a solution, or work-around, I implemented an option in every work to override the standard date-based order of displaying the works, thus creating the option to make the optimal sorting, with trial and error.
 
 The work detail page in the portfolio has a layout choice for each work's main image: Horizontal or vertical. 
 When vertical is selected the image will be on the left column and the text will be on the right. When horizontal is chosen the main image covers the whole row and the text will be underneath. This way every work can have its optimal view. The navigation bar is also smaller on this page to make room for the big image. 
-The extra images for each work are rendered beneath, left and right, with a maximum of 10. The order for this can also be overridden in the dashboard to create the perfect look for each work. 
-If a work was marked as a collection the details page will only show an image carroussel to scroll through the collection of these single images of a similar kind.
+The extra images for each work are rendered beneath and left and right, with a maximum of 10. The order for this can also be overridden in the dashboard to create the perfect look for each work. 
+If a work was marked as a collection the detail page will show an image carroussel to scroll through the collection of these single images.
 
-In the shop overview the items are of the same height to make it easier to get an overview when selecting a work to buy. On the work's details page in the shop there is a carroussel to browse through the extra images. This way the work's information and 'add to cart button' are allways in sight while browsing through the images.
+In the shop overview the items are all of the same height to make it easier to get an overview when selecting a work to buy. On the work's details page in the shop there is also a carroussel to browse through the extra images. This way the work's specifications and 'add to cart button' are always in sight while browsing through the images.
 
-On page load a footer with the most vital information is shown at the bottom of the screen. When scrolling down it dissapears and attaches itself all the way to the bottom of the page, and appears again when completely scrolled down. On small devices the initial footer only shows the name of the artist and the social media buttons, because otherwise the footer would take up too much of the screen. When scrolled to the bottom the footer expands to show all the information.
+On page load a footer with the most vital contact information is shown at the bottom of the screen. When you start scrolling it dissapears and attaches itself all the way to the bottom of the page, and appears again when you have completely scrolled down. On small devices the initial footer only shows the name of the artist and the social media buttons, because otherwise the footer would take up too much of the screen. When scrolled to the bottom on mobile the footer expands to show all the information again.
 
-An automatic back button is implemented in the right bottom of the screen. It's only there when it is relevant and blends in with the footer on page load and again when you completely scrolled down. In the footer it shows very clear and distinctive, but while scrolling the page it has a very light colour, so it's not too intrusive when viewing the works, but still is visible, also because you already saw it was there and folow it from the footer. 
+An automatic back button is implemented in the right bottom corner of the screen. It's only there when it is relevant to have a back button and blends in with the footer on page load and again when you have completely scrolled down. In the footer the back button is very clear and distinctive, but while scrolling the page it has a light colour compared to the background so that it's not too intrusive when viewing the works, but still visible because you already saw it was there and you follow it from the footer. 
+
+#### Workflow
+
+The main menu is always in sight to switch between the portfolio, the shop and the about page. 
+In the shop some extra buttons are shown on the right side of the navigation bar to login or to register and an optional shopping cart button in case an item was put in there.
+
+When logged in, the logout button replaces the login button and a profile button replaces the register button, so you can never hit the wrong one.
+In the portfolio and shop overview pages there are some extra buttons on the left side of the nav bar to filter the displayed works. 
+These filters are replaced with buttons to use the dashboard when a user with administrator status is logged in.
+
+Navigating from inside the portfolio or shop page to another page, for example the login, register, detail, shopping cart or checkout page, will generate a back button, so you can always go back to your origin.
+When navigating to a page where you have to be logged in you will be directed to the login page first and then taken further. 
+
+Navigating to the checkout page without being logged in will first direct you to the register page, then to the shipping details form, after wich you'll arrive at the checkout page. This is the most logical scenario for customers using the webshop. In case they already have an account they can navigate to the login from the register page.
 
 #### User stories
 
@@ -87,57 +113,60 @@ An automatic back button is implemented in the right bottom of the screen. It's 
 
 #### Features
 ##### Work (Portfolio)
-- Display an overview of all works
+- An overview of all works
 - Filter works by category
 - Display a work's details
 
 ##### About
-- Display information about the artist
+- View information about the artist
 
 ##### Shop
-- Display all items in the shop
+- An overview of all the items in the shop
 - Filter items by type, size and material
-- Show an items details and browse all images
+- Show an item's details and browse all images
 - Add an item to the shopping cart
-- View the shopping cart with total price
-- Register as a new user
-- Log in
-- Provide shipping details
-- View the checkout page with total price and shipping costs
-- Confirm the order and pay with credit card
-- Reset password via an e-mail link
+- View the  shopping displaying all placed items and the total price
+- Checkout page displaying all items with the total price and shipping costs
+- Place an order
+- Credit card payment
+- Order confirmation by email to the customer
+- New order alert by email to the artist 
+- User registration
+- User details registration for shipping address
+- User profile page with edit forms and a list of all placed orders and their sent status
+- Log in page
+- Log out function 
+- Reset a forgotten password via an e-mail link
 
 ##### Dashboard (site owner only)
 - Add a new work
 - Choose the portfolio details layout
 - Add/delete extra images for a work
-- Rearrange the order of the extra images for the works detail page
+- Rearrange the order of the extra images for use in the work's detail page
 - Attach shop settings to a work
-- Create a discount, wich will show a banner on the shop page for this item
+- Create a discount for a work, wich will show a banner on the shop page for this item
 - View a list of all the works
 - View a list of all the shop items
-- Rearrange the order of the works on the work overview page
-- Rearrange the order of the shop items in the shop
+- Rearrange the order of the works in the portfolio
+- Rearrange the order of the works in the shop
 - Delete a work (with confirmation)
 - Add/edit global attributes (categories/work-sizes/work-types/materials/shipping regions)
-- View a list of all the orders
+- View a list of all the orders that were placed
 - Mark an order sent/unsent, paid/not paid
+- Set the sent date of an order (automatic)
 - Set a message banner on the shop page
+- 
 
 ##### Features to be implemented before project submission
 - show shop image in work list
-- Notification for new (unsent) orders
 - Help texts (Manual)
 - Out of stock notification
-- Sent e-mail on new order
-- Set date when order is sent
-- Profile page for users
-- Automated django tests
   
 ##### Features to be implemented after project submission
 - IDEAL payments
 - View a user list
 - View a user list for marketing mail (user has option)
+- Pagination
   
 
 ## Project structure
@@ -332,6 +361,26 @@ It is divided into 7 apps.
 
 ![Database structure](/static/UXD/DatabaseDiagram.jpg)
 
+
+New works can be added easily from the dashboard on the backend when logged in as an admin. Work objects (```work_items```) are the main building blocks of the app and consist of a main image, a title, under title, description and a category. If the work has a wide main image then 'horizontal' can be  selected, displaying the work's detail page with a full width image and the title and description underneath, while the vertical option will show a full heigth image with a column on the side, displaying the title and the description of the work. This way a work is always displayed at its optimal size. 
+
+A work can have multiple extra images (```work_images```) wich are used in that work's detail pages.
+
+When a work is set as a collection, the work's detail page will show a carroussel to flip through the works. This is used for larger quantities of single images of a similar kind. Like stickers, logos, etc.
+
+Every work can be set as a shop item (```shop_items```), giving it an extra set of parameters to be used in the shop, like price, discount, type, material, size, how many were made, how many are in stock and wether the work comes framed and signed or not. The shop item's description in the shop detail page will be generated from these parameters, but there's also an option available for a custom message to make it more personal. 
+
+Attributes like ```categories```, ```work_types```, ```work_sizes``` and ```material```, wich can be selected for a work, can also be added and edited on the dashboard. These attributes are also being used to filter the works in the portfolio and the shop.
+
+Customers can add works to the shopping cart and make a credit card payment on the checkout page, should they want to purchase a work.
+Before placing an order an account has to be made (```User```), including address details (```user_details```) wich will also determine the region to ship the order to and its respective shipping costs. On the checkout page the shipping costs and a possible discount are calculated and displayed.
+
+A successfull placed order will generate an order object (```ordered_items```)  wich relates to the ```orders``` object, where all the order information is stored, including an automatic updated ```sent_date``` when the order was marked as sent on the dashboard.
+
+These shipping regions (```shippings```) can also be added and edited by the admin on the settings panel on the dashboard. 
+
+On this same panel there is also an option to display a small banner on the frontpage of the shop to make a temporary announcement to the customers. (```shop_message```) For example: 'this week everything is free!'  
+
 ## Deployment 
 This project was deployed on Heroku from the ```master branch```
   - [Lobke van Aar](https://lobkevanaar.herokuapp.com/)
@@ -459,6 +508,11 @@ The app will first look for this file to load the environment variables. If this
   - EMAIL_HOST = 'smtp.gmail.com'
   - EMAIL_PORT = 587
 
+- Enter from your local terminal:
+  - ```python manage.py collectstatic```
+    - This will copy the static files to the AWS storage, wich django uses when we are running remote
+
+
 ##### Connect heroku to the github repository
 - In heroku click ``` Connect to GitHub ```
 - click ```Ok``` to authorize the connection
@@ -475,6 +529,14 @@ The app will first look for this file to load the environment variables. If this
 
 ## Testing
 
+### Bug found while testing
+- Dashboard app: attributes view
+  - Discovered when trying to edit an unknown item the ```next``` variable wasn't present resulting in an ```server 500``` error.
+    - Moved the assignment of the ```next``` variable to the top of the view for both a post or get request
+- Works app: filter form
+  - When the the default, empty label was selected i got a server error(500)
+    - Added a try and except method to show all works when an error occurs
+  
 ### Automated testing
 [![Build Status](https://travis-ci.org/Evert-R/milestone-four.svg?branch=master)](https://travis-ci.org/Evert-R/milestone-four)
 
