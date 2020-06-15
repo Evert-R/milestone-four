@@ -152,11 +152,6 @@ Navigating to the checkout page without being logged in will first direct you to
 - Mark an order sent/unsent, paid/not paid
 - Set the sent date of an order (automatic)
 - Set a message banner on the shop page
-
-##### Features to be implemented before project submission
-- show shop image in work list
-- Help texts (Manual)
-- Out of stock notification
   
 ##### Features to be implemented after project submission
 - IDEAL payments
