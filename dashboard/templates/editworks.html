@@ -16,36 +16,37 @@
         </div>
         <div class="collapse er-info-wrap" id="er-help-work">
             <h2 class="text-left">Edit or add a work:</h2>
-            <p class="text-left">New works can be added to the portfolio on this page. Make sure that you
-                first add a category, if it's a new one.<br>The Vertical/Horizontal setting will determine the layout of
-                the details page
-                for that work.
+            <p class="text-left">This panel is used to add new works to the portfolio. Make sure that you
+                first add a category in the 'Manage Categories' panel.<br>
+                The Vertical/Horizontal setting will determine the layout of the details page in the portfolio for that
+                work, depending on the dimensions of the main image.
             </p>
             <h2 class="text-left">Shop items:</h2>
             <p class="text-left">
-                When a new work is set to be a shop item, a new panel with settings for use in the shop will be
-                automatically
-                shown. Make sure again, that you first add the work type, work size and material the work uses, if they
-                are not already in
-                the list, before making the shop settings.
+                When a new work is set to be a shop item, a new panel with settings for the shop will be
+                automatically shown. Make sure again, that you first add the work type, work size and material that the
+                work uses, before making the shop settings.<br>
+                If you set a discount for an item, a small banner will be shown on that item in the shop. The price is
+                then automatically calculated from the percentage you set.
             </p>
             <h2 class="text-left">Sort order:</h2>
             <p class="text-left">
-                The sorting order of both the portfolio, and the shop items, override the standard sorting,
+                The sorting order of both the portfolio works and the shop items, will override the standard sorting,
                 wich is by submitted date.<br>Because of the layout of the portfolio, where items in the grid have
                 different heights, the works are sorted from top to bottom and then left to right. This is
-                quite unpredictable, so it might take a little playing around to get the perfect look.<br>
+                quite unpredictable, so it might take a little playing around to get the perfect order.<br>
             </p>
             <h2 class="text-left">Manage extra images:</h2>
-            <p class="text-left">You can upload multiple extra images for each work.<br>
-                The portfolio details page will only show a limit of 10 images per work.<br>A collection can have as
-                much images as you want.</p>
+            <p class="text-left">Multiple extra images can be uploaded for each work.<br>
+                The portfolio details page can only show a maximum of 10 images per work.<br>A collection and a shop
+                item can have more
+                images. A collection is used for a larger set of single images of a similar kind. These are displayed in
+                a
+                carroussel.</p>
             <p class="text-left">When a work is both in the portfolio and in the shop you can set a different main image
-                for use in the shop. You set
-                this at the extra images panel.<br>Also the sorting order for extra images can be set here. This is
-                especially usefull for perfecting the details view in the portfolio.</p>
-            <p>
-            </p>
+                for use in the shop. You can do this at the extra images panel.<br>Also the sorting order for extra
+                images
+                can be set here. This is especially usefull for perfecting the details view in the portfolio.</p>
         </div>
 
         <div class="er-form-wrap">
@@ -442,12 +443,16 @@
                 {% endfor %}
             </table>
         </div>
+        {% if work.work_item %}
         <a href="{% url 'works:work_details' pk=work.id %}?next={{ request.path|urlencode }}">
             <h3><i class="fas fa-eye"></i> Preview work view</h3>
         </a>
+        {% endif %}
+        {% if work.shop_item %}
         <a href="{% url 'shop:shop_details' pk=work.id %}?next={{ request.path|urlencode }}">
             <h3><i class="fas fa-eye"></i> Preview shop view</h3>
         </a>
+        {% endif %}
     </div>
     {% endif %}
 </div>
