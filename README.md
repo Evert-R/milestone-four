@@ -34,9 +34,7 @@ The shop was designed to provide a clear overview of all the works that are offe
 
 The shop features a complete authentication system for customers to create an account and a checkout page to make their payment. A forgotten password is covered as well, with a reset function and an e-mail to create a new password. 
 
-The dashboard in the backend provides all the tools needed for the artist to add works and configure their layout and parameters view orders as a list and in detail, with options to mark them as sent, moving them down in the list. 
-
-
+The dashboard in the backend provides all the tools needed for the artist to add works and configure their layout and parameters, view all orders as a list and in detail, with options to mark them as sent, moving them down in the list. 
 
 ### UX
 
@@ -47,7 +45,7 @@ She also provided the licensed font used in this project: Futura. As this font o
 I designed the rest of the application building on this mock-up, keeping it as clean as possible. For this reason the buttons for the webshop are only present when you enter the shop and will dissapear when you are browsing the portfolio or the about page. This way the user's attention is always  directed at the works of the artist without any unnecessary distractions.
 For the same reason the optional shop message banner will only be shown when navigating to the shop from the main menu. It will not be shown when you use the back button or when you get redirected to the shop otherwise. If you have seen it once then you got the message is the idea.
 
-The artist already uses a lot of bright colours in her works, so for the design I used as little colours as possible and when I did use colours I only used those that were already present in her works, as she has a very distinctive choice of colours. 
+The artist already uses a lot of bright colours in her works, so for the design I used as little colours as possible. When I did use colours I only used those that were already present in her works, as she has a very distinctive choice of colours. 
 
 The portfolio overview page uses bootstrap card-columns to allow images of different heights to make a closed pattern. The downside to this is that the works are ordered by bootstrap from top to bottom, and then left to right, wich is quite unpredictable, because sometimes when an image is half the height of the one next to it, two images will be placed in that spot instead of one, and there goes the sorting. As a solution, or work-around, I implemented an option in every work to override the standard date-based order of displaying the works, thus creating the option to make the optimal sorting, with trial and error.
 
@@ -109,7 +107,6 @@ Navigating to the checkout page without being logged in will first direct you to
 - As the site owner I would want to see the unpaid orders first, then the orders that have not been sent and then the completed orders
 - As the site owner I would want to be able to mark an order paid, unpaid, sent or not sent
 - As the site owner I would want to be able to add shipping regions, and edit their costs
-- As the site owner I would want to be able to 
 
 #### Features
 ##### Work (Portfolio)
@@ -155,7 +152,6 @@ Navigating to the checkout page without being logged in will first direct you to
 - Mark an order sent/unsent, paid/not paid
 - Set the sent date of an order (automatic)
 - Set a message banner on the shop page
-- 
 
 ##### Features to be implemented before project submission
 - show shop image in work list
@@ -167,11 +163,11 @@ Navigating to the checkout page without being logged in will first direct you to
 - View a user list
 - View a user list for marketing mail (user has option)
 - Pagination
-  
 
 ## Project structure
-This project was written in Python 3.8.1 using Django 3.0.7
-It is divided into 7 apps.
+This project was written in Python 3.8.1 using Django 3.0.7 
+
+It is divided into 7 apps:
 
 ###### frontend
   - about
@@ -357,10 +353,9 @@ It is divided into 7 apps.
 ``action = notsent`` Mark order as notsent
 
 ### Data-structure
-[Database structure](/static//UXD/DatabaseDiagram.jpg)
+The diagram can be found [here](/static//UXD/DatabaseDiagram.jpg)
 
 ![Database structure](/static/UXD/DatabaseDiagram.jpg)
-
 
 New works can be added easily from the dashboard on the backend when logged in as an admin. Work objects (```work_items```) are the main building blocks of the app and consist of a main image, a title, under title, description and a category. If the work has a wide main image then 'horizontal' can be  selected, displaying the work's detail page with a full width image and the title and description underneath, while the vertical option will show a full heigth image with a column on the side, displaying the title and the description of the work. This way a work is always displayed at its optimal size. 
 
@@ -526,10 +521,55 @@ The app will first look for this file to load the environment variables. If this
     - ```heroku git:remote -a <your chosen app name>```
     - ```git push heroku master```
 
+## Technologies Used
+- [VSCode](https://code.visualstudio.com)
+  - Code Editor
+- [Git bash](https://gitforwindows.org)
+  - Version control from windows
+- [Python 3.8.1](https://www.python.org)
+  - Program language
+- [Django 3.0.7](https://www.djangoproject.com)
+  - Web framework
+- [Bootstrap 4.4.1](https://getbootstrap.com/)
+  - Grid layout, navigation bar & card columns
+- [Jquery 3.4.1](https://jquery.com/)
+  - DOM manipulation
+- [Font awesome 5.13.0](https://fontawesome.com/)
+  - Icon library
+- [Bitstream Futura Font](https://www.myfonts.com/fonts/bitstream/futura/)
+  - Special Font licensed by the site owner
+- [Crispy forms](https://django-crispy-forms.readthedocs.io/)
+  - Custom form rendering in Django
+- [Heroku](https://www.heroku.com)
+  - Deployment
+- [AWS S3](https://aws.amazon.com/)
+  - Media and static file storage
+- [Stripe](https://stripe.com/)
+  - Online payments (credit card)
+- [Dj-database-url](https://pypi.org/project/dj-database-url)
+  - Parse django database urls
+- [psycopg2](https://pypi.org/project/psycopg2)
+  - Connnect to progresql database
+- [Gunicorn](https://gunicorn.org)
+  - Run django app on Heroku server 
+- [Django secret key generator](https://miniwebtool.com/django-secret-key-generator/)
+  - Generate secret key 
+- [Django storages](https://pypi.org/project/django-storages/)
+  - Custom storage backends for Django
+- [Boto3](https://pypi.org/project/boto3/)
+  - Python AWS SDK for the use of S3
+- [Whitenoise](https://pypi.org/project/whitenoise/)
+  - Static file serving for python apps
+- [Autoprefixer](https://autoprefixer.github.io)
+    - CSS prefixes for different browsers 
+- [Online-convert](https://image.online-convert.com/convert-to-ico)
+    - Convert jpg image to ico for favicon
+- [SQL database diagram](https://app.sqldbm.com/)
+    - Draw SQL database design
 
 ## Testing
 
-### Bug found while testing
+### Bugs found while testing
 - Dashboard app: attributes view
   - Discovered when trying to edit an unknown item the ```next``` variable wasn't present resulting in an ```server 500``` error.
     - Moved the assignment of the ```next``` variable to the top of the view for both a post or get request
@@ -539,7 +579,7 @@ The app will first look for this file to load the environment variables. If this
 - Checkout app
   - On the deployed site on Heroku I got a server 500 error after making a payment
   - In my mailbox I recieved a warning from google
-    - Created a special app password to use with unsafe apps
+    - Created a special app password with gmail to use with unsafe apps
   
 ### Automated testing
 
@@ -614,6 +654,9 @@ Otherwise we would get an error that django was unable to create a new database,
     - the title changed to ```Viewing: / Top quality fine art print / 50x50 cm (19x19 inch) / on Nettuno Bianco Artico```
 - clicked the undo icon
   - viewed the whole list again
+
+###### The following functions are not tested with the automated client tests
+
 - Clicked the ```add cart``` button on an item
   - a ```cart``` button was added to the menu
 - clicked on ```cart``` button in the menu
@@ -643,9 +686,27 @@ Otherwise we would get an error that django was unable to create a new database,
 - clicked ```logout```
   - viewed the login page
 
+##### Logged in as a admin
+  - Got an extra menu on the left replacing the filters
+- clicked ```works``` button
+  - viewed a list of all the works
+  - was able to edit the works using the menus
+- clicked ```orders``` buton
+  - viewed a list of all the orders
+  - was able to edit the orders using the menus
+- clicked ```settings``` button
+  - viewed the shop settings
+  - was able to edit the shipping regions and set a shop message
 
-
-
+##### Logged out
+- clicked ```login``` then ```forgot password```
+  - viewed a form to reset my password
+- entered my email adress
+  - received an email with a link to create a new password
+- clicked the link
+  - filled in the new password twice
+- Got a message that my password was changed
+  - logged in again with the new password
 
 ### Tools
 - [w3c Markup Validation](https://validator.w3.org)
@@ -658,54 +719,6 @@ Otherwise we would get an error that django was unable to create a new database,
     - Css / responsive behaviour
 - [Pep8 online](http://pep8online.com)
     - Python code test 
-
-
-
-## Technologies Used
-- [VSCode](https://code.visualstudio.com)
-  - Code Editor
-- [Git bash](https://gitforwindows.org)
-  - Version control from windows
-- [Python 3.8.1](https://www.python.org)
-  - Program language
-- [Django 3.0.7](https://www.djangoproject.com)
-  - Web framework
-- [Bootstrap 4.4.1](https://getbootstrap.com/)
-  - Grid layout, navigation bar & card columns
-- [Jquery 3.4.1](https://jquery.com/)
-  - DOM manipulation
-- [Font awesome 5.13.0](https://fontawesome.com/)
-  - Icon library
-- [Bitstream Futura Font](https://www.myfonts.com/fonts/bitstream/futura/)
-  - Special Font licensed by the site owner
-- [Crispy forms](https://django-crispy-forms.readthedocs.io/)
-  - Custom form rendering in Django
-- [Heroku](https://www.heroku.com)
-  - Deployment
-- [AWS S3](https://aws.amazon.com/)
-  - Media and static file storage
-- [Stripe](https://stripe.com/)
-  - Online payments (credit card)
-- [Dj-database-url](https://pypi.org/project/dj-database-url)
-  - Parse django database urls
-- [psycopg2](https://pypi.org/project/psycopg2)
-  - Connnect to progresql database
-- [Gunicorn](https://gunicorn.org)
-  - Run django app on Heroku server 
-- [Django secret key generator](https://miniwebtool.com/django-secret-key-generator/)
-  - Generate secret key 
-- [Django storages](https://pypi.org/project/django-storages/)
-  - Custom storage backends for Django
-- [Boto3](https://pypi.org/project/boto3/)
-  - Python AWS SDK for the use of S3
-- [Whitenoise](https://pypi.org/project/whitenoise/)
-  - Static file serving for python apps
-- [Autoprefixer](https://autoprefixer.github.io)
-    - CSS prefixes for different browsers 
-- [Online-convert](https://image.online-convert.com/convert-to-ico)
-    - Convert jpg image to ico for favicon
-- [SQL database diagram](https://app.sqldbm.com/)
-    - Draw SQL database design
 
 ## Credits
 - [Dennis Ivy projects](https://dennis-sourcecode.herokuapp.com/29)
