@@ -538,6 +538,17 @@ The app will first look for this file to load the environment variables. If this
     - Added a try and except method to show all works when an error occurs
   
 ### Automated testing
+
+A test report using the test client in Django can be found here: 
+
+[coverage](http://evertrot.nl/codeinstitute/milestonefour/htmlcov/)
+- To create this report the tests were run on the following apps:
+  - about, accounts, cart, checkout, dashboard, shop, works
+- Command used:
+  - ```coverage run --source=about,cart,checkout,shop,works,dashboard,accounts manage.py test``` 
+
+
+#### Travis deployment testing
 [![Build Status](https://travis-ci.org/Evert-R/milestone-four.svg?branch=master)](https://travis-ci.org/Evert-R/milestone-four)
 
 The automated django testing is run by travis-ci whenever a new build is being pushed to github. For this purpose I have set an environment variable ```TEST``` in travis, so that django will use it's own sqlite database instead of the progresql database from Heroku. Otherwise we would get an error that django was unable to create a new database, as heroku doesn't allow this (on a free account). 
@@ -600,7 +611,8 @@ The automated django testing is run by travis-ci whenever a new build is being p
     - CSS prefixes for different browsers 
 - [Online-convert](https://image.online-convert.com/convert-to-ico)
     - Convert jpg image to ico for favicon
-
+- [SQL database diagram](https://app.sqldbm.com/)
+    - Draw SQL database design
 
 ## Credits
 - [Dennis Ivy projects](https://dennis-sourcecode.herokuapp.com/29)
